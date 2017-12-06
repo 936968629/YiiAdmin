@@ -10,28 +10,6 @@ class BasePublicController extends Controller
         $data = \Yii::$app->request->get($key,$default);
         if(!is_null($data)){
             $data = $this->paramsFilter($data,$filter,$default);
-//            if(is_string($data)){
-//                if(is_string($filter)){
-//                    $filters    =   explode(',',$filter);
-//                }elseif(is_int($filter)){
-//                    $filters    =   array($filter);
-//                }
-//                foreach($filters as $filter){
-//                    if(function_exists($filter)) {
-//                        $data   =   is_array($data) ? array_map_recursive($filter,$data) : $filter($data); // 参数过滤
-//                    }elseif(0===strpos($filter,'/')){
-//                        // 支持正则验证
-//                        if(1 !== preg_match($filter,(string)$data)){
-//                            return isset($default) ? $default : NULL;
-//                        }
-//                    }else{
-//                        $data   =   filter_var($data,is_int($filter) ? $filter : filter_id($filter));
-//                        if(false === $data) {
-//                            return isset($default) ? $default : NULL;
-//                        }
-//                    }
-//                }
-//            }
         }
         return $data;
     }
@@ -39,7 +17,7 @@ class BasePublicController extends Controller
     public function post($key,$default_value="",$filter = null){
         $data = \Yii::$app->request->post($key,$default_value);
         if(!is_null($filter)){
-
+            $data = $this->paramsFilter($data,$filter,$default_value);
         }
         return $data;
     }
@@ -70,6 +48,10 @@ class BasePublicController extends Controller
             "req_id"=> uniqid(),
         ]);
     }
+
+
+
+
 
     /**
      * 过滤参数
