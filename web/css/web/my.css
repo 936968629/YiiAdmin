@@ -1,0 +1,13 @@
+@charset "utf-8";
+body{
+    text-align: center;
+}
+.admin-title{
+    margin-bottom: 50px;
+}
+.admin-tit{
+    margin: 0 auto;
+}
+.admin-tit h2{
+    color: #2D93CA;
+}
