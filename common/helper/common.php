@@ -7,6 +7,7 @@ function real_strip_tags($str, $allowable_tags = "")
 }
 
 /**
+ * 清除传递参数中的html代码
  * @param $text
  * @return string
  * @author wjl
