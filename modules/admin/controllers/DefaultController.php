@@ -37,7 +37,11 @@ class DefaultController extends BaseController
 
             }else{
                 $admin = new AdminModel();
-                var_dump($admin->do_login($login_name,$login_pwd));
+                $data = $admin->do_login($login_name,$login_pwd);
+                if(!empty($data)){
+                    var_dump(current($data));
+                }
+
             }
         }
     }

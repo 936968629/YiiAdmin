@@ -19,3 +19,4 @@ function op_t($text){
     $text = trim($text);
     return $text;
 }
+
