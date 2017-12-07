@@ -6,6 +6,7 @@
  * Time: 8:59
  */
 use app\common\service\UrlService;
+use yii\captcha\Captcha;
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,6 +40,11 @@ use app\common\service\UrlService;
                     </div>
                     <div class="form-group">
                         <input type="password" name="login_pwd" class="form-control" placeholder="请输入登录密码">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="login_pwd" class="form-control" placeholder="请输入验证码">
+                        <?php echo Captcha::widget(['name'=>'captchaimg','captchaAction'=>'/site/captcha',
+                            'imageOptions'=>['id'=>'captchaimg', 'title'=>'换一个', 'alt'=>'换一个', 'style'=>'cursor:pointer;margin-left:25px;'],'template'=>'{image}']); ?>
                     </div>
                     <button type="submit" class="btn btn-primary block full-width m-b">登录</button>
 

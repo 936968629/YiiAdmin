@@ -6,10 +6,10 @@ use yii\web\Controller;
 
 class BasePublicController extends Controller
 {
-    public function get($key,$default="",$filter=null){
-        $data = \Yii::$app->request->get($key,$default);
+    public function get($key,$default_value="",$filter=null){
+        $data = \Yii::$app->request->get($key,$default_value);
         if(!is_null($data)){
-            $data = $this->paramsFilter($data,$filter,$default);
+            $data = $this->paramsFilter($data,$filter,$default_value);
         }
         return $data;
     }
@@ -48,9 +48,6 @@ class BasePublicController extends Controller
             "req_id"=> uniqid(),
         ]);
     }
-
-
-
 
 
     /**
