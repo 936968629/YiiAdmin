@@ -127,7 +127,7 @@ var common_ops = {
         // url = url.substr(1,url.length);
         // return Rooturl+url+_paramUrl;
     },
-    buildAdminUrl:function( path ,params){
+    buildAdminUrl:function( path ,params){//admin url
         var url =   "/admin" + path;
         var _paramUrl = '';
         if( params ){
