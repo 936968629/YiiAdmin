@@ -52,6 +52,7 @@ $config = [
             'class' => 'app\modules\admin\admin',
         ],
     ],
+    'language'=>'zh-CN',//设置中文
 ];
 
 if (YII_ENV_DEV) {

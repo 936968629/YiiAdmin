@@ -42,8 +42,8 @@ class AdminModel extends \yii\db\ActiveRecord
         return [
             [['pid', 'user_type', 'email_bind', 'mobile_bind', 'reg_ip', 'status'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
-            [['nickname', 'password', 'email'], 'string', 'max' => 63],
-            [['username'], 'string', 'max' => 5],
+            [['nickname', 'password', 'email'], 'string', 'max' => 3, 'message' => '长度必须超过3位'],
+            [['username'], 'string', 'max' => 5, 'message' => 'das{value}'],
             [['mobile'], 'string', 'max' => 11],
             [['avatar'], 'string', 'max' => 255],
             [['reg_type'], 'string', 'max' => 15],
@@ -78,10 +78,13 @@ class AdminModel extends \yii\db\ActiveRecord
 
 
     public function do_login($username,$password){
-        $this->load(['username'=>$username,'password'=>$password]);
+//        $this->load(['AdminModel' => ['username'=>$username,'password'=>$password] ]);
+        $this->attributes = ['username'=>$username,'password'=>$password];
         if($this->validate()){
-
+            return 1;
         }else{
+//            return $this->getFirstErrors();
+//            return $this->getErrors('password');
             return $this->errors;
         }
     }

@@ -34,6 +34,8 @@ class DefaultController extends BaseController
             $login_name = trim($this->post('login_name','','op_t'));
             $login_pwd = trim($this->post('login_pwd','','op_t'));
             if(empty($login_name) || empty($login_pwd)){
+
+            }else{
                 $admin = new AdminModel();
                 var_dump($admin->do_login($login_name,$login_pwd));
             }
