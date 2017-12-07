@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "{{%admin}}".
@@ -40,7 +41,7 @@ class AdminModel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pid', 'user_type', 'email_bind', 'mobile_bind', 'reg_ip', 'status'], 'integer'],
+            [['user_type', 'email_bind', 'mobile_bind', 'reg_ip', 'status'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
             [['nickname', 'password', 'email'], 'string', 'max' => 63],
             [['username'], 'string', 'max' => 31],
@@ -58,7 +59,6 @@ class AdminModel extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'pid' => 'Pid',
             'user_type' => 'User Type',
             'nickname' => 'Nickname',
             'username' => 'Username',
@@ -80,11 +80,30 @@ class AdminModel extends \yii\db\ActiveRecord
     public function do_login($username,$password){
 //        $this->load(['AdminModel' => ['username'=>$username,'password'=>$password] ]);
         $this->attributes = ['username'=>$username,'password'=>$password];
+        $returnData = [];
         if($this->validate()){
-            return [];
+            $userInfo = self::find()->where(['username' => $username])->one();
+            if(!empty($userInfo)){
+                $password = $this->encryptPassword($password,$userInfo['salt']);
+                if($userInfo['password'] == $password){
+                    
+                }
+            }
+            return $returnData;
         }else{
 //            return $this->getErrors();
             return $this->getFirstErrors();
         }
+    }
+
+    /**
+     * 密码加密方式
+     * @param $password
+     * @param string $salt
+     * @return string 加密密码
+     * @author wjl
+     */
+    private function encryptPassword($password,$salt=''){
+        return md5($salt.$password);
     }
 }
