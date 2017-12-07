@@ -19,6 +19,7 @@ use yii\captcha\Captcha;
     <link href="<?=UrlService::buildWwwUrl('/font-awesome/css/font-awesome.css');?>" rel="stylesheet">
     <link href="<?=UrlService::buildWwwUrl('/css/web/style.css?ver=20170326180701');?>" rel="stylesheet">
     <link href="<?=UrlService::buildWwwUrl('/css/web/my.css');?>" rel="stylesheet">
+    <script src=""></script>
 </head>
 <body class="gray-bg">
 <div class="loginColumns animated fadeInDown">
@@ -64,7 +65,13 @@ use yii\captcha\Captcha;
 </div>
 <script>
     function changeVerifyCode(){
+        $.ajax({
+            url:"",
+            type:"POST",
+            success:function (data) {
 
+            }
+        });
     }
 </script>
 </body>
