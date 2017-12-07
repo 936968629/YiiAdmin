@@ -23,8 +23,6 @@ class DefaultController extends BaseController
      * 登陆界面
      */
     public function actionLogin(){
-        $aa = $this->get('id','45','op_t');
-        var_dump($aa);
         return $this->render('login');
     }
     /*
