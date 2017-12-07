@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\AdminModel;
 use app\modules\admin\controllers\common\BaseController;
 
 /**
@@ -30,10 +31,11 @@ class DefaultController extends BaseController
      */
     public function actionLoginAct(){
         if(\Yii::$app->request->isPost){
-            $login_name = trim($this->post('login_name',''));
-            $login_pwd = trim($this->post('login_pwd',''));
+            $login_name = trim($this->post('login_name','','op_t'));
+            $login_pwd = trim($this->post('login_pwd','','op_t'));
             if(empty($login_name) || empty($login_pwd)){
-
+                $admin = new AdminModel();
+                var_dump($admin->do_login($login_name,$login_pwd));
             }
         }
     }

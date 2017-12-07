@@ -16,7 +16,7 @@ class UrlService
      */
     public static function buildAdminUrl($path,$params=[]){
         $path = Url::toRoute(array_merge([$path],$params));
-        return '/Admin'.$path;
+        return '/admin'.$path;
     }
     /*
      * web模块

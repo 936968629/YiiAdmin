@@ -82,7 +82,7 @@ class AdminModel extends \yii\db\ActiveRecord
         if($this->validate()){
 
         }else{
-            $this->errors;
+            return $this->errors;
         }
     }
 }

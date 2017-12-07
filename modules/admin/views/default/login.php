@@ -33,7 +33,7 @@ use yii\captcha\Captcha;
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <div class="ibox-content">
-                <form class="m-t" role="form" action="<?= UrlService::buildWwwUrl('login-act');?>" method="post">
+                <form class="m-t" role="form" action="<?= UrlService::buildAdminUrl('/default/login-act');?>" method="post">
                     <div class="form-group text-center">
                         <h2 class="font-bold">登录</h2>
                     </div>
