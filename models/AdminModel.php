@@ -86,8 +86,12 @@ class AdminModel extends \yii\db\ActiveRecord
             if(!empty($userInfo)){
                 $password = $this->encryptPassword($password,$userInfo['salt']);
                 if($userInfo['password'] == $password){
-                    
+
+                }else{
+
                 }
+            }else{
+                $returnData['msg']
             }
             return $returnData;
         }else{
