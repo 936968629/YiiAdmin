@@ -66,8 +66,9 @@ use yii\captcha\Captcha;
 </div>
 <script>
     function changeVerifyCode(){
+        let a =1;
         $.ajax({
-            url:'/site/captcha',
+            url:'/site/captcha?refresh',
             dataType: 'json',
             success:function (data) {
                 $("#captchaimg").attr('src', data['url']);
