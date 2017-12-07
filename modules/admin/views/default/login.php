@@ -64,7 +64,7 @@ use yii\captcha\Captcha;
 </div>
 <script>
     function changeVerifyCode(){
-        
+
     }
 </script>
 </body>
