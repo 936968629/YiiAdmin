@@ -91,7 +91,7 @@ class AdminModel extends \yii\db\ActiveRecord
 
                 }
             }else{
-                $returnData['msg']
+                $returnData['msg'];
             }
             return $returnData;
         }else{
