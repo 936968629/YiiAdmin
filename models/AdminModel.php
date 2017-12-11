@@ -86,12 +86,13 @@ class AdminModel extends \yii\db\ActiveRecord
             if(!empty($userInfo)){
                 $password = $this->encryptPassword($password,$userInfo['salt']);
                 if($userInfo['password'] == $password){
-
+                    //登陆成功
+                    
                 }else{
-
+                    $returnData['msg'] = "密码错误";
                 }
             }else{
-                $returnData['msg'];
+                $returnData['msg'] = "用户名不存在";
             }
             return $returnData;
         }else{
