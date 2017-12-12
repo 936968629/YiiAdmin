@@ -33,6 +33,7 @@ class DefaultController extends BaseController
         if(\Yii::$app->request->isPost){
             $login_name = trim($this->post('login_name','','op_t'));
             $login_pwd = trim($this->post('login_pwd','','op_t'));
+            $capcha = trim($this->post('captcha','','op_t'));
             if(empty($login_name) || empty($login_pwd)){
 
             }else{

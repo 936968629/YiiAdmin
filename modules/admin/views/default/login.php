@@ -33,7 +33,7 @@ use yii\captcha\Captcha;
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <div class="ibox-content">
-                <form class="m-t" role="form" action="<?= UrlService::buildAdminUrl('/default/login-act');?>" method="post">
+                <form class="m-t" role="form" name="loginForm">
                     <div class="form-group text-center">
                         <h2 class="font-bold">登录</h2>
                     </div>
@@ -44,11 +44,11 @@ use yii\captcha\Captcha;
                         <input type="password" name="login_pwd" class="form-control" placeholder="请输入登录密码">
                     </div>
                     <div class="form-group">
-                        <input type="password" name="login_pwd" class="form-control" placeholder="请输入验证码">
+                        <input type="text" name="captcha" class="form-control" placeholder="请输入验证码">
                         <?php echo Captcha::widget(['name'=>'captchaimg','captchaAction'=>'/site/captcha',
                             'imageOptions'=>['id'=>'captchaimg', 'title'=>'换一个', 'alt'=>'换一个', 'style'=>'cursor:pointer;margin-left:25px;','onclick'=>'changeVerifyCode()'],'template'=>'{image}']); ?>
                     </div>
-                    <button type="submit" class="btn btn-primary block full-width m-b">登录</button>
+                    <button class="btn btn-primary block full-width m-b" onclick="Sub('loginForm','<?= UrlService::buildAdminUrl('/default/login-act'); ?>')">登录</button>
 
                 </form>
             </div>

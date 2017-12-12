@@ -39,14 +39,33 @@ class BasePublicController extends Controller
     /**
      * 返回json
      */
-    public function renderJson($data=[],$msg="ok",$code=200){
-        header("Content-type:application/json");
-        echo json_encode([
-            "code"  => $code,
-            "msg"   => $msg,
-            "data"  => $data,
-            "req_id"=> uniqid(),
-        ]);
+    public function renderJson($data=[],$code=200,$login_tips_box=""){
+        if(!is_array($data)){
+            if(intval($data) >= 0){
+                $code = intval($data);
+                $data = array();
+                $data['data'] = array();
+            }
+        }
+        $result = array();
+        $result['status'] = array('code'=>-1,'msg'=>'未知错误');
+        if(isset($data['data'])){
+            $result = $data;
+        }else{
+            $result['data'] = $data;
+        }
+        foreach (\Yii::$app->params['errorMsg'] as $key => $value) {
+            if($code == $value['num']){
+                unset($value['num']);
+                $result['status'] = $value;
+                break;
+            }
+        }
+        $result = $this->int2String($result);
+        //返回弹框信息
+        $result['login_tips_box'] = $login_tips_box;
+        header('Content-Type:application/json; charset=utf-8');
+        echo json_encode($result);
     }
 
 
