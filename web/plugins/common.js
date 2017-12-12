@@ -43,7 +43,33 @@ function fix_height() {
             $('#page-wrapper').css("min-height", $(window).height() - 60 + "px");
         }
     }
+}
+/* ajax 快速提交表单 */
+function Sub(form,url){
+    var formName = form.split(",");
+    var serialize = "";
+    var a = "";
+    for(var i=0;i<formName.length;i++){
+        if(serialize == ""){
+            a = "";
+        }else{
+            a = "&";
+        }
+        serialize += a + $("[name="+formName[i]+"]").serialize();
+    }
 
+    $.post(url,serialize,function(data){
+        //console.log(data);
+        if(data.warn == 2){
+            if(data.href){
+                window.location.href = data.href;
+            }else{
+                window.location.reload();
+            }
+        }else{
+            warn(data.warn);
+        }
+    },"json");
 }
 
 var common_ops = {
