@@ -20,3 +20,28 @@ function op_t($text){
     return $text;
 }
 
+
+/**
+ * 将整形转换为字符串
+ * @param  [type] $integer [description]
+ * @return [type]          [description]
+ */
+function intToString($integer = null)
+{
+    if(is_array($integer)){
+        foreach ($integer as $key => $value) {
+            $integer[$key] = $this->int2String($value);
+        }
+    }else{
+        if(is_integer($integer)){
+            $integer = (string)$integer;
+        }else if(is_float($integer)){
+            $integer = (string)$integer;
+        }else if(is_bool($integer)){
+            $integer = $integer ? 'true' : 'false';
+        }else if(is_null($integer)){
+            $integer = '';
+        }
+    }
+    return $integer;
+}

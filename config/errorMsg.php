@@ -11,15 +11,13 @@ return array(
     array('num'=>999,'code'=>999,'msg'=>'签名错误,请刷新重试'),
 
     //Admin 模块下以 3000 开头
+    array('num'=>3000,'code'=>3000,'msg'=>'输入信息不能为空'),
     array('num'=>3001,'code'=>3001,'msg'=>'手机号或密码格式不对'),
     array('num'=>3002,'code'=>3002,'msg'=>'密码错误！'),
     array('num'=>3003,'code'=>3003,'msg'=>'用户不存在或被禁用！'),
     array('num'=>3004,'code'=>3004,'msg'=>'获取用户信息失败,请重新登录'),
     array('num'=>3005,'code'=>3005,'msg'=>'用户登录信息已过期,请重新登录'),
-    array('num'=>3006,'code'=>1,'msg'=>'关注用户成功'),
-    array('num'=>3007,'code'=>3005,'msg'=>'关注用户失败'),
-    array('num'=>3008,'code'=>1,'msg'=>'取消关注用户成功'),
-    array('num'=>3009,'code'=>3009,'msg'=>'取消关注用户失败'),
+
     array('num'=>3010,'code'=>1,'msg'=>'推送设置成功'),
     array('num'=>3011,'code'=>3011,'msg'=>'推送设置失败'),
     array('num'=>3012,'code'=>3012,'msg'=>'第三方数据有误'),

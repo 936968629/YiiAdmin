@@ -6,6 +6,7 @@ use yii\web\Controller;
 
 class BasePublicController extends Controller
 {
+    public $enableCsrfValidation = false;
     public function get($key,$default_value="",$filter=null){
         $data = \Yii::$app->request->get($key,$default_value);
         if(!is_null($data)){
@@ -61,7 +62,7 @@ class BasePublicController extends Controller
                 break;
             }
         }
-        $result = $this->int2String($result);
+        $result = intToString($result);
         //返回弹框信息
         $result['login_tips_box'] = $login_tips_box;
         header('Content-Type:application/json; charset=utf-8');

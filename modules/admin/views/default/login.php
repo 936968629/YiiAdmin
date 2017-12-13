@@ -48,8 +48,7 @@ use yii\captcha\Captcha;
                         <?php echo Captcha::widget(['name'=>'captchaimg','captchaAction'=>'/site/captcha',
                             'imageOptions'=>['id'=>'captchaimg', 'title'=>'换一个', 'alt'=>'换一个', 'style'=>'cursor:pointer;margin-left:25px;','onclick'=>'changeVerifyCode()'],'template'=>'{image}']); ?>
                     </div>
-                    <button class="btn btn-primary block full-width m-b" onclick="Sub('loginForm','<?= UrlService::buildAdminUrl('/default/login-act'); ?>')">登录</button>
-
+                    <button type="button" class="btn btn-primary block full-width m-b" onclick="Sub('loginForm','<?= UrlService::buildAdminUrl('/default/login-act'); ?>')">登录</button>
                 </form>
             </div>
         </div>

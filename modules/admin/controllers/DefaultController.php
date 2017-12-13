@@ -31,11 +31,13 @@ class DefaultController extends BaseController
      */
     public function actionLoginAct(){
         if(\Yii::$app->request->isPost){
+            return json_encode(['suu'=>1]);
             $login_name = trim($this->post('login_name','','op_t'));
             $login_pwd = trim($this->post('login_pwd','','op_t'));
             $capcha = trim($this->post('captcha','','op_t'));
-            if(empty($login_name) || empty($login_pwd)){
-
+            if(empty($login_name) || empty($login_pwd) || empty($capcha)){
+//                $this->renderJson(3000);
+                return json_encode(['suu'=>1]);
             }else{
                 $admin = new AdminModel();
                 $data = $admin->do_login($login_name,$login_pwd);
@@ -44,6 +46,8 @@ class DefaultController extends BaseController
                 }
 
             }
+        }else{
+            var_dump("das");
         }
     }
 }
