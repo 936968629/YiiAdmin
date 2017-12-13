@@ -30,7 +30,7 @@ function intToString($integer = null)
 {
     if(is_array($integer)){
         foreach ($integer as $key => $value) {
-            $integer[$key] = $this->int2String($value);
+            $integer[$key] = intToString($value);
         }
     }else{
         if(is_integer($integer)){

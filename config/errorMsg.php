@@ -12,7 +12,7 @@ return array(
 
     //Admin 模块下以 3000 开头
     array('num'=>3000,'code'=>3000,'msg'=>'输入信息不能为空'),
-    array('num'=>3001,'code'=>3001,'msg'=>'手机号或密码格式不对'),
+    array('num'=>3001,'code'=>3001,'msg'=>'验证码错误'),
     array('num'=>3002,'code'=>3002,'msg'=>'密码错误！'),
     array('num'=>3003,'code'=>3003,'msg'=>'用户不存在或被禁用！'),
     array('num'=>3004,'code'=>3004,'msg'=>'获取用户信息失败,请重新登录'),

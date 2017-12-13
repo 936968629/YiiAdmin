@@ -66,7 +66,7 @@ class BasePublicController extends Controller
         //返回弹框信息
         $result['login_tips_box'] = $login_tips_box;
         header('Content-Type:application/json; charset=utf-8');
-        echo json_encode($result);
+        return json_encode($result);
     }
 
 

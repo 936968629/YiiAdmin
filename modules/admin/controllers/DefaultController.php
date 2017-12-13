@@ -4,6 +4,8 @@ namespace app\modules\admin\controllers;
 
 use app\models\AdminModel;
 use app\modules\admin\controllers\common\BaseController;
+use yii\captcha\Captcha;
+use yii\captcha\CaptchaValidator;
 
 /**
  * Default controller for the `Admin` module
@@ -31,23 +33,23 @@ class DefaultController extends BaseController
      */
     public function actionLoginAct(){
         if(\Yii::$app->request->isPost){
-            return json_encode(['suu'=>1]);
             $login_name = trim($this->post('login_name','','op_t'));
             $login_pwd = trim($this->post('login_pwd','','op_t'));
             $capcha = trim($this->post('captcha','','op_t'));
             if(empty($login_name) || empty($login_pwd) || empty($capcha)){
-//                $this->renderJson(3000);
-                return json_encode(['suu'=>1]);
+                return $this->renderJson(3000);
             }else{
-                $admin = new AdminModel();
-                $data = $admin->do_login($login_name,$login_pwd);
-                if(!empty($data)){
-                    var_dump(current($data));
+                $capchar = new CaptchaValidator();
+                if( !$capchar->validate($capcha) ){
+                    return $this->renderJson(3001);
                 }
-
+                $admin = new AdminModel();
+                $dataTip = $admin->do_login($login_name,$login_pwd);
+                if(!empty($dataTip)){
+                    $data['tip'] = $dataTip;
+                    return $this->renderJson($data,3000);
+                }
             }
-        }else{
-            var_dump("das");
         }
     }
 }

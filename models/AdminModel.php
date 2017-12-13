@@ -44,7 +44,7 @@ class AdminModel extends \yii\db\ActiveRecord
             [['user_type', 'email_bind', 'mobile_bind', 'reg_ip', 'status'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
             [['nickname', 'password', 'email'], 'string', 'max' => 63],
-            [['username'], 'string', 'max' => 31],
+            [['username'], 'string', 'max' => 1],
             [['mobile'], 'string', 'max' => 11],
             [['avatar'], 'string', 'max' => 255],
             [['reg_type'], 'string', 'max' => 15],

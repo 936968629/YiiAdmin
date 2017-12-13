@@ -20,6 +20,7 @@ use yii\captcha\Captcha;
     <link href="<?=UrlService::buildWwwUrl('/css/web/style.css?ver=20170326180701');?>" rel="stylesheet">
     <link href="<?=UrlService::buildWwwUrl('/css/web/my.css');?>" rel="stylesheet">
     <script src="<?=UrlService::buildWwwUrl('/plugins/jquery-2.1.1.js')?>"></script>
+    <script src="<?=UrlService::buildWwwUrl('/plugins/layer/layer.js')?>"></script>
     <script src="<?=UrlService::buildWwwUrl('/plugins/common.js')?>"></script>
 </head>
 <body class="gray-bg">
