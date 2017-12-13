@@ -46,8 +46,10 @@ class DefaultController extends BaseController
                 $admin = new AdminModel();
                 $dataTip = $admin->do_login($login_name,$login_pwd);
                 if(!empty($dataTip)){
-                    $data['tip'] = $dataTip;
-                    return $this->renderJson($data,3000);
+//                    $data['msg'] = $dataTip;
+
+//                    return $this->renderJson($dataTip);
+                    return json_encode(['s'=>$dataTip]);
                 }
             }
         }

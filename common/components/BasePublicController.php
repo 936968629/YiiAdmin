@@ -62,6 +62,9 @@ class BasePublicController extends Controller
                 break;
             }
         }
+        if(isset($data['msg'])){
+            $result['status']['msg'] = $data['msg'];
+        }
         $result = intToString($result);
         //返回弹框信息
         $result['login_tips_box'] = $login_tips_box;
