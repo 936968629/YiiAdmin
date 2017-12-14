@@ -1,4 +1,5 @@
 <?php
+define('NOW_TIME',date('Y-m-d H:i:s'));
 
 function real_strip_tags($str, $allowable_tags = "")
 {

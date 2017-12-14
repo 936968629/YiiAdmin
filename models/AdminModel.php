@@ -82,7 +82,8 @@ class AdminModel extends \yii\db\ActiveRecord
                     //登陆成功
                     $_SESSION['admin'] = $userInfo['id'];
                     $userInfo->last_login_ip  = \app\common\tools\MyTools::get_client_ip();
-                    $userInfo->last_login_time = date('Y-m-d H:i:s');
+                    $userInfo->last_login_time = NOW_TIME;
+                    $userInfo->update_time = NOW_TIME;
                     $userInfo->save(0);
                     $returnData = "登陆成功";
                 }else{
