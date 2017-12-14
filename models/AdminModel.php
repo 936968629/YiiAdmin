@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+
+use app\common\helper\MyTools;
 use Yii;
 use yii\db\Query;
 
@@ -41,14 +43,12 @@ class AdminModel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_type', 'email_bind', 'mobile_bind', 'reg_ip', 'status'], 'integer'],
+            [['user_type', 'reg_ip', 'status'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
-            [['nickname', 'password', 'email'], 'string', 'max' => 63],
-            [['username'], 'string', 'max' => 1],
+            [['password', 'email'], 'string', 'max' => 63],
+            [['username'], 'string', 'max' => 16,'tooLong' => '用户名长度不合法'],
             [['mobile'], 'string', 'max' => 11],
-            [['avatar'], 'string', 'max' => 255],
-            [['reg_type'], 'string', 'max' => 15],
-            [['username'], 'unique'],
+//            [['username'], 'unique','message' => '用户名已存在'],
         ];
     }
 
@@ -64,12 +64,8 @@ class AdminModel extends \yii\db\ActiveRecord
             'username' => 'Username',
             'password' => 'Password',
             'email' => 'Email',
-            'email_bind' => 'Email Bind',
             'mobile' => 'Mobile',
-            'mobile_bind' => 'Mobile Bind',
-            'avatar' => 'Avatar',
             'reg_ip' => 'Reg Ip',
-            'reg_type' => 'Reg Type',
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
             'status' => 'Status',
@@ -80,24 +76,27 @@ class AdminModel extends \yii\db\ActiveRecord
     public function do_login($username,$password){
 //        $this->load(['AdminModel' => ['username'=>$username,'password'=>$password] ]);
         $this->attributes = ['username'=>$username,'password'=>$password];
-        $returnData = [];
         if($this->validate()){
             $userInfo = self::find()->where(['username' => $username])->one();
             if(!empty($userInfo)){
                 $password = $this->encryptPassword($password,$userInfo['salt']);
                 if($userInfo['password'] == $password){
                     //登陆成功
-
+                    $_SESSION['admin'] = $userInfo['id'];
+                    $userInfo->last_login_ip  = MyTools::get_client_ip();
+                    $userInfo->last_login_time = date('Y-m-d H:i:s');
+                    $userInfo->save(0);
+                    $returnData = "登陆成功";
                 }else{
-                    $returnData['msg'] = "密码错误";
+                    $returnData = "密码错误";
                 }
             }else{
-                $returnData['msg'] = "用户名不存在";
+                $returnData = "用户名不存在";
             }
             return $returnData;
         }else{
-//            return $this->getErrors();
-            return $this->getFirstErrors();
+            //{username:"msg"}
+            return current($this->getFirstErrors());
         }
     }
 
