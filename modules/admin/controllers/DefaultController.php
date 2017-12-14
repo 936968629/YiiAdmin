@@ -50,7 +50,8 @@ class DefaultController extends BaseController
                     return $this->renderJson($data);
                 }else{
                     //登录成功
-                    return $this->renderJson(1);
+
+                    return $this->renderJson(['href'=>'a'],1);
                 }
             }
         }
