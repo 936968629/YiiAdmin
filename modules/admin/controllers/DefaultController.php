@@ -49,7 +49,8 @@ class DefaultController extends BaseController
                     $data['msg'] = $dataTip;
                     return $this->renderJson($data);
                 }else{
-
+                    //登录成功
+                    return $this->renderJson(1);
                 }
             }
         }

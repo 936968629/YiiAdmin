@@ -85,7 +85,7 @@ class AdminModel extends \yii\db\ActiveRecord
                     $userInfo->last_login_time = NOW_TIME;
                     $userInfo->update_time = NOW_TIME;
                     $userInfo->save(0);
-                    $returnData = "登陆成功";
+                    return "";
                 }else{
                     $returnData = "密码错误";
                 }
