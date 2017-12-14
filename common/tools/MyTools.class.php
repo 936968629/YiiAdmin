@@ -6,7 +6,7 @@
  * Time: 17:01
  */
 
-namespace app\common\helper;
+namespace app\common\tools;
 
 class MyTools
 {

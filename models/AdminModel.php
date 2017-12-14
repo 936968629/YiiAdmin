@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-
-use app\common\helper\MyTools;
 use Yii;
 use yii\db\Query;
 
@@ -83,7 +81,7 @@ class AdminModel extends \yii\db\ActiveRecord
                 if($userInfo['password'] == $password){
                     //登陆成功
                     $_SESSION['admin'] = $userInfo['id'];
-                    $userInfo->last_login_ip  = MyTools::get_client_ip();
+                    $userInfo->last_login_ip  = \app\common\tools\MyTools::get_client_ip();
                     $userInfo->last_login_time = date('Y-m-d H:i:s');
                     $userInfo->save(0);
                     $returnData = "登陆成功";
