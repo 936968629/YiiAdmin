@@ -51,7 +51,7 @@ class DefaultController extends BaseController
                 }else{
                     //登录成功
 
-                    return $this->renderJson(['url'=>'a'],1);
+                    return $this->renderJson(['url'=>],1);
                 }
             }
         }
