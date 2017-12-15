@@ -6,6 +6,7 @@ use app\models\AdminModel;
 use app\modules\admin\controllers\common\BaseController;
 use yii\captcha\Captcha;
 use yii\captcha\CaptchaValidator;
+use yii\helpers\Url;
 
 /**
  * Default controller for the `Admin` module
@@ -50,8 +51,7 @@ class DefaultController extends BaseController
                     return $this->renderJson($data);
                 }else{
                     //登录成功
-
-                    return $this->renderJson(['url'=>],1);
+                    return $this->renderJson(['url'=>Url::toRoute('index/index')],1);
                 }
             }
         }
