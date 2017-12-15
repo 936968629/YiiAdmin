@@ -203,8 +203,8 @@ function Sub(form,url){
     $.post(url,serialize,function(data){
         let status = data.status;
         if(status.code == 1){
-            if(data.href){
-                window.location.href = data.href;
+            if(data.url){
+                window.location.href = data.url;
             }else{
                 window.location.reload();
             }

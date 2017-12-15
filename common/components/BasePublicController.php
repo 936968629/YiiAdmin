@@ -40,7 +40,7 @@ class BasePublicController extends Controller
     /**
      * 返回json
      */
-    public function renderJson($data=[],$code=200,$login_tips_box=""){
+    public function renderJson($data=[],$code=1,$login_tips_box=""){
         if(!is_array($data)){
             if(intval($data) >= 0){
                 $code = intval($data);
@@ -64,6 +64,9 @@ class BasePublicController extends Controller
         }
         if(isset($data['msg'])){
             $result['status']['msg'] = $data['msg'];
+        }
+        if(isset($data['url'])){
+            $result['url'] = $data['url'];
         }
         $result = intToString($result);
         //返回弹框信息
