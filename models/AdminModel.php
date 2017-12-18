@@ -70,7 +70,7 @@ class AdminModel extends \yii\db\ActiveRecord
         ];
     }
 
-
+    //管理员登录
     public function do_login($username,$password){
 //        $this->load(['AdminModel' => ['username'=>$username,'password'=>$password] ]);
         $this->attributes = ['username'=>$username,'password'=>$password];
