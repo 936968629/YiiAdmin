@@ -15,4 +15,8 @@ class IndexController extends BaseController {
     public function actionGge(){
 
     }
+	
+	public function actionTest(){
+	
+	}
 }
