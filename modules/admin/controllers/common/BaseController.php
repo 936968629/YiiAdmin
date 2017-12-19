@@ -21,13 +21,12 @@ class BaseController extends BasePublicController
 
     public function beforeAction($action)
     {
-        $this->layout = false;
-
         $controller = $action->controller->id;
         $method = $action->id;
         $permissionRoute = $controller."/".$method;
         //未登录
         if(!in_array($permissionRoute,$this->no_use_login)){
+            $this->layout = false;
             if(empty($_SESSION['admin'])){
                 //跳转到首页登录
                 $this->redirect(['default/login']);
