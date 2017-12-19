@@ -12,8 +12,9 @@ class IndexController extends BaseController {
 //    }
 
     public function actionIndex(){
+        $this->layout = "main";
         var_dump("das");
-        return;
+        return $this->render('index');
     }
 
     public function actionGge(){

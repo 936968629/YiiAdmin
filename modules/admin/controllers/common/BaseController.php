@@ -18,7 +18,7 @@ class BaseController extends BasePublicController
         'default/login',
         'default/login-act'
     ];
-    
+
     public function beforeAction($action)
     {
         $this->layout = false;
