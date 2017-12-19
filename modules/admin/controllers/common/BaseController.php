@@ -18,7 +18,7 @@ class BaseController extends BasePublicController
         'default/login',
         'default/login-act'
     ];
-
+    
     public function beforeAction($action)
     {
         $this->layout = false;
@@ -30,7 +30,7 @@ class BaseController extends BasePublicController
         if(!in_array($permissionRoute,$this->no_use_login)){
             if(empty($_SESSION['admin'])){
                 //跳转到首页登录
-                
+                $this->redirect(['default/login']);
                 return false;
             }
             return true;
