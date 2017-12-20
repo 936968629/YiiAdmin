@@ -84,7 +84,6 @@
                             <span class="sub-title">资源列表</span>
                         </a>
                     </li>
-
                 </ul>
 
                 <div class="subNav sublist-down">
