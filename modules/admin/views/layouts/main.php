@@ -87,11 +87,6 @@
                 </ul>
                 <div class="subNav sublist-down">
                     <span class="title-icon glyphicon glyphicon-chevron-right"></span>
-                    <span class="sublist-title"><?= \app\common\components\CategoryWidget::widget() ?></span>
-<!--                    <span class="sublist-title">--><?php //$this->widget('CategoryWidget') ?><!--</span>-->
-                </div>
-                <div class="subNav sublist-down">
-                    <span class="title-icon glyphicon glyphicon-chevron-right"></span>
                     <span class="sublist-title">用户管理</span>
                 </div>
                 <ul class="navContent" style="display:none">
