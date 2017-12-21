@@ -10,8 +10,8 @@ class CategoryWidget extends Widget
 
     public function run()
     {
-        $adminMenu = AdminMenu::find()->select();
-        var_dump($adminMenu);
+        $adminMenu = AdminMenu::find()->where(['parent_id' => 0])->orderBy('list')->all();
+
         return $this->render('category',['model' => $adminMenu]);
     }
 }
