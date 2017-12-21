@@ -17,8 +17,6 @@ class CategoryWidget extends Widget
                 $item['child'] = $adminchildMenu;
             }
         }
-        var_dump($adminMenu);
         return $this->render('category',['model' => $adminMenu]);
-        exit;
     }
 }

@@ -70,45 +70,7 @@
         <div class="subNavBox">
 
             <div class="sBox">
-                <div class="subNav sublist-down">
-                    <span class="title-icon glyphicon glyphicon-chevron-right"></span>
-                    <span class="sublist-title">资源管理</span>
-                </div>
-                <ul class="navContent" style="display:none">
-                    <li class="nav-li">
-                        <div class="showtitle" style="width:100px;">
-                            <img src="__ADMIN_IMAGES__/leftimg.png" />
-                        </div>
-                        <a href="<?= UrlService::buildWwwUrl('source/index'); ?>" target="right_content">
-                            <span class="sublist-icon glyphicon glyphicon-record"></span>
-                            <span class="sub-title">资源列表</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="subNav sublist-down">
-                    <span class="title-icon glyphicon glyphicon-chevron-right"></span>
-                    <span class="sublist-title">用户管理</span>
-                </div>
-                <ul class="navContent" style="display:none">
-                    <li class="nav-li">
-                        <div class="showtitle" style="width:100px;">
-                            <img src="__ADMIN_IMAGES__/leftimg.png" />
-                        </div>
-                        <a href="<?= UrlService::buildWwwUrl('identity/geren'); ?>" target="right_content">
-                            <span class="sublist-icon glyphicon glyphicon-record"></span>
-                            <span class="sub-title">个人认证</span>
-                        </a>
-                    </li>
-                    <li class="nav-li">
-                        <div class="showtitle" style="width:100px;">
-                            <img src="__ADMIN_IMAGES__/leftimg.png" />
-                        </div>
-                        <a href="<?= UrlService::buildWwwUrl('identity/qiye'); ?>" target="right_content">
-                            <span class="sublist-icon glyphicon glyphicon-record"></span>
-                            <span class="sub-title">企业认证</span>
-                        </a>
-                    </li>
-                </ul>
+                <?= \app\common\components\CategoryWidget::widget() ?>
             </div>
 
         </div>
