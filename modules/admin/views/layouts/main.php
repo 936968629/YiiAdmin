@@ -87,8 +87,8 @@
                 </ul>
                 <div class="subNav sublist-down">
                     <span class="title-icon glyphicon glyphicon-chevron-right"></span>
-                    <span class="sublist-title"><?php \app\common\components\CategoryWidget::widget() ?></span>
-                    <span class="sublist-title"><?php $this->widget('CategoryWidget') ?></span>
+                    <span class="sublist-title"><?= \app\common\components\CategoryWidget::widget() ?></span>
+<!--                    <span class="sublist-title">--><?php //$this->widget('CategoryWidget') ?><!--</span>-->
                 </div>
                 <div class="subNav sublist-down">
                     <span class="title-icon glyphicon glyphicon-chevron-right"></span>
