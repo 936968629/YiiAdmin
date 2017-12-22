@@ -82,7 +82,7 @@ use app\common\service\UrlService;
                         <td><?= $item['create_time'] ?></td>
                         <td><?= $item['update_time'] ?></td>
                         <td>
-                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('admin/info',['id'=>$item['id']]) ?>">编辑</a>
+                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/admin/info',['id'=>$item['id']]) ?>">编辑</a>
 <!--                            --><?php //if() ?>
                             <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:if(confirm('确定禁用？'))location=''">禁用</a>
                         </td>
@@ -142,8 +142,6 @@ use app\common\service\UrlService;
     </div>
 
     <?php $this->endBody(); ?>
-    <script type="text/javascript" src="<?= UrlService::buildAdminUrl('js/common.js') ?>"></script>
-    <script type="text/javascript" src="<?= UrlService::buildWwwUrl('/plugins/common.js') ?>"></script>
     <script>
         function add(){
             $("input[name='title']").val('');
