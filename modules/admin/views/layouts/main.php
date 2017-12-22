@@ -26,7 +26,7 @@
     </div>
     <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li class="li-border"><a class="mystyle-color" href="{:U('index/index')}">管理控制台</a></li>
+            <li class="li-border"><a class="mystyle-color" href="{:U('index/index')}">首页</a></li>
         </ul>
         <ul class="nav navbar-nav pull-right">
             <li class="li-border">
@@ -77,11 +77,10 @@
     </div>
     <div class="right-product right-full">
         <div class="main-content">
-            <iframe id="content-iframe" src="<?= UrlService::buildWwwUrl('user/welcome') ?>" frameborder="0" width="100%" height="100%" name="right_content" scrolling="auto" frameborder="0" scrolling="no"></iframe>
+            <iframe id="content-iframe" src="<?= UrlService::buildWwwUrl('index/welcome') ?>" frameborder="0" width="100%" height="100%" name="right_content" scrolling="auto" frameborder="0" scrolling="no"></iframe>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="<?= UrlService::buildWwwUrl('/admin/js/jquery-1.10.2.js') ?>"></script>
 <script type="text/javascript">
 
 $(function(){

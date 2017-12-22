@@ -12,8 +12,9 @@ class IndexController extends BaseController {
         return $this->render('index');
     }
 
-    public function actionGge(){
-
+    public function actionWelcome(){
+        echo "dsa";
+        return;
     }
 	
 	public function actionTest(){
