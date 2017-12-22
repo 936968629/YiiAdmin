@@ -28,9 +28,15 @@ class BaseController extends BasePublicController
         $controller = $action->controller->id;
         $method = $action->id;
         $permissionRoute = $controller."/".$method;
-        //未登录
+
         if(!in_array($permissionRoute,$this->no_use_login)){
-            $this->layout = "main";
+            if(in_array($permissionRoute,$this->use_layout)){
+                $this->layout = "main";
+            }else{
+                $this->layout = false;
+            }
+
+            //未登录
             if(empty($_SESSION['admin'])){
                 //跳转到首页登录
                 $this->redirect(['default/login']);

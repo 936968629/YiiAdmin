@@ -8,13 +8,17 @@
 
 namespace app\modules\admin\controllers;
 
-
+use app\models\AdminModel;
 use app\modules\admin\controllers\common\BaseController;
 
 class AdminController extends BaseController
 {
 
     public function actionIndex(){
-
+//        $this->layout = false;
+        $modelInfo = AdminModel::find()->asArray()->all();
+        return $this->render('index',[
+            'modelInfo' => $modelInfo
+        ]);
     }
 }
