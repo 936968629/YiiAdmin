@@ -9,10 +9,13 @@
 namespace app\modules\admin\controllers;
 
 use app\common\components\BasePublicController;
+use yii\db\Query;
 
 class ApiController extends BasePublicController
 {
     public function editStatus(){
+        
+        $query = new Query();
 
     }
 }

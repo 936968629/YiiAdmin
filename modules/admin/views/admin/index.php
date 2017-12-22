@@ -41,12 +41,12 @@ use app\common\service\UrlService;
     <body>
     <?php $this->beginBody(); ?>
     <div class="info-center">
-        <div class="page-header">
-            <div class="pull-left">
-                <h4>资源列表</h4>
-            </div>
-        </div>
-        <div class="clearfix"></div>
+        <ul class="breadcrumb" style="margin-top: 20px;">
+            <li><i class="fa fa-map-marker"></i></li>
+            <?php foreach ($this->params['breadCrumbs'] as $item): ?>
+            <li><?= $item ?></li>
+            <?php endforeach; ?>
+        </ul>
         <div class="table-margin">
             <table class="table table-hover table-header" id="list-table">
                 <thead>

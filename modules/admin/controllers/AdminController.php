@@ -24,6 +24,11 @@ class AdminController extends BaseController
 
     public function actionInfo(){
 
+        $adminInfo = AdminModel::find()->where([])->one();
+
+        return $this->render('info',[
+            'adminInfo' => $adminInfo
+        ]);
     }
 
     public function actionEdit(){
