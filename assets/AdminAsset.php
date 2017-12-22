@@ -15,7 +15,7 @@ class AdminAsset extends AssetBundle{
             'font-awesome/css/font-awesome.css',
             'admin/css/dermadefault.css',
             'admin/ss/templatecss.css',
-            'admin/css/style.css'
+            'admin/css/style.css',
         ];
 
         \Yii::$app->getView()->registerJsFile('/Admin/js/jquery-1.10.2.js',['position'=>View::POS_HEAD]);

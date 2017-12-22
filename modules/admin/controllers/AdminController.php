@@ -8,7 +8,6 @@
 
 namespace app\modules\admin\controllers;
 
-use app\common\tools\ApiTools;
 use app\models\AdminModel;
 use app\modules\admin\controllers\common\BaseController;
 
@@ -25,7 +24,7 @@ class AdminController extends BaseController
     public function actionInfo(){
         $adminInfo = AdminModel::find()->where(['id'=>1])->asArray()->one();
         return $this->render('info',[
-            'adminInfo' => $adminInfo
+            'adminInfo' => $adminInfo,
         ]);
     }
 
