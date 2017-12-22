@@ -34,13 +34,6 @@ use app\common\service\UrlService;
                             <label class="item-label">用户名<span class="check-tips">（<span class="small">用户名</span>）</span></label>
                             <div class="controls"><?= $adminInfo['username'] ?></div>
                         </div>
-                        <div class="form-group item_usertype ">
-                            <label class="item-label">用户类型<span class="check-tips">（<span class="small">用户类型</span>）</span></label>
-                            <div class="controls">
-                                <label class="radio-inline" for="usertype0">
-                                    <input type="radio" id="usertype0" class="radio" name="usertype" value="0" checked=""> 个人                    </label><label class="radio-inline" for="usertype1">
-                                    <input type="radio" id="usertype1" class="radio" name="usertype" value="1"> 企业                    </label>                            </div>
-                        </div>
                         <div class="form-group item_group ">
                             <label class="item-label">部门<span class="check-tips">（<span class="small">所属部门</span>）</span></label>
                             <div class="controls">
@@ -96,12 +89,8 @@ use app\common\service\UrlService;
 </div>
 
     <?php $this->endBody(); ?>
-    <script type="text/javascript" src="<?= UrlService::buildAdminUrl('js/common.js') ?>"></script>
-    <script type="text/javascript" src="<?= UrlService::buildWwwUrl('/plugins/common.js') ?>"></script>
     <script>
-
-
     </script>
     </body>
-    </html>
+</html>
 <?php $this->endPage(); ?>

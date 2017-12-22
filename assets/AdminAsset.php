@@ -14,7 +14,7 @@ class AdminAsset extends AssetBundle{
             'admin/css/bootstrap.min.css',
             'font-awesome/css/font-awesome.css',
             'admin/css/dermadefault.css',
-            'admin/ss/templatecss.css',
+//            'admin/css/templatecss.css',
             'admin/css/style.css',
         ];
 
