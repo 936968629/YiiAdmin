@@ -35,7 +35,6 @@ class BaseController extends BasePublicController
             }else{
                 $this->layout = false;
             }
-
             //未登录
             if(empty($_SESSION['admin'])){
                 //跳转到首页登录
@@ -56,4 +55,11 @@ class BaseController extends BasePublicController
     private function getAdminInfo(){
 
     }
+
+
+
+
+
+
+
 }

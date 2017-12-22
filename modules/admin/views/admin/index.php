@@ -52,7 +52,7 @@ use app\common\service\UrlService;
                 <thead>
                 <tr>
                     <td width="40px"><input class="check-all" type="checkbox"></td>
-                    <td>编号</td>
+                    <td>id</td>
                     <td>类别</td>
                     <td>用户名</td>
                     <td>状态</td>
@@ -76,18 +76,15 @@ use app\common\service\UrlService;
                             <?php if ($item['status'] == 0): ?>
                                 未使用
                             <?php elseif ($item['status'] == 1): ?>
-
+                                <i class="fa fa-check text-success"></i>
                             <?php endif;?>
                         </td>
                         <td><?= $item['create_time'] ?></td>
                         <td><?= $item['update_time'] ?></td>
                         <td>
-<!--                            <if condition="$vo.id neq 1">-->
-<!--                                <a href="javascript:;" info="--><?//= /$item['comment']; ?><!--" ruleid="--><?//= $item['id'] ?><!--" ruletitle="--><?//= $item['sourcename'] ?><!--" onclick="edit(this)">查看</a>-->
-<!--                                <span class="text-explode">|</span>-->
-<!--                                <a href="javascript:if(confirm('确定删除？'))location='{:U('Admin/Rule/delete_group',array('id'=>$vo['id']))}'">删除</a>-->
-<!--                                <span class="text-explode">|</span>-->
-<!--                            </if>-->
+                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('admin/info',['id'=>$item['id']]) ?>">编辑</a>
+<!--                            --><?php //if() ?>
+                            <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:if(confirm('确定禁用？'))location=''">禁用</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
