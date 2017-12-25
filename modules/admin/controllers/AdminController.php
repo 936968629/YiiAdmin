@@ -25,7 +25,7 @@ class AdminController extends BaseController
         $adminInfo = AdminModel::find()->where(['id'=>1])->asArray()->one();
         return $this->render('info',[
             'adminInfo' => $adminInfo,
-        ]); 
+        ]);
     }
 
     public function actionEdit(){
