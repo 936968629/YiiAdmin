@@ -57,14 +57,18 @@ use app\common\service\UrlService;
                         <td><?= $item['list'] ?></td>
                         <td>
                             <?php if ($item['status'] == 0): ?>
-                                未使用
+                                <i class="fa fa-ban text-danger"></i>
                             <?php elseif ($item['status'] == 1): ?>
                                 <i class="fa fa-check text-success"></i>
                             <?php endif;?>
                         </td>
-                        <td>
+                        <td data-id="<?= $item['id'] ?>">
                             <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/admin/info',['id'=>$item['id']]) ?>">编辑</a>
-                            <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:if(confirm('确定禁用？'))location=''">禁用</a>
+                            <?php if ($item['status'] == 0): ?>
+                                <a title="启用" class="label label-success ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item["id"] ?>,1)">启用</a>
+                            <?php elseif ($item['status'] == 1): ?>
+                                <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item["id"] ?>,0)">禁用</a>
+                            <?php endif;?>
                         </td>
                     </tr>
                     <?php
@@ -81,7 +85,7 @@ use app\common\service\UrlService;
                         <td><?= $item2['list'] ?></td>
                         <td>
                             <?php if ($item2['status'] == 0): ?>
-                                未使用
+                                <i class="fa fa-ban text-danger"></i>
                             <?php elseif ($item2['status'] == 1): ?>
                                 <i class="fa fa-check text-success"></i>
                             <?php endif;?>
@@ -103,48 +107,11 @@ use app\common\service\UrlService;
 
     <?php $this->endBody(); ?>
     <script>
-        function add(){
-            $("input[name='title']").val('');
-            $('#bjy-add').modal('show');
+        function editStatus(id,status=1) {
+            if(parseInt(id)){
+                window.location.href = common_ops.buildAdminUrl('/system/edit_status',{'id':id,'status':status});
+            }
         }
-        function edit(obj){
-            var ruleId=$(obj).attr('ruleId');
-            var ruletitle=$(obj).attr('ruletitle');
-            var info = $(obj).attr('info');
-            info = htmldecode(info);
-            $("span.project-id").text(ruleId);
-            $("span.project-name").text(ruletitle);
-            $("span.project-comment").text(info);
-            $('#bjy-edit').modal('show');
-        }
-        function htmldecode(s){
-            var div = document.createElement('div');
-            div.innerHTML = s;
-            return div.innerText || div.textContent;
-        }
-        $('#bjy-form input[type=button]').click(function () {
-            var id = $("span.project-id").text();
-            var status = $('#bjy-form select[name=status]').val();
-            $.ajax({
-                url:common_ops.buildAdminUrl('/source/edit'),
-                type:'POST',
-                dataType:'JSON',
-                data:{
-                    id:id,
-                    status:status
-                },
-                success:function (data) {
-                    if(data.code == 200){
-                        var callback = function () {
-                            window.location.href = common_ops.buildAdminUrl('/source/index');
-                        };
-                        common_ops.alert(data.msg,callback());
-                    }else{
-                        common_ops.alert(data.msg);
-                    }
-                }
-            });
-        });
 
     </script>
     </body>

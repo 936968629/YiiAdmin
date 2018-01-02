@@ -9,6 +9,7 @@
 namespace app\modules\admin\controllers;
 
 
+use app\common\tools\ApiTools;
 use app\models\AdminMenuModel;
 use app\modules\admin\controllers\common\BaseController;
 
@@ -29,5 +30,22 @@ class SystemController extends BaseController
     }
 
 
+
+    //修改状态
+    public function actionEdit_status(){
+        $id = $this->get('id','','intval');
+        $status = $this->get('status','1','intval');
+        if(empty($id)){
+            return "da";
+        }else{
+            $model = AdminMenuModel::find();
+            if( ApiTools::editStatus($model,$status,['id'=>$id]) ){
+                $this->error('da');
+//                $this->redirect(\Yii::$app->request->referrer);//返回上一页
+            }else{
+
+            }
+        }
+    }
 
 }

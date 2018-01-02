@@ -21,14 +21,14 @@ class ApiTools
      * @author wjl
      */
     public static function editStatus($model,int $status = 1,$where=[],int $writeSql = 0){
-        $info = $model->where($where)->asArray()->one();
+        $info = $model->where($where)->one();
         if(empty($info)){
             return false;
         }
         if($writeSql == 1){
             return $info;
         }
-        $info->status = $status;
+        $info['status'] = $status;
         $info->save(0);
         return true;
     }
