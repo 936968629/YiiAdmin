@@ -17,6 +17,7 @@ class SystemController extends BaseController
     public function actionMenu(){
 
 
+
         $this->render('menu',[]);
     }
 
