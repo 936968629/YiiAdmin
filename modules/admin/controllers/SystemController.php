@@ -23,7 +23,6 @@ class SystemController extends BaseController
                 $item['child'] = $adminchildMenu;
             }
         }
-        var_dump($adminMenu);
         return $this->render('menu',[
             'modelInfo' => $adminMenu
         ]);

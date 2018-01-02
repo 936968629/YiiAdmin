@@ -67,6 +67,34 @@ use app\common\service\UrlService;
                             <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:if(confirm('确定禁用？'))location=''">禁用</a>
                         </td>
                     </tr>
+                    <?php
+                        if(!empty($item['child'])):
+                            foreach ($item['child'] as $item2):
+                    ?>
+                    <tr>
+                        <td><input class="check-all" type="checkbox"></td>
+                        <td><?= $item2['id'] ?></td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<?= $item2['name'] ?></td>
+                        <td>
+                            <?= $item2['url'] ?>
+                        </td>
+                        <td><?= $item2['list'] ?></td>
+                        <td>
+                            <?php if ($item2['status'] == 0): ?>
+                                未使用
+                            <?php elseif ($item2['status'] == 1): ?>
+                                <i class="fa fa-check text-success"></i>
+                            <?php endif;?>
+                        </td>
+                        <td>
+                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/admin/info',['id'=>$item['id']]) ?>">编辑</a>
+                            <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:if(confirm('确定禁用？'))location=''">禁用</a>
+                        </td>
+                    </tr>
+                    <?php
+                            endforeach;
+                        endif;
+                    ?>
                 <?php endforeach; ?>
                 </tbody>
             </table>
