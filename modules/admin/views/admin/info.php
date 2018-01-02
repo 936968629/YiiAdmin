@@ -17,7 +17,6 @@ use app\common\service\UrlService;
                 <li><?= $item ?></li>
             <?php endforeach; ?>
         </ul>
-
     </div>
 
     <div class="builder builder-form-box">

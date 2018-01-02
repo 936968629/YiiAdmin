@@ -11,6 +11,7 @@ namespace app\modules\admin\controllers\common;
 
 use app\common\components\BasePublicController;
 use app\models\AdminMenu;
+use app\models\AdminMenuModel;
 
 class BaseController extends BasePublicController
 {
@@ -67,13 +68,13 @@ class BaseController extends BasePublicController
         if(empty($url)){
             return false;
         }
-        $currntMenuInfo = AdminMenu::find()->where(['url'=>$url])->one();
+        $currntMenuInfo = AdminMenuModel::find()->where(['url'=>$url])->one();
         if(empty($currntMenuInfo)){
             return false;
         }
         $parentMenu[] = $currntMenuInfo['name'];
         while($currntMenuInfo['parent_id'] != 0){
-            $parentMenuInfo = AdminMenu::find()->where(['id'=>$currntMenuInfo['parent_id']])->one();
+            $parentMenuInfo = AdminMenuModel::find()->where(['id'=>$currntMenuInfo['parent_id']])->one();
             array_unshift($parentMenu,$parentMenuInfo['name']);
             $currntMenuInfo = $parentMenuInfo;
         }

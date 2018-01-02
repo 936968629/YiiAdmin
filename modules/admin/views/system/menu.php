@@ -36,11 +36,10 @@ use app\common\service\UrlService;
                 <tr>
                     <td width="40px"><input class="check-all" type="checkbox"></td>
                     <td>id</td>
-                    <td>类别</td>
-                    <td>用户名</td>
+                    <td>标题</td>
+                    <td>链接</td>
+                    <td>排序</td>
                     <td>状态</td>
-                    <td>注册时间</td>
-                    <td>上次登录时间</td>
                     <td class="w15">操作</td>
                 </tr>
                 </thead>
@@ -50,11 +49,12 @@ use app\common\service\UrlService;
                         <td><input class="check-all" type="checkbox"></td>
                         <td><?= $item['id'] ?></td>
                         <td>
-                            <?= $item['nickname'] ?>
+                            <?= $item['name'] ?>
                         </td>
                         <td>
-                            <?= $item['username'] ?>
+                            <?= $item['url'] ?>
                         </td>
+                        <td><?= $item['list'] ?></td>
                         <td>
                             <?php if ($item['status'] == 0): ?>
                                 未使用
@@ -62,65 +62,14 @@ use app\common\service\UrlService;
                                 <i class="fa fa-check text-success"></i>
                             <?php endif;?>
                         </td>
-                        <td><?= $item['create_time'] ?></td>
-                        <td><?= $item['update_time'] ?></td>
                         <td>
                             <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/admin/info',['id'=>$item['id']]) ?>">编辑</a>
-                            <!--                            --><?php //if() ?>
                             <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:if(confirm('确定禁用？'))location=''">禁用</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>
-    </div>
-
-    <div class="modal fade" id="bjy-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel"> 修改项目 </h4>
-                </div>
-                <div class="modal-body">
-                    <form id="bjy-form" class="form-horizontal" >
-                        <input type="hidden" name="id">
-                        <table class="table table-hover contact-template-form">
-                            <tbody>
-                            <tr>
-                                <td width="20%" align="right">项目名：</td>
-                                <td>
-                                    <span style="display: none;" class="project-id"></span>
-                                    <span class="project-name"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="20%" align="right">项目需求：</td>
-                                <td>
-                                    <span class="project-comment"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="20%" align="right">审核状态：</td>
-                                <td>
-                                    <select name="status">
-                                        <option value="0">审核中</option>
-                                        <option value="1">审核通过</option>
-                                        <option value="2">审核不通过</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="20%" align="right">项目需求：</td>
-                                <td>
-                                    <input class="btn btn-primary" type="button" value="修改">
-                                </td>
-                            </tr>
-                            </tbody></table>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 
