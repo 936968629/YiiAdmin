@@ -14,7 +14,7 @@ use Yii;
  * @property integer $list
  * @property integer $status
  */
-class AdminMenu extends \yii\db\ActiveRecord
+class AdminMenuModel extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
