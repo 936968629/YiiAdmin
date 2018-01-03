@@ -124,7 +124,7 @@ use app\common\service\UrlService;
                                 // $('#content-iframe',window.parent.document).prop('src','admin/system/menu');
                             },'cancel':function () {
                                 window.location.reload();
-                            }}
+                            }};
                         common_ops.confirm(status.msg,callback);
                     }
                 },'json');
