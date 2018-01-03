@@ -119,9 +119,9 @@ use app\common\service\UrlService;
                         common_ops.alert(status.msg);
                     }else{
                         let callback = {'ok':function () {
-                                // window.location.reload();
-                                parent.location.reload();
-                                $('#content-iframe',window.parent.document).prop('src','admin/system/menu');
+                                window.location.reload();
+                                // parent.location.reload();
+                                // $('#content-iframe',window.parent.document).prop('src','admin/system/menu');
                             },'cancel':function () {
                                 window.location.reload();
                             }}
