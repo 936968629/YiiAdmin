@@ -92,7 +92,11 @@ use app\common\service\UrlService;
                         </td>
                         <td>
                             <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/admin/info',['id'=>$item['id']]) ?>">编辑</a>
-                            <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:if(confirm('确定禁用？'))location=''">禁用</a>
+                            <?php if($item2['status'] == 0): ?>
+                                <a title="启用" class="label label-success ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item2['id'] ?>,1)">启用</a>
+                            <?php elseif($item2['status'] == 1): ?>
+                                <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item2['id'] ?>,0)">禁用</a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <?php
@@ -109,7 +113,21 @@ use app\common\service\UrlService;
     <script>
         function editStatus(id,status=1) {
             if(parseInt(id)){
-                window.location.href = common_ops.buildAdminUrl('/system/edit_status',{'id':id,'status':status});
+                $.get(common_ops.buildAdminUrl('/system/edit_status',{'id':id,'status':status}),function (data) {
+                    let status = data.status;
+                    if(status.code != 1){
+                        common_ops.alert(status.msg);
+                    }else{
+                        let callback = {'ok':function () {
+                                // window.location.reload();
+                                parent.location.reload();
+                                $('#content-iframe',window.parent.document).prop('src','admin/system/menu');
+                            },'cancel':function () {
+                                window.location.reload();
+                            }}
+                        common_ops.confirm(status.msg,callback);
+                    }
+                },'json');
             }
         }
 

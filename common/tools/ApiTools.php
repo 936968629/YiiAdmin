@@ -14,9 +14,9 @@ class ApiTools
     /**
      * 修改状态
      * @param $model
-     * @param int $status
-     * @param array $where
-     * @param int $writeSql
+     * @param int $status 修改状态(0,1)
+     * @param array $where 查询条件
+     * @param int $writeSql 1:显示sql
      * @return bool
      * @author wjl
      */

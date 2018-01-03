@@ -39,6 +39,7 @@ class BasePublicController extends Controller
 
     /**
      * 返回json
+     * 例子:(995):返回{"data":[],"status":{"code":"995","msg":"\u53c2\u6570\u9519\u8bef"},"login_tips_box":""}
      */
     public function renderJson($data=[],$code=1,$login_tips_box=""){
         if(!is_array($data)){
@@ -104,5 +105,13 @@ class BasePublicController extends Controller
             }
         }
         return $data;
+    }
+    //错误页面
+    public function error($msg = ""){
+        return $this->renderPartial('/base/error',['msg'=>$msg,'status'=>404]);
+    }
+    //成功页面
+    public function success($msg = "操作成功"){
+        return $this->renderPartial('/base/error',['msg'=>$msg]);
     }
 }

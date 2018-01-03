@@ -37,14 +37,14 @@
             </li>
             <li class="li-border dropdown"><a href="#" class="mystyle-color" data-toggle="dropdown">
                 <span class="glyphicon glyphicon-search"></span> 搜索</a>
-                <div class="dropdown-menu search-dropdown">
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default">搜索</button>
-                        </span>
-                    </div>
-                </div>
+<!--                <div class="dropdown-menu search-dropdown">-->
+<!--                    <div class="input-group">-->
+<!--                        <input type="text" class="form-control">-->
+<!--                        <span class="input-group-btn">-->
+<!--                            <button type="button" class="btn btn-default">搜索</button>-->
+<!--                        </span>-->
+<!--                    </div>-->
+<!--                </div>-->
             </li>
             <li class="dropdown li-border"><a href="#" class="dropdown-toggle mystyle-color" data-toggle="dropdown">帮助与文档<span class="caret"></span></a>
                 <ul class="dropdown-menu">

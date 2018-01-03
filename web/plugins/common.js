@@ -111,7 +111,7 @@ var common_ops = {
             }
         });
     },
-    confirm:function( msg,callback ){
+    confirm:function( msg,callback){
         callback = ( callback != undefined )?callback: { 'ok':null, 'cancel':null };
         layer.confirm( msg , {
             btn: ['确定','取消'] //按钮

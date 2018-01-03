@@ -4,11 +4,13 @@
  */
 return array(
     array('num'=>0,'code'=>0,'msg'=>'失败'),
-    array('num'=>1,'code'=>1,'msg'=>'成功'),
+    array('num'=>1,'code'=>1,'msg'=>'操作成功'),
+
+    array('num'=>994,'code'=>994,'msg'=>'没有找到该数据'),
+    array('num'=>995,'code'=>995,'msg'=>'参数错误'),
     array('num'=>996,'code'=>996,'msg'=>'你没有权限访问'),
     array('num'=>997,'code'=>997,'msg'=>'您操作太快，请稍候再试'),
     array('num'=>998,'code'=>998,'msg'=>'miss act!'),
-    array('num'=>999,'code'=>999,'msg'=>'签名错误,请刷新重试'),
 
     //Admin 模块下以 3000 开头
     array('num'=>3000,'code'=>3000,'msg'=>'输入信息不能为空'),

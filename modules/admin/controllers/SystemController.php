@@ -36,14 +36,16 @@ class SystemController extends BaseController
         $id = $this->get('id','','intval');
         $status = $this->get('status','1','intval');
         if(empty($id)){
-            return "da";
+//            return $this->error("id参数错误");
+            return $this->renderJson(995);
         }else{
             $model = AdminMenuModel::find();
             if( ApiTools::editStatus($model,$status,['id'=>$id]) ){
-                $this->error('da');
+                return $this->renderJson(1);
 //                $this->redirect(\Yii::$app->request->referrer);//返回上一页
             }else{
-
+//                return $this->error('没有找到该数据');
+                return $this->renderJson(994);
             }
         }
     }
