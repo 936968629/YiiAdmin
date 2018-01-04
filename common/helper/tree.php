@@ -117,7 +117,7 @@ class tree {
                     $j .= $this->icon[2];
                 }else{
                     $j .= $this->icon[1];
-                    $k = $adds ? $this->icon[0] : '&nbsp;';
+                    $k = $adds ? $this->icon[0] : '';
                 }
                 $spacer = $adds ? $adds.$j : '';
                 $selected = $id==$sid ? 'selected' : '';
@@ -125,7 +125,7 @@ class tree {
                 $parentid == 0 && $str_group ? eval("\$nstr = \"$str_group\";") : eval("\$nstr = \"$str\";");
                 $this->ret .= $nstr;
                 $nbsp = $this->nbsp;
-                $this->get_tree($id, $str, $sid, $adds.$k.$nbsp,$str_group);
+                $this->get_tree($id, $str, $sid, $adds.$k.'&nbsp;&nbsp;',$str_group);
                 $number++;
             }
         }

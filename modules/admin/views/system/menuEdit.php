@@ -13,8 +13,7 @@ use app\common\service\UrlService;
     <div class="info-center">
         <ul class="breadcrumb" style="margin-top: 20px;">
             <li><i class="fa fa-map-marker"></i></li>
-            <?php var_dump($this->params['breadCrumbs']);
-            foreach ($this->params['breadCrumbs'] as $item): ?>
+            <?php foreach ($this->params['breadCrumbs'] as $item): ?>
                 <li><?= $item ?></li>
             <?php endforeach; ?>
         </ul>
@@ -33,13 +32,9 @@ use app\common\service\UrlService;
                                 <label class="item-label">上级菜单<span class="check-tips">（<span class="small">所属的上级菜单</span>）</span></label>
                                 <div class="controls">
                                     <select name="pid" class="form-control select">
-                                        <option value="<?= $parentMenu['parent_id'] ?>"><?= $parentMenu['name'] ?></option>
+                                        <option value="<?= $parentMenu['parent_id'] ?>" selected><?= $parentMenu['name'] ?></option>
                                         <option value="">请选择：</option>
-<!--                                        --><?php
-//
-//                                        foreach ($this->params['breadCrumbs'] as $item): ?>
-<!--                                            <option value="">--><?//= $item ?><!--</option>-->
-<!--                                        --><?php //endforeach; ?>
+
                                         <?= $selectDom ?>
                                     </select>
                                 </div>
@@ -68,34 +63,11 @@ use app\common\service\UrlService;
                     </div>
                 </div>
             </div>
-
-
-
         </div>
-
     </div>
 
     <?php $this->endBody(); ?>
     <script>
-        function editStatus(id,status=1) {
-            if(parseInt(id)){
-                $.get(common_ops.buildAdminUrl('/system/edit_status',{'id':id,'status':status}),function (data) {
-                    let status = data.status;
-                    if(status.code != 1){
-                        common_ops.alert(status.msg);
-                    }else{
-                        let callback = {'ok':function () {
-                                window.location.reload();
-                                // parent.location.reload();
-                                // $('#content-iframe',window.parent.document).prop('src','admin/system/menu');
-                            },'cancel':function () {
-                                window.location.reload();
-                            }};
-                        common_ops.confirm(status.msg,callback);
-                    }
-                },'json');
-            }
-        }
 
     </script>
     </body>

@@ -38,11 +38,12 @@ class SystemController extends BaseController
         }
         //查找
         $parentMenu = AdminMenuModel::find()->where(['id'=>$currentMenu['parent_id']])->asArray()->one();
+        var_dump($parentMenu);
         if(empty($parentMenu)){
             //说明是顶级菜单
             $parentMenu['name'] = "顶级菜单";
             $parentMenu['parent_id'] = 0;
-        }
+        } var_dump($parentMenu);
         $data = AdminMenuModel::find()->asArray()->all();
         $selectDom = MyTools::getTreeMenuSelect($data);
         return $this->render('menuEdit',[
