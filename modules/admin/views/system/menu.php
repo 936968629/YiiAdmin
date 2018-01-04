@@ -63,7 +63,7 @@ use app\common\service\UrlService;
                             <?php endif;?>
                         </td>
                         <td data-id="<?= $item['id'] ?>">
-                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/admin/info',['id'=>$item['id']]) ?>">编辑</a>
+                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/system/menu_edit',['id'=>$item['id']]) ?>">编辑</a>
                             <?php if ($item['status'] == 0): ?>
                                 <a title="启用" class="label label-success ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item["id"] ?>,1)">启用</a>
                             <?php elseif ($item['status'] == 1): ?>
@@ -91,7 +91,7 @@ use app\common\service\UrlService;
                             <?php endif;?>
                         </td>
                         <td>
-                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/admin/info',['id'=>$item['id']]) ?>">编辑</a>
+                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/system/menu_edit',['id'=>$item2['id']]) ?>">编辑</a>
                             <?php if($item2['status'] == 0): ?>
                                 <a title="启用" class="label label-success ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item2['id'] ?>,1)">启用</a>
                             <?php elseif($item2['status'] == 1): ?>

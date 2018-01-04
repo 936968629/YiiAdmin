@@ -8,6 +8,8 @@
 
 namespace app\common\tools;
 
+use app\common\helper\tree;
+
 class MyTools
 {
     /**
@@ -39,4 +41,21 @@ class MyTools
         $ip   = $long ? array($ip, $long) : array('0.0.0.0', 0);
         return $ip[$type];
     }
+    //返回树形select
+    public static function getTreeMenuSelect($data){
+        $tree_data=array();
+        foreach ($data as $key=>$value){
+            $tree_data[$value['id']]=array(
+                'id'=>$value['id'],
+                'parentid'=>$value['parent_id'],
+                'name'=>$value['name']
+            );
+        }
+        $tree = new tree();
+        $tree->init($tree_data);
+        $str="<option value=\$id \$selected>\$spacer\$name</option>";
+        $returnSql = $tree->get_tree(0, $str,2);
+        return $returnSql;
+    }
+
 }
