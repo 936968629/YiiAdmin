@@ -32,7 +32,18 @@ class SystemController extends BaseController
     //修改菜单信息
     public function actionMenu_edit(){
         if(\Yii::$app->request->isPost){
-            $id = $this->post('id','','');
+            $id = $this->post('id','','intval');
+            $parent_id = $this->post('parent_id','','intval');
+            $name = $this->post('name','','op_t');
+            $url = $this->post('url','','op_t');
+            $list = $this->post('list','','op_t');
+            $info = AdminMenuModel::find()->where(['id'=>$id])->one();
+            $info->parent_id = $parent_id;
+            $info->name = $name;
+            $info->url = $url;
+            $info->list = $list;
+            $info->save(0);
+            return $this->renderJson(1);
         }else{
             $id = $this->get('id','','intval');
             $currentMenu = AdminMenuModel::find()->where(['id'=>$id])->asArray()->one();

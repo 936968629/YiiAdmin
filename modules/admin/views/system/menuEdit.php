@@ -53,7 +53,7 @@ use app\common\service\UrlService;
                                     <input type="text" class="form-control input num" name="list" value="<?= $currentMenu['list'] ?? '' ?>">                            </div>
                             </div>                                        <div class="form-group">
 <!--                                <button class="btn btn-primary btn-block submit ajax-post visible-xs visible-sm" type="submit" target-form="builder-form">确定</button>-->
-                                <button type="button" class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" onclick="Sub('menuForm','<?php  if(isset($type)) echo UrlService::buildAdminUrl('/system/menu_add');else echo UrlService::buildAdminUrl('/system/menu_edit') ?>')">确定</button>
+                                <button type="button" class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" onclick="Sub('menuForm','<?php if(isset($type)) echo UrlService::buildAdminUrl('/system/menu_add');else echo UrlService::buildAdminUrl('/system/menu_edit') ?>')">确定</button>
                                 <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
                             </div>
                         </form>
