@@ -32,7 +32,7 @@ class SystemController extends BaseController
     //修改菜单信息
     public function actionMenu_edit(){
         if(\Yii::$app->request->isPost){
-
+            $id = $this->post('id','','');
         }else{
             $id = $this->get('id','','intval');
             $currentMenu = AdminMenuModel::find()->where(['id'=>$id])->asArray()->one();
@@ -57,7 +57,16 @@ class SystemController extends BaseController
     }
     //添加菜单
     public function actionMenu_add(){
+        if(\Yii::$app->request->isPost){
 
+        }else{
+            $data = AdminMenuModel::find()->asArray()->all();
+            $selectDom = MyTools::getTreeMenuSelect($data);
+            return $this->render('menuEdit',[
+                'selectDom' => $selectDom,
+                'type' => 'add',
+            ]);
+        }
     }
 
 

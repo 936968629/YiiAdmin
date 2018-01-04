@@ -41,7 +41,10 @@ class MyTools
         $ip   = $long ? array($ip, $long) : array('0.0.0.0', 0);
         return $ip[$type];
     }
-    //返回树形select
+    /**
+     * 返回树形select下拉框
+     * @param $data 数据数组
+     */
     public static function getTreeMenuSelect($data){
         $tree_data=array();
         foreach ($data as $key=>$value){

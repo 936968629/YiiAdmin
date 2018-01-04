@@ -25,14 +25,14 @@ use app\common\service\UrlService;
                         <form class="form builder-form" name="menuForm">
                             <div class="form-group item_id ">
                                 <div class="controls">
-                                    <input type="hidden" class="form-control input" name="id" value="<?= $currentMenu['id'] ?>">
+                                    <input type="hidden" class="form-control input" name="id" value="<?= $currentMenu['id'] ?? '' ?>">
                                 </div>
                             </div>
                             <div class="form-group item_pid ">
                                 <label class="item-label">上级菜单<span class="check-tips">（<span class="small">所属的上级菜单</span>）</span></label>
                                 <div class="controls">
                                     <select name="parent_id" class="form-control select">
-                                        <option value="<?= $parentMenu['parent_id'] ?>" selected><?= $parentMenu['name'] ?></option>
+                                        <option value="<?= $parentMenu['parent_id'] ?? ''?>" selected><?= $parentMenu['name'] ?? '' ?></option>
                                         <option value="">请选择：</option>
                                         <?= $selectDom ?>
                                     </select>
@@ -41,19 +41,19 @@ use app\common\service\UrlService;
                                 <label class="item-label">标题<span class="check-tips">（<span class="small">菜单标题</span>）</span></label>
                                 <div class="controls">
 
-                                    <input type="text" class="form-control input text" name="name" value="<?= $currentMenu['name'] ?>">                            </div>
+                                    <input type="text" class="form-control input text" name="name" value="<?= $currentMenu['name'] ?? '' ?>">                            </div>
                             </div><div class="form-group item_url ">
                                 <label class="item-label">链接(顶级菜单可不填)</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control input text" name="url" value="<?= $currentMenu['url'] ?>">                            </div>
+                                    <input type="text" class="form-control input text" name="url" value="<?= $currentMenu['url'] ?? '' ?>">                            </div>
                             </div>
                             <div class="form-group item_sort ">
                                 <label class="item-label">排序<span class="check-tips">（<span class="small">用于显示的顺序</span>）</span></label>
                                 <div class="controls">
-                                    <input type="text" class="form-control input num" name="list" value="<?= $currentMenu['list'] ?>">                            </div>
+                                    <input type="text" class="form-control input num" name="list" value="<?= $currentMenu['list'] ?? '' ?>">                            </div>
                             </div>                                        <div class="form-group">
 <!--                                <button class="btn btn-primary btn-block submit ajax-post visible-xs visible-sm" type="submit" target-form="builder-form">确定</button>-->
-                                <button type="button" class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" onclick="Sub('menuForm','<?= UrlService::buildAdminUrl('/system/menu_edit'); ?>')">确定</button>
+                                <button type="button" class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" onclick="Sub('menuForm','<?php  if(isset($type)) echo UrlService::buildAdminUrl('/system/menu_add');else echo UrlService::buildAdminUrl('/system/menu_edit') ?>')">确定</button>
                                 <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
                             </div>
                         </form>
