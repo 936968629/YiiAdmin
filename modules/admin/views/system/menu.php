@@ -23,7 +23,6 @@ use app\common\service\UrlService;
                 <div class="col-xs-12 col-sm-9 button-list">
                     <a title="新增" class="btn btn-primary" href="<?= UrlService::buildAdminUrl('/system/menu_add') ?>">新增</a>&nbsp;<a title="启用" target-form="ids" class="btn btn-success ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/resume/model/User.html" autocomplete="off">启用</a>&nbsp;<a title="禁用" target-form="ids" class="btn btn-warning ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/forbid/model/User.html">禁用</a>
                 </div>
-                
             </div>
         </div>
         <div class="table-margin">
