@@ -117,7 +117,7 @@ class tree {
                     $j .= $this->icon[2];
                 }else{
                     $j .= $this->icon[1];
-                    $k = $adds ? $this->icon[0] : '';
+                    $k = $adds ? $this->icon[0] : '&nbsp;';
                 }
                 $spacer = $adds ? $adds.$j : '';
                 $selected = $id==$sid ? 'selected' : '';
