@@ -25,7 +25,7 @@ use app\common\service\UrlService;
                         <form class="form builder-form" name="menuForm">
                             <div class="form-group item_id ">
                                 <div class="controls">
-                                    <input type="hidden" class="form-control input" name="id" value="118">
+                                    <input type="hidden" class="form-control input" name="id" value="<?= $currentMenu['id'] ?>">
                                 </div>
                             </div>
                             <div class="form-group item_pid ">

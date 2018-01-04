@@ -32,6 +32,8 @@ class SystemController extends BaseController
     //修改菜单信息
     public function actionMenu_edit(){
         if(\Yii::$app->request->isPost){
+
+        }else{
             $id = $this->get('id','','intval');
             $currentMenu = AdminMenuModel::find()->where(['id'=>$id])->asArray()->one();
             if(empty($id) || empty($currentMenu)){
@@ -51,8 +53,6 @@ class SystemController extends BaseController
                 'selectDom' => $selectDom,
                 'currentMenu' => $currentMenu
             ]);
-        }else{
-
         }
     }
     //添加菜单
