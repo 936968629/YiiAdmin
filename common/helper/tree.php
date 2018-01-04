@@ -120,7 +120,7 @@ class tree {
                     $k = $adds ? $this->icon[0] : '';
                 }
                 $spacer = $adds ? $adds.$j : '';
-                $selected = $id==$sid ? 'selected' : '';
+//                $selected = $id==$sid ? 'selected' : '';
                 @extract($value);
                 $parentid == 0 && $str_group ? eval("\$nstr = \"$str_group\";") : eval("\$nstr = \"$str\";");
                 $this->ret .= $nstr;

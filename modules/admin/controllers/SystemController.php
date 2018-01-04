@@ -29,46 +29,36 @@ class SystemController extends BaseController
             'modelInfo' => $adminMenu
         ]);
     }
-    //查看菜单信息
+    //修改菜单信息
     public function actionMenu_edit(){
-        $id = $this->get('id','','intval');
-        $currentMenu = AdminMenuModel::find()->where(['id'=>$id])->asArray()->one();
-        if(empty($id) || empty($currentMenu)){
-            return $this->error('没有改数据');
+        if(\Yii::$app->request->isPost){
+            $id = $this->get('id','','intval');
+            $currentMenu = AdminMenuModel::find()->where(['id'=>$id])->asArray()->one();
+            if(empty($id) || empty($currentMenu)){
+                return $this->error('没有改数据');
+            }
+            //查找
+            $parentMenu = AdminMenuModel::find()->where(['id'=>$currentMenu['parent_id']])->asArray()->one();
+            if(empty($parentMenu)){
+                //说明是顶级菜单
+                $parentMenu['name'] = "顶级菜单";
+                $parentMenu['parent_id'] = 0;
+            }
+            $data = AdminMenuModel::find()->asArray()->all();
+            $selectDom = MyTools::getTreeMenuSelect($data);
+            return $this->render('menuEdit',[
+                'parentMenu' => $parentMenu,
+                'selectDom' => $selectDom,
+                'currentMenu' => $currentMenu
+            ]);
+        }else{
+
         }
-        //查找
-        $parentMenu = AdminMenuModel::find()->where(['id'=>$currentMenu['parent_id']])->asArray()->one();
-        var_dump($parentMenu);
-        if(empty($parentMenu)){
-            //说明是顶级菜单
-            $parentMenu['name'] = "顶级菜单";
-            $parentMenu['parent_id'] = 0;
-        } var_dump($parentMenu);
-        $data = AdminMenuModel::find()->asArray()->all();
-        $selectDom = MyTools::getTreeMenuSelect($data);
-        return $this->render('menuEdit',[
-            'parentMenu' => $parentMenu,
-            'selectDom' => $selectDom
-        ]);
     }
+    //添加菜单
+    public function actionMenu_add(){
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     //修改菜单状态

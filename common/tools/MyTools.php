@@ -53,7 +53,7 @@ class MyTools
         }
         $tree = new tree();
         $tree->init($tree_data);
-        $str="<option value=\$id \$selected>\$spacer\$name</option>";
+        $str="<option value=\$id >\$spacer\$name</option>";
         $returnSql = $tree->get_tree(0, $str,2);
         return $returnSql;
     }
