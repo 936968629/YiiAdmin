@@ -21,14 +21,10 @@ use app\common\service\UrlService;
             <div class="row">
                 <!-- 工具栏按钮 -->
                 <div class="col-xs-12 col-sm-9 button-list">
-                    <a title="新增" class="btn btn-primary" href="<?= UrlService::buildAdminUrl('/system/menu_add') ?>">新增</a>&nbsp;<a title="启用" target-form="ids" class="btn btn-success ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/resume/model/User.html" autocomplete="off">启用</a>&nbsp;<a title="禁用" target-form="ids" class="btn btn-warning ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/forbid/model/User.html">禁用</a>&nbsp;                    </div>
-                <!-- 搜索框 -->
-                <div class="col-xs-12 col-sm-3">
-                    <div class="input-group search-form">
-                        <input type="text" name="keyword" class="search-input form-control" value="" placeholder="请输入ID/用户名/邮箱/手机号">
-                        <span class="input-group-btn"><a class="btn btn-default" href="javascript:;" id="search" url="/index.php?s=/admin/user/index.html"><i class="fa fa-search"></i></a></span>
-                    </div>
-                </div>            </div>
+                    <a title="新增" class="btn btn-primary" href="<?= UrlService::buildAdminUrl('/system/menu_add') ?>">新增</a>&nbsp;<a title="启用" target-form="ids" class="btn btn-success ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/resume/model/User.html" autocomplete="off">启用</a>&nbsp;<a title="禁用" target-form="ids" class="btn btn-warning ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/forbid/model/User.html">禁用</a>
+                </div>
+                
+            </div>
         </div>
         <div class="table-margin">
             <table class="table table-hover table-header" id="list-table">

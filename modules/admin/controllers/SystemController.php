@@ -73,10 +73,16 @@ class SystemController extends BaseController
             $name = $this->post('name','','op_t');
             $url = $this->post('url','','op_t');
             $list = $this->post('list','','intval');
-            if($parent_id == "" || empty($name) || empty($url) || $list ==''){
+            if($parent_id == "" || empty($name) || empty($url) || $list == ""){
                 return $this->renderJson(3000);
             }
-            
+            $info = new AdminMenuModel();
+            $info->parent_id = $parent_id;
+            $info->name = $name;
+            $info->url = $url;
+            $info->list = $list;
+            $info->save(0);
+            return $this->renderJson(['url'=>'menu'],1);
         }else{
             $data = AdminMenuModel::find()->asArray()->all();
             $selectDom = MyTools::getTreeMenuSelect($data);
@@ -86,7 +92,6 @@ class SystemController extends BaseController
             ]);
         }
     }
-
 
     //修改菜单状态
     public function actionEdit_status(){
