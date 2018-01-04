@@ -43,7 +43,7 @@ class SystemController extends BaseController
             $info->url = $url;
             $info->list = $list;
             $info->save(0);
-            return $this->renderJson(1);
+            return $this->renderJson(['url'=>'menu'],1);
         }else{
             $id = $this->get('id','','intval');
             $currentMenu = AdminMenuModel::find()->where(['id'=>$id])->asArray()->one();
@@ -69,7 +69,14 @@ class SystemController extends BaseController
     //添加菜单
     public function actionMenu_add(){
         if(\Yii::$app->request->isPost){
-
+            $parent_id = $this->post('parent_id','','intval');
+            $name = $this->post('name','','op_t');
+            $url = $this->post('url','','op_t');
+            $list = $this->post('list','','intval');
+            if($parent_id == "" || empty($name) || empty($url) || $list ==''){
+                return $this->renderJson(3000);
+            }
+            
         }else{
             $data = AdminMenuModel::find()->asArray()->all();
             $selectDom = MyTools::getTreeMenuSelect($data);

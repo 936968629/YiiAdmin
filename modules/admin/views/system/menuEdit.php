@@ -32,7 +32,7 @@ use app\common\service\UrlService;
                                 <label class="item-label">上级菜单<span class="check-tips">（<span class="small">所属的上级菜单</span>）</span></label>
                                 <div class="controls">
                                     <select name="parent_id" class="form-control select">
-                                        <option value="<?= $parentMenu['parent_id'] ?? ''?>" selected><?= $parentMenu['name'] ?? '' ?></option>
+                                        <option value="<?= $parentMenu['id'] ?? ''?>" selected><?= $parentMenu['name'] ?? '' ?></option>
                                         <option value="">请选择：</option>
                                         <?= $selectDom ?>
                                     </select>
