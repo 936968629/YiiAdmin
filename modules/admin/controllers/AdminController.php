@@ -9,6 +9,7 @@
 namespace app\modules\admin\controllers;
 
 use app\models\AdminGroupModel;
+use app\models\AdminMenuModel;
 use app\models\AdminModel;
 use app\modules\admin\controllers\common\BaseController;
 
@@ -46,8 +47,20 @@ class AdminController extends BaseController
         }else{
             $id = $this->get('id','','intval');
             $info = AdminGroupModel::find()->where(['id'=>$id])->one();
+            $ids = $info['menu_auth'];
+            $info['menu_auth'] = explode(",",$ids);
+            //获取菜单
+            $tree = new \app\common\tools\Tree();
+            $all_admin_menu_list = $tree->list_to_tree(AdminMenuModel::find()->where(['status'=>1])->asArray()->all(),'id','parent_id'); //所有系统菜单
+
+            //设置数组key为菜单ID
+            foreach($all_admin_menu_list as $key => $val){
+                $all_menu_list[$val['id']] = $val;
+            }
+
             return $this->render('groupEdit',[
-                'info' => $info
+                'info' => $info,
+                '__ALL_MENU_LIST__' => $all_menu_list
             ]);
         }
 
