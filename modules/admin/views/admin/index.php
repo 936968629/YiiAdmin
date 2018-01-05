@@ -80,10 +80,10 @@ use app\common\service\UrlService;
                         <td><input class="check-all" type="checkbox"></td>
                         <td><?= $item['id'] ?></td>
                         <td>
-                            <?= $item['nickname'] ?>
+                            <?= $item['group_name'] ?>
                         </td>
                         <td>
-                            <?= $item['username'] ?>
+                            <?= $item['nickname'] ?>
                         </td>
                         <td>
                             <?php if ($item['status'] == 0): ?>
