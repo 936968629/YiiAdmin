@@ -19,7 +19,7 @@ use app\common\service\UrlService;
         </ul>
         <div class="row builder builder-form-box">
             <div class="col-xs-12 builder-form-container">
-                <form action="__SELF__" method="post" class="form builder-form">
+                <form action="" method="post" class="form builder-form">
                     <ul class="nav-tabs nav" style="margin-bottom: 20px;">
                         <li class="active"><a href="#tab1" data-toggle="tab">分组信息</a></li>
                         <?php if($info['id'] != 1):?>
@@ -80,8 +80,10 @@ use app\common\service\UrlService;
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="id" value="{$info.id|default=''}">
+                        <?php if($info['id'] != 1): ?>
                         <button class="btn btn-primary submit ajax-post" type="submit" target-form="form">确定</button>
-                        <button class="btn btn-default return" onclick="javascript:history.back(-1);return false;">返回</button>
+                        <?php endif; ?>
+                        <button class="btn btn- retudefaultrn" onclick="javascript:history.back(-1);return false;">返回</button>
                     </div>
                 </form>
             </div>
