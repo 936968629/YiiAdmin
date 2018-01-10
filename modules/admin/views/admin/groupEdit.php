@@ -79,7 +79,7 @@ use app\common\service\UrlService;
                         <?php endif; ?>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="id" value="{$info.id|default=''}">
+                        <input type="hidden" name="id" value="<?=$info['id']?>">
                         <?php if($info['id'] != 1): ?>
                         <button class="btn btn-primary submit ajax-post" type="submit" target-form="form">确定</button>
                         <?php endif; ?>
