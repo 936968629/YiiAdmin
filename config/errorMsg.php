@@ -13,6 +13,7 @@ return array(
     array('num'=>998,'code'=>998,'msg'=>'miss act!'),
 //    array('num'=>999,'code'=>999,'msg'=>'id没有找到'),
 
+
     //Admin 模块下以 3000 开头
     array('num'=>3000,'code'=>3000,'msg'=>'输入信息不能为空'),
     array('num'=>3001,'code'=>3001,'msg'=>'验证码错误'),
