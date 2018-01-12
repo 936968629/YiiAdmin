@@ -44,6 +44,7 @@ class AdminController extends BaseController
     public function actionGroup_edit(){
         if(\Yii::$app->request->isPost){
 
+            
         }else{
             $id = $this->get('id','','intval');
             //获取菜单
