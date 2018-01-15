@@ -3,7 +3,8 @@
     <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>404</title>
+        <script src="/plugins/jquery-2.1.1.js"></script>
+        <title><?= $status ?></title>
         <style>
             html,body {
                 height: 100%;
@@ -190,6 +191,7 @@
         <canvas class="snow" id="snow" width="1349" height="400"></canvas>
         <div class="main-text">
             <h1><?= $msg ?></h1>
+            <h6><span id="span_time">3</span>秒后自动跳转... <a href="javascript:history.go(-1);">立即跳转</a> </h6>
             <div class="main-text-a"><a href="#"></a></div>
         </div>
         <div class="ground">
@@ -203,6 +205,16 @@
 
     <script>
         (function() {
+            var count = 3;
+            var timer = setInterval(function () {
+               count--;
+               if(count <= 0){
+                   clearInterval(timer);
+                   history.go(-1);
+               }
+               $("#span_time").html(count);
+            },1000);
+
             function ready(fn) {
                 if (document.readyState != 'loading'){
                     fn();
@@ -282,7 +294,6 @@
             });
         })();
     </script>
-    <?php ?>
     </body>
 </html>
 <?php $this->endPage(); ?>

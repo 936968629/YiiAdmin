@@ -112,6 +112,6 @@ class BasePublicController extends Controller
     }
     //成功页面
     public function success($msg = "操作成功"){
-        return $this->renderPartial('/base/error',['msg'=>$msg]);
+        return $this->renderPartial('/base/error',['msg'=>$msg,'status'=>200]);
     }
 }

@@ -46,3 +46,13 @@ function intToString($integer = null)
     }
     return $integer;
 }
+
+function array_map_recursive($filter, $data) {
+    $result = array();
+    foreach ($data as $key => $val) {
+        $result[$key] = is_array($val)
+            ? array_map_recursive($filter, $val)
+            : call_user_func($filter, $val);
+    }
+    return $result;
+}

@@ -92,7 +92,21 @@ use app\common\service\UrlService;
 
     <?php $this->endBody(); ?>
     <script>
+        $('.auth input[type="checkbox"]').on('change',function(){
+            //将子类的checkbox状态全部设为一致
+            var checked = $(this).prop("checked"),
+                container = $(this).parent().parent(),
+                siblings = container.siblings();
 
+            container.find('input[type="checkbox"]').prop({
+                indeterminate: false,
+                checked: checked
+            });
+            //判断兄弟节点状态
+
+
+
+        });
     </script>
     </body>
     </html>
