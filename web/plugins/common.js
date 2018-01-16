@@ -161,7 +161,23 @@ function SmoothlyMenu() {
         $('#side-menu').removeAttr('style');
     }
 }
-
+//将表单数据转换为object对象
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
 // Full height of sidebar
 function fix_height() {
     var heightWithoutNavbar = $("body > #wrapper").height() - 61;
