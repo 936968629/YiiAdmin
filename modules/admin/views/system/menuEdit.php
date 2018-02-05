@@ -34,6 +34,7 @@ use app\common\service\UrlService;
                                     <select name="parent_id" class="form-control select">
                                         <option value="<?= $parentMenu['id'] ?? ''?>" selected><?= $parentMenu['name'] ?? '' ?></option>
                                         <option value="">请选择：</option>
+                                        <option value="0">顶级菜单</option>
                                         <?= $selectDom ?>
                                     </select>
                                 </div>

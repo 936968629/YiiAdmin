@@ -12,6 +12,7 @@ use app\models\AdminGroupModel;
 use app\models\AdminMenuModel;
 use app\models\AdminModel;
 use app\modules\admin\controllers\common\BaseController;
+use yii\data\Pagination;
 
 class AdminController extends BaseController
 {
@@ -48,7 +49,6 @@ class AdminController extends BaseController
             $menu_auth = $this->post('menu_auth','','op_t');
 
 
-
             //return $this->success('操作成功');
         }else{
             $id = $this->get('id','','intval');
@@ -70,9 +70,13 @@ class AdminController extends BaseController
             $ids = $info['menu_auth'];
             $info['menu_auth'] = explode(",",$ids);
 
+
+            $page = new Pagination(['totalCount' => 200]);
+
             return $this->render('groupEdit',[
                 'info' => $info,
-                '__ALL_MENU_LIST__' => $all_menu_list
+                '__ALL_MENU_LIST__' => $all_menu_list,
+                'page' => $page
             ]);
         }
 
