@@ -74,15 +74,15 @@ use app\common\service\UrlService;
                             <div class="form-group item_descs ">
                                 <label class="item-label">娃娃详图</label>
                                 <div class="controls">
-
                                     <div id="_upload_8"><input id="select_btn_1" class="selectbtn" style="display:none;" type="file" name="fileselect[]" accept="image/gif,image/jpeg,image/png"><a id="file_upload_1-button" href="javascript:void(0)" class="uploadify-button btn btn-primary">上传图片</a><div id="file_upload_1-queue" class="uploadify-queue"></div></div>
                                     <div id="_preview_8">
                                         <input type="hidden" name="descs" value="http://wwjcdn.teizhe.com/Uploads/2017-11-02/59fad44179b3d.png">
                                         <span class="img-box">
-               <!--  <img class="img" src="" data-id="http://wwjcdn.teizhe.com/Uploads/2017-11-02/59fad44179b3d.png"> -->
-                <img class="img" src="http://wwjcdn.teizhe.com/Uploads/2017-11-02/59fad44179b3d.png" data-id="http://wwjcdn.teizhe.com/Uploads/2017-11-02/59fad44179b3d.png">
-                <i class="fa fa-times-circle remove-picture"></i>
-            </span>    </div>
+                                           <!--  <img class="img" src="" data-id="http://wwjcdn.teizhe.com/Uploads/2017-11-02/59fad44179b3d.png"> -->
+                                            <img class="img" src="http://wwjcdn.teizhe.com/Uploads/2017-11-02/59fad44179b3d.png" data-id="http://wwjcdn.teizhe.com/Uploads/2017-11-02/59fad44179b3d.png">
+                                            <i class="fa fa-times-circle remove-picture"></i>
+                                        </span>
+                                    </div>
                                     <script type="text/javascript">
                                         $(function(){
                                             $('#_upload_8').Huploadify({
