@@ -7,6 +7,14 @@ use app\common\service\UrlService;
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <?php $this->head(); ?>
+        <style>
+            img{
+                margin-top: 8px;
+                max-width: 150px;
+                max-height: 90px;
+                margin-right: 8px;
+            }
+        </style>
     </head>
     <body>
     <?php $this->beginBody(); ?>
@@ -23,7 +31,13 @@ use app\common\service\UrlService;
                     <div class="col-xs-12">
                         <form action="/index.php?s=/admin/wawa/edit/id/2.html" method="post" class="form builder-form">
                             <div class="form-group item_title ">
-                                <label class="item-label">标题<span class="check-tips">（<span class="small">娃娃名</span>）</span></label>
+                                <label class="item-label">标题<span class="check-tips">（<span class="small">标题名称</span>）</span></label>
+                                <div class="controls">
+                                    <input type="text" class="form-control input text" name="title" value="布朗熊">
+                                </div>
+                            </div>
+                            <div class="form-group item_title ">
+                                <label class="item-label">描述<span class="check-tips"></span></label>
                                 <div class="controls">
                                     <input type="text" class="form-control input text" name="title" value="布朗熊">
                                 </div>
