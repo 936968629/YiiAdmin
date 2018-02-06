@@ -69,16 +69,14 @@ class SystemController extends BaseController
     //添加菜单
     public function actionMenu_add(){
         if(\Yii::$app->request->isPost){
-            $parent_id = $this->post('parent_id','0','intval');
+            $parent_id = $this->post('parent_id','','op_t');
             $name = $this->post('name','','op_t');
             $url = $this->post('url','','op_t');
             $list = $this->post('list','','intval');
-            if(is_int($parent_id) == ""){
-                echo $parent_id;
-            }
-            if($parent_id == "" || empty($name) || empty($url) || $list == ""){
-//                return $this->renderJson(3000);
-                return $this->renderJson(['id'=>$parent_id,'name'=>$name,'url'=>$url,'list'=>$list],800);
+
+            if( empty($name) || empty($url) || $list == ""){
+                return $this->renderJson(3000);
+//                return $this->renderJson(['id'=>$parent_id,'name'=>$name,'url'=>$url,'list'=>$list],800);
             }
             $info = new AdminMenuModel();
             $info->parent_id = $parent_id;
