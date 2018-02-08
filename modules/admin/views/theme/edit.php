@@ -1,6 +1,7 @@
 <?php
 use app\common\service\UrlService;
 \app\assets\AdminAsset::register($this);
+
 ?>
 <?php $this->beginPage(); ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -29,7 +30,7 @@ use app\common\service\UrlService;
             <div class="builder-container builder-form-container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <form action="/index.php?s=/admin/wawa/edit/id/2.html" method="post" class="form builder-form">
+                        <form action="http://wenjunlin.xyz/api/v2/upload" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form">
                             <div class="form-group item_title ">
                                 <label class="item-label">标题<span class="check-tips">（<span class="small">标题名称</span>）</span></label>
                                 <div class="controls">
@@ -45,7 +46,7 @@ use app\common\service\UrlService;
                             <div class="form-group item_img ">
                                 <label class="item-label">封面图片</label>
                                 <div class="controls">
-                                    <div id="_upload_7"><input id="select_btn_1" class="selectbtn" style="display:none;" type="file" name="fileselect[]" accept="image/gif,image/jpeg,image/png"><a id="file_upload_1-button" href="javascript:void(0)" class="uploadify-button btn btn-primary">上传图片</a><div id="file_upload_1-queue" class="uploadify-queue"></div></div>
+                                    <div id="_upload_7"><input id="select_btn_1" class="selectbtn" style="display:none;" type="file" name="file_head" accept="image/gif,image/jpeg,image/png"><a id="file_upload_1-button" href="javascript:void(0)" class="uploadify-button btn btn-primary">上传图片</a><div id="file_upload_1-queue" class="uploadify-queue"></div></div>
                                     <div id="_preview_7">
                                         <input type="hidden" name="img" value="http://oss.aliyuncs.com/wawajiji/Uploads/2017-11-02/59fad44179b3d.png">
                                         <span class="img-box">
@@ -56,21 +57,8 @@ use app\common\service\UrlService;
                                     </div>
                                     <script type="text/javascript">
                                         $(function(){
-                                            $('#_upload_7').Huploadify({
-                                                uploader:'/index.php?s=/admin/public_upload/upload.html',
-                                                fileTypeExts:'*.gif;*.jpg;*.jpeg;*.png;*.bmp',
-                                                fileSizeLimit:5*1024,
-                                                buttonText:'上传图片',
-                                                onUploadComplete:function(file, data){
-                                                    var data = $.parseJSON(data);
-                                                    if(data.error == 1){
-                                                        $.alertMessager(data.message, 'danger');
-                                                    }else{
-                                                        var new_img = '<span class="img-box"><img class="img" src="' + data.url + '" data-id="'+data.id+'"><i class="fa fa-times-circle remove-picture"></i></span>';
-                                                        $('#_preview_7').append(new_img);
-                                                        $('#_preview_7 input').attr('value', data.id);
-                                                    }
-                                                }
+                                            $('input[name=file_head]').change(function () {
+                                                $('[name=theme_form]').submit();
                                             });
                                         });
                                         //删除图片
@@ -99,22 +87,7 @@ use app\common\service\UrlService;
                                     </div>
                                     <script type="text/javascript">
                                         $(function(){
-                                            $('#_upload_8').Huploadify({
-                                                uploader:'/index.php?s=/admin/public_upload/upload.html',
-                                                fileTypeExts:'*.gif;*.jpg;*.jpeg;*.png;*.bmp',
-                                                fileSizeLimit:5*1024,
-                                                buttonText:'上传图片',
-                                                onUploadComplete:function(file, data){
-                                                    var data = $.parseJSON(data);
-                                                    if(data.error == 1){
-                                                        $.alertMessager(data.message, 'danger');
-                                                    }else{
-                                                        var new_img = '<span class="img-box"><img class="img" src="' + data.url + '" data-id="'+data.id+'"><i class="fa fa-times-circle remove-picture"></i></span>';
-                                                        $('#_preview_8').append(new_img);
-                                                        $('#_preview_8 input').attr('value', data.id);
-                                                    }
-                                                }
-                                            });
+
                                         });
                                         //删除图片
                                         $('#_preview_8 .remove-picture').click(function(){
@@ -129,18 +102,21 @@ use app\common\service\UrlService;
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="submit" target-form="builder-form">确定</button>
+                                <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="submit">确定</button>
                                 <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
     </div>
-
+    <iframe class="hide" name="upload_file"></iframe>
     <?php $this->endBody(); ?>
-
+    <script type="application/javascript">
+        $('.uploadify-button').click(function () {
+            $(this).prev().trigger('click');
+        })
+    </script>
     </body>
     </html>
 <?php $this->endPage(); ?>
