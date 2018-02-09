@@ -34,13 +34,14 @@ use app\common\service\UrlService;
                             <div class="form-group item_title ">
                                 <label class="item-label">标题<span class="check-tips">（<span class="small">标题名称</span>）</span></label>
                                 <div class="controls">
-                                    <input type="text" class="form-control input text" name="title" value="布朗熊">
+                                    <input type="hidden" name="id" value="<?= $info['id']?>">
+                                    <input type="text" class="form-control input text" name="name" value="<?= $info['name']?>">
                                 </div>
                             </div>
                             <div class="form-group item_title ">
                                 <label class="item-label">描述<span class="check-tips"></span></label>
                                 <div class="controls">
-                                    <input type="text" class="form-control input text" name="title" value="布朗熊">
+                                    <input type="text" class="form-control input text" name="description" value="<?= $info['description']?>">
                                 </div>
                             </div>
                             <div class="form-group item_img ">
@@ -52,7 +53,7 @@ use app\common\service\UrlService;
                                         <span class="img-box">
                                            <!--  <img class="img" src="" data-id="http://oss.aliyuncs.com/wawajiji/Uploads/2017-11-02/59fad44179b3d.png"> -->
                                             <img class="img" src="http://oss.aliyuncs.com/wawajiji/Uploads/2017-11-02/59fad44179b3d.png" data-id="http://oss.aliyuncs.com/wawajiji/Uploads/2017-11-02/59fad44179b3d.png">
-                                            <i class="fa fa-times-circle remove-picture"></i>
+<!--                                            <i class="fa fa-times-circle remove-picture"></i>-->
                                         </span>
                                     </div>
                                     <script type="text/javascript">
@@ -86,9 +87,6 @@ use app\common\service\UrlService;
                                         </span>
                                     </div>
                                     <script type="text/javascript">
-                                        $(function(){
-
-                                        });
                                         //删除图片
                                         $('#_preview_8 .remove-picture').click(function(){
                                             var ready_for_remove_id = $(this).closest('.img-box').find('img').attr('data-id'); //获取待删除的图片ID

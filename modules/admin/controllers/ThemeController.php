@@ -33,8 +33,6 @@ class ThemeController extends BaseController
                     ->asArray()
                     ->one();
 
-//            $json = json_decode($data, true);
-//            var_dump($json);
             return $this->render('edit',[
                 'info' => $info,
             ]);
