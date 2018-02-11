@@ -4,4 +4,5 @@ return [
     'adminEmail' => 'admin@example.com',
     'errorMsg' => $errorMsg,
     'apiUrl' => "http://wenjunlin.xyz",
+
 ];

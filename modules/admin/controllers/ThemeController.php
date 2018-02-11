@@ -32,7 +32,7 @@ class ThemeController extends BaseController
                     ->where(['id'=>$id])
                     ->asArray()
                     ->one();
-
+            var_dump($info);
             return $this->render('edit',[
                 'info' => $info,
             ]);
