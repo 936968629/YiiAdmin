@@ -32,8 +32,10 @@ use app\common\service\UrlService;
                         <div class="form-group item_title ">
                             <label class="item-label">商品名称<span class="check-tips">（<span class="small">商品名称</span>）</span></label>
                             <div class="controls">
-                                <input type="hidden" name="id" value="">
-                                <input type="text" class="form-control input text" name="name" value="">
+                                <?php foreach ($productInfo as $item): ?>
+                                <input type="checkbox" name="products" value="<?= $item['id'] ?>">
+                                <label><?= $item['name'] ?></label>
+                                <?php endforeach; ?>
                             </div>
                         </div>
 

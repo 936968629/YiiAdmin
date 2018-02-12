@@ -9,6 +9,7 @@
 namespace app\modules\admin\controllers;
 
 
+use app\models\ProductModel;
 use app\models\ThemeModel;
 use app\models\ThemeProductModel;
 use app\modules\admin\controllers\common\BaseController;
@@ -58,8 +59,15 @@ class ThemeController extends BaseController
             ->all();
 
         var_dump($info);
+
+        $products = ProductModel::find()
+            ->select('id,name')
+            ->where(['status'=>1])
+            ->asArray()
+            ->all();
+        var_dump($products);
         return $this->render('themepro',[
-            'info' => $info
+            'productInfo' => $products
         ]);
     }
 
