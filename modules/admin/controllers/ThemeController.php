@@ -25,14 +25,23 @@ class ThemeController extends BaseController
     //修改
     public function actionEdit(){
         if(\Yii::$app->request->isPost){
-
+            $id = $this->post('id','','intval');
+            $name = $this->post('name','','op_t');
+            $description = $this->post('description','','op_t');
+            $info = ThemeModel::find()->where(['id'=>$id])->one();
+            $info->name = $name;
+            $info->description = $description;
+            $ret = $info->save();
+            if(!$ret){
+                return $this->renderJson(0);
+            }
+            return $this->renderJson(1);
         }else{
             $id = $this->get('id','','op_t');
             $info = ThemeModel::find()
                     ->where(['id'=>$id])
                     ->asArray()
                     ->one();
-            var_dump($info);
             return $this->render('edit',[
                 'info' => $info,
             ]);
@@ -40,20 +49,7 @@ class ThemeController extends BaseController
     }
 
 
-    //上传文件
-    public function actionUploadfile(){
-        if(\Yii::$app->request->isPost){
-//            var_dump($_FILES['file_head']);
-            $files = $_FILES['file_head'];
-//            move_uploaded_file($_FILES['file_head']['tmp_name'],'./upload/'.$_FILES['file_head']['name']);
-            $url = \Yii::$app->params['apiUrl']."/api/v2/upload/";
-            $transData = $files;
-            $aa['file'] = json_encode($transData);
-//            var_dump($files);
-            $data = curl_post($url,$aa);
-            var_dump($data);
-        }
-    }
+
 
 
 }

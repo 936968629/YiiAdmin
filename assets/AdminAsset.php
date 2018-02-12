@@ -21,8 +21,7 @@ class AdminAsset extends AssetBundle{
         \Yii::$app->getView()->registerJsFile('/Admin/js/jquery-1.10.2.js',['position'=>View::POS_HEAD]);
         \Yii::$app->getView()->registerJsFile('/Admin/js/bootstrap.min.js',['position'=>View::POS_HEAD]);
         \Yii::$app->getView()->registerJsFile('/Admin/js/global.js',['position'=>View::POS_HEAD]);
-        \Yii::$app->getView()->registerJsFile('/Admin/js/layer/layer.js',['position'=>View::POS_HEAD]);
-        \Yii::$app->getView()->registerJsFile('/Admin/js/layer/layer.js',['position'=>View::POS_HEAD]);
+        \Yii::$app->getView()->registerJsFile('/plugins/layer/layer.js',['position'=>View::POS_HEAD]);
         \Yii::$app->getView()->registerJsFile('/plugins/common.js',['position'=>View::POS_HEAD]);
         $this->js = [
 

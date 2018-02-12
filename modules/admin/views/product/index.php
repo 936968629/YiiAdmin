@@ -31,9 +31,10 @@ use app\common\service\UrlService;
                 <tr>
                     <td width="40px"><input class="check-all" type="checkbox"></td>
                     <td>id</td>
-                    <td>标题</td>
-                    <td>链接</td>
-                    <td>排序</td>
+                    <td>名称</td>
+                    <td>图片</td>
+                    <td>价格</td>
+                    <td>库存</td>
                     <td>状态</td>
                     <td class="w15">操作</td>
                 </tr>
@@ -46,10 +47,11 @@ use app\common\service\UrlService;
                         <td>
                             <?= $item['name'] ?>
                         </td>
+                        <td><img src="<?= $item['main_img_url'] ?>"></td>
                         <td>
-                            <?= $item['url'] ?>
+                            <?= $item['price'] ?>
                         </td>
-                        <td><?= $item['list'] ?></td>
+                        <td><?= $item['stock'] ?></td>
                         <td>
                             <?php if ($item['status'] == 0): ?>
                                 <i class="fa fa-ban text-danger"></i>
@@ -66,38 +68,6 @@ use app\common\service\UrlService;
                             <?php endif;?>
                         </td>
                     </tr>
-                    <?php
-                    if(!empty($item['child'])):
-                        foreach ($item['child'] as $item2):
-                            ?>
-                            <tr>
-                                <td><input class="check-all" type="checkbox"></td>
-                                <td><?= $item2['id'] ?></td>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;<?= $item2['name'] ?></td>
-                                <td>
-                                    <?= $item2['url'] ?>
-                                </td>
-                                <td><?= $item2['list'] ?></td>
-                                <td>
-                                    <?php if ($item2['status'] == 0): ?>
-                                        <i class="fa fa-ban text-danger"></i>
-                                    <?php elseif ($item2['status'] == 1): ?>
-                                        <i class="fa fa-check text-success"></i>
-                                    <?php endif;?>
-                                </td>
-                                <td>
-                                    <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/system/menu_edit',['id'=>$item2['id']]) ?>">编辑</a>
-                                    <?php if($item2['status'] == 0): ?>
-                                        <a title="启用" class="label label-success ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item2['id'] ?>,1)">启用</a>
-                                    <?php elseif($item2['status'] == 1): ?>
-                                        <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item2['id'] ?>,0)">禁用</a>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                        <?php
-                        endforeach;
-                    endif;
-                    ?>
                 <?php endforeach; ?>
                 </tbody>
             </table>
@@ -108,7 +78,7 @@ use app\common\service\UrlService;
     <script>
         function editStatus(id,status=1) {
             if(parseInt(id)){
-                $.get(common_ops.buildAdminUrl('/system/edit_status',{'id':id,'status':status}),function (data) {
+                $.get(common_ops.buildAdminUrl('/product/edit_status',{'id':id,'status':status}),function (data) {
                     let status = data.status;
                     if(status.code != 1){
                         common_ops.alert(status.msg);

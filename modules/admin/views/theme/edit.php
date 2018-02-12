@@ -33,7 +33,7 @@ use app\common\service\UrlService;
                             <div class="form-group item_title ">
                                 <label class="item-label">标题<span class="check-tips">（<span class="small">标题名称</span>）</span></label>
                                 <div class="controls">
-                                    <input type="hidden" name="id" value="<?= $info['id']?>">
+                                    <input type="hidden" id="id" name="id" value="<?= $info['id']?>">
                                     <input type="text" class="form-control input text" name="name" value="<?= $info['name']?>">
                                 </div>
                             </div>
@@ -45,7 +45,7 @@ use app\common\service\UrlService;
                             </div>
                             <form action="http://wenjunlin.xyz/api/v2/upload/1" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form">
                             <div class="form-group item_img ">
-                                <label class="item-label">封面图片</label>
+                                <label class="item-label">专题头部图片</label>
                                 <div class="controls">
                                     <div id="_upload_7">
                                         <input id="select_btn_1" class="selectbtn" style="display:none;" type="file" name="file_head" accept="image/gif,image/jpeg,image/png">
@@ -55,7 +55,7 @@ use app\common\service\UrlService;
                                     <div id="_preview_7">
                                         <input type="hidden" name="id" value="<?= $info['id']?>">
                                         <span class="img-box">
-                                             <img class="img" src="<?= Yii::$app->params['apiUrl'].substr($info['head_img'],0,strrpos($info['head_img'],'.')) ?>">
+                                             <img class="img" src="<?= Yii::$app->params['apiUrl'].$info['head_img'] ?>">
 <!--                                            <img class="img" src="http://oss.aliyuncs.com/wawajiji/Uploads/2017-11-02/59fad44179b3d.png" >-->
 <!--                                            <i class="fa fa-times-circle remove-picture"></i>-->
                                         </span>
@@ -81,7 +81,7 @@ use app\common\service\UrlService;
                             </form>
                             <form action="http://wenjunlin.xyz/api/v2/upload/2" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form2">
                             <div class="form-group item_descs ">
-                                <label class="item-label">娃娃详图</label>
+                                <label class="item-label">专题封面图</label>
                                 <div class="controls">
                                     <div id="_upload_8">
                                         <input type="hidden" name="id" value="<?= $info['id']?>">
@@ -91,7 +91,7 @@ use app\common\service\UrlService;
                                     </div>
                                     <div id="_preview_8">
                                         <span class="img-box">
-<!--                                            <img class="img" src="http://wwjcdn.teizhe.com/Uploads/2017-11-02/59fad44179b3d.png">-->
+                                            <img class="img" src="<?= Yii::$app->params['apiUrl'].$info['head_img'] ?>">
 <!--                                            <i class="fa fa-times-circle remove-picture"></i>-->
                                         </span>
                                     </div>
@@ -107,7 +107,7 @@ use app\common\service\UrlService;
                                             if(!ready_for_remove_id){
                                                 $.alertMessager('错误', 'danger');
                                             }
-                                            $('#_preview_8 input').val('') //删除后覆盖原input的值为空
+                                            $('#_preview_8 input').val('');//删除后覆盖原input的值为空
                                             $(this).closest('.img-box').remove(); //删除图片预览图
                                         });
                                     </script>
@@ -115,7 +115,7 @@ use app\common\service\UrlService;
                             </div>
                             </form>
                             <div class="form-group">
-                                <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="button">确定</button>
+                                <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="button" id="sub_but">确定</button>
                                 <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
                             </div>
                     </div>
@@ -125,8 +125,21 @@ use app\common\service\UrlService;
     <iframe class="hide" name="upload_file"></iframe>
     <?php $this->endBody(); ?>
     <script type="application/javascript">
-        $('.uploadify-button').click(function () {
+        $('.uploadify-button').click(function () {dfs
             $(this).prev().trigger('click');
+        });
+        $('#sub_but').click(function () {
+            let id = $('#id').val();
+            let name = $('input[name=name]').val();
+            let description = $('input[name=description]').val();
+            $.post(common_ops.buildAdminUrl('/theme/edit'),{id:id,name:name,description:description},(data)=>{
+                let status = data.status;
+                if(status.code == 1){
+                    history.go(-1);
+                }else{
+                    alert(status.msg);
+                }
+            },'json');
         });
     </script>
     </body>
