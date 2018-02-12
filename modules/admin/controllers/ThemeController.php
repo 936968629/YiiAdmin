@@ -57,17 +57,18 @@ class ThemeController extends BaseController
             ->where(['theme_id'=>$id])
             ->asArray()
             ->all();
-
-        var_dump($info);
-
+//
+//        var_dump($info);
+//        var_dump(array_column($info,'product_id'));
         $products = ProductModel::find()
             ->select('id,name')
             ->where(['status'=>1])
             ->asArray()
             ->all();
-        var_dump($products);
+
         return $this->render('themepro',[
-            'productInfo' => $products
+            'productInfo' => $products,
+            'existArr' => array_column($info,'product_id')
         ]);
     }
 
