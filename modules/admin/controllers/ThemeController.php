@@ -10,6 +10,7 @@ namespace app\modules\admin\controllers;
 
 
 use app\models\ThemeModel;
+use app\models\ThemeProductModel;
 use app\modules\admin\controllers\common\BaseController;
 
 class ThemeController extends BaseController
@@ -47,9 +48,19 @@ class ThemeController extends BaseController
             ]);
         }
     }
+    //制定商品
+    public function actionThemepro(){
+        $id = $this->get('id','','intval');
 
+        $info = ThemeProductModel::find()
+            ->where(['theme_id'=>$id])
+            ->asArray()
+            ->all();
 
-
-
+        var_dump($info);
+        return $this->render('themepro',[
+            'info' => $info
+        ]);
+    }
 
 }

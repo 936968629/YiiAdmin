@@ -56,17 +56,21 @@ use app\common\service\UrlService;
                             <?= $item['name'] ?>
                         </td>
                         <td>
-<!--                            --><?//= $item['head_img'] ?>
-                            <a href="http://wwjcdn.teizhe.com/Uploads/2018-01-31/5a71630e8496e.jpg" target="_blank">
-                                <img src="http://wwjcdn.teizhe.com/Uploads/2018-01-31/5a71630e8496e.jpg">
+                            <a href="<?= Yii::$app->params['apiUrl'].$item['head_img'] ?>" target="_blank">
+                                <img src="<?= Yii::$app->params['apiUrl'].$item['head_img'] ?>">
                             </a>
                         </td>
-                        <td><?= $item['img'] ?></td>
+                        <td>
+                            <a href="<?= Yii::$app->params['apiUrl'].$item['img'] ?>" target="_blank">
+                                <img src="<?= Yii::$app->params['apiUrl'].$item['img'] ?>">
+                            </a>
+                        </td>
                         <td>
                            <?= $item['create_time']."\n".$item['update_time'] ?>
                         </td>
                         <td data-id="<?= $item['id'] ?>">
                             <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/theme/edit',['id'=>$item['id']]) ?>">编辑</a>
+                            <a class="label label-info" href="<?= UrlService::buildAdminUrl('/theme/themepro',['id'=>$item['id']]) ?>">指定主题商品</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

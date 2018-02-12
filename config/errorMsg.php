@@ -23,11 +23,7 @@ return array(
     array('num'=>3005,'code'=>3005,'msg'=>'用户登录信息已过期,请重新登录'),
     array('num'=>3006,'code'=>3006,'msg'=>'输入信息不合法'),
 
-    array('num'=>3010,'code'=>1,'msg'=>'推送设置成功'),
-    array('num'=>3011,'code'=>3011,'msg'=>'推送设置失败'),
-    array('num'=>3012,'code'=>3012,'msg'=>'第三方数据有误'),
-    array('num'=>3013,'code'=>3013,'msg'=>'第三方登录失败'),
-    array('num'=>3014,'code'=>1,'msg'=>'第三方登录成功'),
+
 
     //Home 模块下以 4000 开头
     array('num'=>4001,'code'=>4001,'msg'=>'充值金额不能小于1元'),
