@@ -23,7 +23,23 @@ class ProductController extends BaseController
         ]);
     }
 
+    public function actionEdit(){
+        if(\Yii::$app->request->isPost){
 
+        }else{
+            $id = $this->get('id','','op_t');
+            $info = ProductModel::find()
+                ->where(['id'=>$id])
+                ->asArray()
+                ->one();
+
+            return $this->render('edit',[
+                'info' => $info
+            ]);
+        }
+
+
+    }
 
 
 

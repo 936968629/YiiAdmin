@@ -60,7 +60,7 @@ use app\common\service\UrlService;
                             <?php endif;?>
                         </td>
                         <td data-id="<?= $item['id'] ?>">
-                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/system/menu_edit',['id'=>$item['id']]) ?>">编辑</a>
+                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/product/edit',['id'=>$item['id']]) ?>">编辑</a>
                             <?php if ($item['status'] == 0): ?>
                                 <a title="启用" class="label label-success ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item["id"] ?>,1)">启用</a>
                             <?php elseif ($item['status'] == 1): ?>
@@ -85,8 +85,6 @@ use app\common\service\UrlService;
                     }else{
                         let callback = {'ok':function () {
                                 window.location.reload();
-                                // parent.location.reload();
-                                // $('#content-iframe',window.parent.document).prop('src','admin/system/menu');
                             },'cancel':function () {
                                 window.location.reload();
                             }};
