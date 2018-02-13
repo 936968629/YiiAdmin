@@ -7,6 +7,12 @@ use app\common\service\UrlService;
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <?php $this->head(); ?>
+        <style type="text/css">
+            img{
+                max-width: 200px;
+                max-height: 40px;
+            }
+        </style>
     </head>
     <body>
     <?php $this->beginBody(); ?>
@@ -21,7 +27,9 @@ use app\common\service\UrlService;
             <div class="row">
                 <!-- 工具栏按钮 -->
                 <div class="col-xs-12 col-sm-9 button-list">
-                    <a title="新增" class="btn btn-primary" href="<?= UrlService::buildAdminUrl('/system/menu_add') ?>">新增</a>&nbsp;<a title="启用" target-form="ids" class="btn btn-success ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/resume/model/User.html" autocomplete="off">启用</a>&nbsp;<a title="禁用" target-form="ids" class="btn btn-warning ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/forbid/model/User.html">禁用</a>
+                    <a title="新增" class="btn btn-primary" href="<?= UrlService::buildAdminUrl('/product/add') ?>">新增</a>&nbsp;
+                    <a title="启用" target-form="ids" class="btn btn-success ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/resume/model/User.html" autocomplete="off">启用</a>&nbsp;
+                    <a title="禁用" target-form="ids" class="btn btn-warning ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/forbid/model/User.html">禁用</a>
                 </div>
             </div>
         </div>
@@ -47,7 +55,7 @@ use app\common\service\UrlService;
                         <td>
                             <?= $item['name'] ?>
                         </td>
-                        <td><img src="<?= $item['main_img_url'] ?>"></td>
+                        <td><img src="<?= Yii::$app->params['apiUrl'].$item['main_img_url'] ?>"></td>
                         <td>
                             <?= $item['price'] ?>
                         </td>

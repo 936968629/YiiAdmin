@@ -25,7 +25,19 @@ class ProductController extends BaseController
 
     public function actionEdit(){
         if(\Yii::$app->request->isPost){
-
+            $id = $this->post('id','','intval');
+            $name = $this->post('name','','op_t');
+            $price = $this->post('price','0','floatval');
+            $stock = $this->post('stock','0','intval');
+            $info = ProductModel::find()->where(['id'=>$id])->one();
+            $info->name = $name;
+            $info->price = $price;
+            $info->stock = $stock;
+            $ret = $info->save();
+            if(!$ret){
+                return $this->renderJson(0);
+            }
+            return $this->renderJson(1);
         }else{
             $id = $this->get('id','','op_t');
             $info = ProductModel::find()

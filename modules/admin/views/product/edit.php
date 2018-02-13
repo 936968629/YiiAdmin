@@ -49,12 +49,12 @@ use app\common\service\UrlService;
                                 <input type="text" class="form-control input text" name="stock" value="<?= $info['stock']?>">
                             </div>
                         </div>
-                        <form action="http://wenjunlin.xyz/api/v2/upload/1" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form">
+                        <form action="<?= Yii::$app->params['apiUrl']."/api/v2/upload/3"; ?>" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form">
                         <div class="form-group item_img ">
                             <label class="item-label">商品图片</label>
                             <div class="controls">
                                 <div id="_upload_7">
-                                    <input id="select_btn_1" class="selectbtn" style="display:none;" type="file" name="file_head" accept="image/gif,image/jpeg,image/png">
+                                    <input id="select_btn_1" class="selectbtn" style="display:none;" type="file" name="file" accept="image/gif,image/jpeg,image/png">
                                     <a id="file_upload_1-button" href="javascript:void(0)" class="uploadify-button btn btn-primary">上传图片</a>
                                     <div id="file_upload_1-queue" class="uploadify-queue"></div>
                                 </div>
@@ -68,7 +68,7 @@ use app\common\service\UrlService;
                                 </div>
                                 <script type="text/javascript">
                                     $(function(){
-                                        $('input[name=file_head]').change(function () {
+                                        $('input[name=file]').change(function () {
                                             $('[name=theme_form]').submit();
                                         });
                                     });
@@ -96,14 +96,15 @@ use app\common\service\UrlService;
     <iframe class="hide" name="upload_file"></iframe>
     <?php $this->endBody(); ?>
     <script type="application/javascript">
-        $('.uploadify-button').click(function () {dfs
+        $('.uploadify-button').click(function () {
             $(this).prev().trigger('click');
         });
         $('#sub_but').click(function () {
             let id = $('#id').val();
             let name = $('input[name=name]').val();
-            let description = $('input[name=description]').val();
-            $.post(common_ops.buildAdminUrl('/theme/edit'),{id:id,name:name,description:description},(data)=>{
+            let price = $('input[name=price]').val();
+            let stock = $('input[name=stock]').val();
+            $.post(common_ops.buildAdminUrl('/product/edit'),{id:id,name:name,price:price,stock:stock},(data)=>{
                 let status = data.status;
                 if(status.code == 1){
                     history.go(-1);
