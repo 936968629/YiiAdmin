@@ -31,4 +31,13 @@ class UrlService
     public static function buildWwwUrl($path,$params=[]){
         return Url::toRoute(array_merge([$path],$params));
     }
+
+    /**
+     * 当前url
+     * @author wjl
+     */
+    public static function buildCurrentUrl(){
+        return \Yii::$app->request->getUrl();
+    }
+
 }

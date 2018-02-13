@@ -52,24 +52,35 @@ class ThemeController extends BaseController
     //制定商品
     public function actionThemepro(){
         $id = $this->get('id','','intval');
-
-        $info = ThemeProductModel::find()
-            ->where(['theme_id'=>$id])
-            ->asArray()
-            ->all();
-//
-//        var_dump($info);
-//        var_dump(array_column($info,'product_id'));
         $products = ProductModel::find()
             ->select('id,name')
             ->where(['status'=>1])
             ->asArray()
             ->all();
+        if(\Yii::$app->request->isPost){
+            $products = $this->post('products','','op_t');
+            ThemeProductModel::deleteAll(['theme_id'=>$id]);
+            if(!empty($products)){
+                foreach ($products as $item) {
+                    $themeProduct = new ThemeProductModel();
+                    $themeProduct->theme_id = $id;
+                    $themeProduct->product_id = $item;
+                    $themeProduct->save();
+                }
+            }
+            $this->redirect(\Yii::$app->request->referrer);
+//            return $this->renderJson(1);
+        }else{
+            $info = ThemeProductModel::find()
+                ->where(['theme_id'=>$id])
+                ->asArray()
+                ->all();
 
-        return $this->render('themepro',[
-            'productInfo' => $products,
-            'existArr' => array_column($info,'product_id')
-        ]);
+            return $this->render('themepro',[
+                'productInfo' => $products,
+                'existArr' => array_column($info,'product_id')
+            ]);
+        }
     }
 
 }
