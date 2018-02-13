@@ -77,7 +77,7 @@ use app\common\service\UrlService;
     <?php $this->endBody(); ?>
     <script>
         function editStatus(id,status=1) {
-            if(parseInt(id)){
+            if(parseInt(id) ){
                 $.get(common_ops.buildAdminUrl('/product/edit_status',{'id':id,'status':status}),function (data) {
                     let status = data.status;
                     if(status.code != 1){

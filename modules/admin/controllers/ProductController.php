@@ -38,12 +38,15 @@ class ProductController extends BaseController
             ]);
         }
 
-
     }
 
+    public function actionAdd(){
+        if(\Yii::$app->request->isPost){
 
-
-
+        }else{
+            return $this->render('add');
+        }
+    }
 
     //修改状态
     public function actionEdit_status(){

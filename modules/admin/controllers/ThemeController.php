@@ -69,7 +69,6 @@ class ThemeController extends BaseController
                 }
             }
             $this->redirect(\Yii::$app->request->referrer);
-//            return $this->renderJson(1);
         }else{
             $info = ThemeProductModel::find()
                 ->where(['theme_id'=>$id])
