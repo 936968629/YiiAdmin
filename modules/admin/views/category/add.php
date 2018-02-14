@@ -36,29 +36,7 @@ use app\common\service\UrlService;
                                 <input type="text" class="form-control input text" name="name" value="">
                             </div>
                         </div>
-                        <div class="form-group item_title ">
-                            <label class="item-label">商品名称<span class="check-tips">（<span class="small">商品名称</span>）</span></label>
-                            <div class="controls">
-                                <select name="category" class="form-control">
-                                    <?php foreach ($categoryInfo as $item): ?>
-                                        <option value="<?= $item['id'] ?>" ><?= $item['name'] ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group item_title">
-                            <label class="item-label">价格<span class="check-tips"></span></label>
-                            <div class="controls">
-                                <input type="text" class="form-control input text" name="price" value="">
-                            </div>
-                        </div>
-                        <div class="form-group item_title">
-                            <label class="item-label">库存<span class="check-tips"></span></label>
-                            <div class="controls">
-                                <input type="text" class="form-control input text" name="stock" value="">
-                            </div>
-                        </div>
-                        <form action="<?= Yii::$app->params['apiUrl']."/api/v2/upload/3"; ?>" method="post" class="form builder-form" enctype="multipart/form-data" name="theme_form">
+                        <form action="" method="post" class="form builder-form" enctype="multipart/form-data" name="theme_form">
                             <div class="form-group item_img ">
                                 <label class="item-label">商品图片</label>
                                 <div class="controls">
@@ -85,7 +63,7 @@ use app\common\service\UrlService;
                                                 var formData = new FormData($('form')[0]);
                                                 formData.append('file',$(':file')[0].files[0]);
                                                 $.ajax({
-                                                    url:'<?= Yii::$app->params['apiUrl']."/api/v2/upload/3"; ?>',
+                                                    url:'<?= Yii::$app->params['apiUrl']."/api/v2/upload/4"; ?>',
                                                     method:'post',
                                                     data: formData,
                                                     //这两个设置项必填
@@ -129,10 +107,8 @@ use app\common\service\UrlService;
             });
             $('#sub_but').click(function () {
                 let name = $('input[name=name]').val();
-                let price = $('input[name=price]').val();
-                let stock = $('input[name=stock]').val();
                 let img_url = $('#img_hidden').val();
-                $.post(common_ops.buildAdminUrl('/product/add'),{name:name,price:price,stock:stock,img:img_url},(data)=>{
+                $.post(common_ops.buildAdminUrl('/category/add'),{name:name,img:img_url},(data)=>{
                     let status = data.status;
                     if(status.code == 1){
                         history.go(-1);

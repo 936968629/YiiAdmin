@@ -25,7 +25,15 @@ class CategoryController extends BaseController
 
     public function actionEdit(){
         if(\Yii::$app->request->isPost){
-
+            $id = $this->post('id','0','intval');
+            $name = $this->post('name','','op_t');
+            $info = CategoryModel::find()->where(['id'=>$id])->one();
+            $info->name = $name;
+            $ret = $info->save();
+            if(!$ret){
+                return $this->renderJson(0);
+            }
+            return $this->renderJson(1);
         }else{
             $id = $this->get('id','','intval');
             $info = CategoryModel::find()
@@ -40,7 +48,19 @@ class CategoryController extends BaseController
 
     public function actionAdd(){
         if(\Yii::$app->request->isPost){
-
+            $name = $this->post('name','','op_t');
+            $url = $this->post('img','','op_t');
+            if(empty($name) || empty($url)){
+                return $this->renderJson(3000);
+            }
+            $category = new CategoryModel();
+            $category->name = $name;
+            $category->topic_img = $url;
+            $ret = $category->save();
+            if(!$ret){
+                return $this->renderJson(0);
+            }
+            return $this->renderJson(1);
         }else{
             return $this->render('add');
         }

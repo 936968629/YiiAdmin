@@ -106,9 +106,7 @@ use app\common\service\UrlService;
         $('#sub_but').click(function () {
             let id = $('#id').val();
             let name = $('input[name=name]').val();
-            let price = $('input[name=price]').val();
-            let stock = $('input[name=stock]').val();
-            $.post(common_ops.buildAdminUrl('/product/edit'),{id:id,name:name,price:price,stock:stock},(data)=>{
+            $.post(common_ops.buildAdminUrl('/category/edit'),{id:id,name:name},(data)=>{
                 let status = data.status;
                 if(status.code == 1){
                     history.go(-1);
