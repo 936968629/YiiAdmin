@@ -27,7 +27,7 @@ use app\common\service\UrlService;
             <div class="row">
                 <!-- 工具栏按钮 -->
                 <div class="col-xs-12 col-sm-9 button-list">
-                    <a title="新增" class="btn btn-primary" href="<?= UrlService::buildAdminUrl('/product/add') ?>">新增</a>&nbsp;
+                    <a title="新增" class="btn btn-primary" href="<?= UrlService::buildAdminUrl('/category/add') ?>">新增</a>&nbsp;
                     <a title="启用" target-form="ids" class="btn btn-success ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/resume/model/User.html" autocomplete="off">启用</a>&nbsp;
                     <a title="禁用" target-form="ids" class="btn btn-warning ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/forbid/model/User.html">禁用</a>
                 </div>
@@ -62,7 +62,7 @@ use app\common\service\UrlService;
                             <?php endif;?>
                         </td>
                         <td data-id="<?= $item['id'] ?>">
-                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/product/edit',['id'=>$item['id']]) ?>">编辑</a>
+                            <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/category/edit',['id'=>$item['id']]) ?>">编辑</a>
                             <?php if ($item['status'] == 0): ?>
                                 <a title="启用" class="label label-success ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item["id"] ?>,1)">启用</a>
                             <?php elseif ($item['status'] == 1): ?>

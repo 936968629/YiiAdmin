@@ -130,10 +130,9 @@ use app\common\service\UrlService;
             $('#sub_but').click(function () {
                 let name = $('input[name=name]').val();
                 let price = $('input[name=price]').val();
-                let category = $('select[name=category]').val();
                 let stock = $('input[name=stock]').val();
                 let img_url = $('#img_hidden').val();
-                $.post(common_ops.buildAdminUrl('/product/add'),{name:name,price:price,category:category,stock:stock,img:img_url},(data)=>{
+                $.post(common_ops.buildAdminUrl('/product/add'),{name:name,price:price,stock:stock,img:img_url},(data)=>{
                     let status = data.status;
                     if(status.code == 1){
                         history.go(-1);

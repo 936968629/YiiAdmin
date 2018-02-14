@@ -37,29 +37,7 @@ use app\common\service\UrlService;
                                 <input type="text" class="form-control input text" name="name" value="<?= $info['name']?>">
                             </div>
                         </div>
-                        <div class="form-group item_title ">
-                            <label class="item-label">商品名称<span class="check-tips">（<span class="small">商品名称</span>）</span></label>
-                            <div class="controls">
-                                <select name="category" class="form-control">
-                                    <?php foreach ($categoryInfo as $item): ?>
-                                    <option value="<?= $item['id'] ?>" <?php echo $item['id']==$info['c_id']?"selected":"" ?> ><?= $item['name'] ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group item_title">
-                            <label class="item-label">价格<span class="check-tips"></span></label>
-                            <div class="controls">
-                                <input type="text" class="form-control input text" name="price" value="<?= $info['price']?>">
-                            </div>
-                        </div>
-                        <div class="form-group item_title">
-                            <label class="item-label">库存<span class="check-tips"></span></label>
-                            <div class="controls">
-                                <input type="text" class="form-control input text" name="stock" value="<?= $info['stock']?>">
-                            </div>
-                        </div>
-                        <form action="<?= Yii::$app->params['apiUrl']."/api/v2/upload/3"; ?>" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form">
+                        <form action="" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form">
                         <div class="form-group item_img ">
                             <label class="item-label">商品图片</label>
                             <div class="controls">
@@ -71,7 +49,8 @@ use app\common\service\UrlService;
                                 <div id="_preview_7">
                                     <input type="hidden" name="id" value="<?= $info['id']?>">
                                     <span class="img-box">
-                                         <img class="img" src="<?= Yii::$app->params['apiUrl'].$info['main_img_url'] ?>">
+                                         <img class="img" src="<?= Yii::$app->params['apiUrl'].$info['topic_img'] ?>" id="file_img">
+                                         <input type="hidden" id="img_hidden" value="">
 <!--                                            <img class="img" src="http://oss.aliyuncs.com/wawajiji/Uploads/2017-11-02/59fad44179b3d.png" >-->
 <!--                                            <i class="fa fa-times-circle remove-picture"></i>-->
                                     </span>
@@ -79,7 +58,22 @@ use app\common\service\UrlService;
                                 <script type="text/javascript">
                                     $(function(){
                                         $('input[name=file]').change(function () {
-                                            $('[name=theme_form]').submit();
+                                            let apiUrl = "<?= Yii::$app->params['apiUrl']; ?>";
+                                            var formData = new FormData($('form')[0]);
+                                            formData.append('file',$(':file')[0].files[0]);
+                                            $.ajax({
+                                                url:'<?= Yii::$app->params['apiUrl']."/api/v2/upload/4"; ?>',
+                                                method:'post',
+                                                data: formData,
+                                                //这两个设置项必填
+                                                contentType: false,
+                                                processData: false,
+                                                success:function (data) {
+                                                    console.log(data);
+                                                    $('#file_img').attr('src',apiUrl+data);
+                                                    $('#img_hidden').val(data);
+                                                }
+                                            })
                                         });
                                     });
                                     //删除图片
@@ -112,10 +106,9 @@ use app\common\service\UrlService;
         $('#sub_but').click(function () {
             let id = $('#id').val();
             let name = $('input[name=name]').val();
-            let category = $('select[name=category]').val();
             let price = $('input[name=price]').val();
             let stock = $('input[name=stock]').val();
-            $.post(common_ops.buildAdminUrl('/product/edit'),{id:id,name:name,price:price,stock:stock,category:category},(data)=>{
+            $.post(common_ops.buildAdminUrl('/product/edit'),{id:id,name:name,price:price,stock:stock},(data)=>{
                 let status = data.status;
                 if(status.code == 1){
                     history.go(-1);

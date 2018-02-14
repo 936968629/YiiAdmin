@@ -27,15 +27,23 @@ class CategoryController extends BaseController
         if(\Yii::$app->request->isPost){
 
         }else{
-
+            $id = $this->get('id','','intval');
+            $info = CategoryModel::find()
+                ->where(['id'=>$id])
+                ->asArray()
+                ->one();
             return $this->render('edit',[
-
+                'info' => $info
             ]);
         }
     }
 
     public function actionAdd(){
+        if(\Yii::$app->request->isPost){
 
+        }else{
+            return $this->render('add');
+        }
     }
 
     public function actionEdit_status(){

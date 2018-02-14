@@ -31,10 +31,12 @@ class ProductController extends BaseController
         if(\Yii::$app->request->isPost){
             $id = $this->post('id','','intval');
             $name = $this->post('name','','op_t');
+            $category = $this->post('category','','intval');
             $price = $this->post('price','0','floatval');
             $stock = $this->post('stock','0','intval');
             $info = ProductModel::find()->where(['id'=>$id])->one();
             $info->name = $name;
+            $info->category_id = $category;
             $info->price = $price;
             $info->stock = $stock;
             $ret = $info->save();
@@ -65,6 +67,7 @@ class ProductController extends BaseController
             $name = $this->post('name','','op_t');
             $price = $this->post('price','0','floatval');
             $stock = $this->post('stock',0,'intval');
+            $category = $this->post('category','','intval');
             $img = $this->post('img','','op_t');
             if(empty($img) || empty($name)){
                 return $this->renderJson(3000);
@@ -73,6 +76,7 @@ class ProductController extends BaseController
             $product->name = $name;
             $product->price = $price;
             $product->stock = $stock;
+            $product->category_id = $category;
             $product->main_img_url = $img;
             $ret = $product->save();
             if(!$ret){
@@ -85,6 +89,7 @@ class ProductController extends BaseController
                 ->asArray()
                 ->all();
             $categoryInfo = CategoryModel::find()->where(['status'=>1])->asArray()->all();
+
             return $this->render('add',[
                 'category' => $category,
                 'categoryInfo' => $categoryInfo
