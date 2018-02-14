@@ -47,7 +47,7 @@ class AdminController extends BaseController
             $id = $this->post('id','','intval');
             $title = $this->post('title','','op_t');
             $menu_auth = $this->post('menu_auth','','op_t');
-            
+
             //return $this->success('操作成功');
         }else{
             $id = $this->get('id','','intval');
