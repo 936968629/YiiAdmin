@@ -37,6 +37,16 @@ use app\common\service\UrlService;
                                 <input type="text" class="form-control input text" name="name" value="<?= $info['name']?>">
                             </div>
                         </div>
+                        <div class="form-group item_title ">
+                            <label class="item-label">商品名称<span class="check-tips">（<span class="small">商品名称</span>）</span></label>
+                            <div class="controls">
+                                <select name="category" class="form-control">
+                                    <?php foreach ($categoryInfo as $item): ?>
+                                    <option value="<?= $item['id'] ?>" <?php echo $item['id']==$info['c_id']?"selected":"" ?> ><?= $item['name'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group item_title">
                             <label class="item-label">价格<span class="check-tips"></span></label>
                             <div class="controls">

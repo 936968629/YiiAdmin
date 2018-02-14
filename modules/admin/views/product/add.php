@@ -33,8 +33,17 @@ use app\common\service\UrlService;
                         <div class="form-group item_title ">
                             <label class="item-label">商品名称<span class="check-tips">（<span class="small">商品名称</span>）</span></label>
                             <div class="controls">
-                                <input type="hidden" id="id" name="id" value="">
                                 <input type="text" class="form-control input text" name="name" value="">
+                            </div>
+                        </div>
+                        <div class="form-group item_title ">
+                            <label class="item-label">商品名称<span class="check-tips">（<span class="small">商品名称</span>）</span></label>
+                            <div class="controls">
+                                <select name="category" class="form-control">
+                                    <?php foreach ($categoryInfo as $item): ?>
+                                        <option value="<?= $item['id'] ?>" ><?= $item['name'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group item_title">
@@ -85,7 +94,7 @@ use app\common\service\UrlService;
                                                     success:function (data) {
                                                         console.log(data);
                                                         $('#file_img').attr('src',apiUrl+data);
-                                                        $('#img_hidden').val(apiUrl+data);
+                                                        $('#img_hidden').val(data);
                                                     }
                                                 })
                                             });
@@ -119,12 +128,11 @@ use app\common\service\UrlService;
                 $(this).prev().trigger('click');
             });
             $('#sub_but').click(function () {
-                let id = $('#id').val();
                 let name = $('input[name=name]').val();
                 let price = $('input[name=price]').val();
                 let stock = $('input[name=stock]').val();
                 let img_url = $('#img_hidden').val();
-                $.post(common_ops.buildAdminUrl('/product/add'),{id:id,name:name,price:price,stock:stock,img:img_url},(data)=>{
+                $.post(common_ops.buildAdminUrl('/product/add'),{name:name,price:price,stock:stock,img:img_url},(data)=>{
                     let status = data.status;
                     if(status.code == 1){
                         history.go(-1);

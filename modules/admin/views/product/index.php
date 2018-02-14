@@ -41,6 +41,7 @@ use app\common\service\UrlService;
                     <td>id</td>
                     <td>名称</td>
                     <td>图片</td>
+                    <td>类别</td>
                     <td>价格</td>
                     <td>库存</td>
                     <td>状态</td>
@@ -56,6 +57,7 @@ use app\common\service\UrlService;
                             <?= $item['name'] ?>
                         </td>
                         <td><img src="<?= Yii::$app->params['apiUrl'].$item['main_img_url'] ?>"></td>
+                        <td><?= $item['c_name'] ?></td>
                         <td>
                             <?= $item['price'] ?>
                         </td>
