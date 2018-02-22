@@ -11,6 +11,7 @@ namespace app\modules\admin\controllers;
 
 use app\common\tools\ApiTools;
 use app\models\CategoryModel;
+use app\models\ProductImageModel;
 use app\models\ProductModel;
 use app\modules\admin\controllers\common\BaseController;
 
@@ -59,7 +60,6 @@ class ProductController extends BaseController
                 'categoryInfo' => $categoryInfo
             ]);
         }
-
     }
 
     public function actionAdd(){
@@ -95,6 +95,25 @@ class ProductController extends BaseController
                 'categoryInfo' => $categoryInfo
             ]);
         }
+    }
+
+    public function actionInfoimg(){
+        if(\Yii::$app->request->isPost){
+
+        }else{
+            $id = $this->get('id','','op_t');
+            $info = ProductImageModel::find()
+                ->where(['product_id'=>$id])
+                ->orderBy('order')
+                ->asArray()
+                ->all();
+
+            return $this->render('infoimg',[
+                'imgInfo' => $info,
+                'product_id' => $id,
+            ]);
+        }
+
     }
 
     //修改状态
