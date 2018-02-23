@@ -77,7 +77,7 @@ use app\common\service\UrlService;
                                 <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item["id"] ?>,0)">禁用</a>
                             <?php endif;?>
                             <a title="详细图片" class="label label-primary" href="<?= UrlService::buildAdminUrl('/product/infoimg',['id'=>$item['id']]) ?>">详细图片</a>
-                            <a title="详细图片" class="label label-primary" href="<?= UrlService::buildAdminUrl('/product/infoimg',['id'=>$item['id']]) ?>">详细图片</a>
+                            <a title="详细内容" class="label label-primary" href="<?= UrlService::buildAdminUrl('/product/info',['id'=>$item['id']]) ?>">详细内容</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

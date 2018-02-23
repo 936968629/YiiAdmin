@@ -13,6 +13,7 @@ use app\common\tools\ApiTools;
 use app\models\CategoryModel;
 use app\models\ProductImageModel;
 use app\models\ProductModel;
+use app\models\ProductPropertyModel;
 use app\modules\admin\controllers\common\BaseController;
 
 class ProductController extends BaseController
@@ -99,11 +100,30 @@ class ProductController extends BaseController
 
     public function actionInfoimg(){
         if(\Yii::$app->request->isPost){
-
+            $id = $this->post('id','','op_t');
+            $order = $this->post('order',1,'intval');
+            $type = $this->post('type','','op_t');
+            if($type == "edit"){
+                $info = ProductImageModel::find()
+                    ->where(['id'=>$id])
+                    ->one();
+                $info->order = $order;
+                $ret = $info->save(0);
+            }else{//删除
+                $info = ProductImageModel::find()
+                    ->where(['id'=>$id])
+                    ->one();
+                $info->status = 0;
+                $ret = $info->save(0);
+            }
+            if(!$ret){
+                return $this->renderJson(0);
+            }
+            return $this->renderJson(1);
         }else{
             $id = $this->get('id','','op_t');
             $info = ProductImageModel::find()
-                ->where(['product_id'=>$id])
+                ->where(['product_id'=>$id,'status'=>1])
                 ->orderBy('order')
                 ->asArray()
                 ->all();
@@ -114,6 +134,21 @@ class ProductController extends BaseController
             ]);
         }
 
+    }
+
+    public function actionInfo(){
+        if(\Yii::$app->request->isPost){
+
+        }else{
+            $id = $this->get('id','','op_t');
+            $info = ProductPropertyModel::find()
+                ->where(['id'=>$id])
+                ->asArray()
+                ->all();
+            return $this->render('info',[
+               'info' => $info
+            ]);
+        }
     }
 
     //修改状态

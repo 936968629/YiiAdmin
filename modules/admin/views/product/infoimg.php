@@ -45,7 +45,6 @@ use app\common\service\UrlService;
                             </div>
                             </form>
                             <?php endforeach; ?>
-
                         </div>
                         <script type="application/javascript">
                             $(function () {
@@ -84,8 +83,16 @@ use app\common\service\UrlService;
                                 $('.but_edit').click(function () {
                                     let id = $(this).parent().find('input[name=id]').val();
                                     let order = $(this).parent().find('input[name=order]').val();
-                                    $.post(common_ops.buildAdminUrl('/product/infoimg'),{id:id,order:order},function (data) {
-
+                                    $.post(common_ops.buildAdminUrl('/product/infoimg'),{id:id,order:order,type:'edit'},function (data) {
+                                        let status = data.status;
+                                        if(status.code != 1){
+                                            alert(status.msg);
+                                            return;
+                                        }else{
+                                            alert(status.msg);
+                                            location.reload();
+                                            return;
+                                        }
                                     },'json');
                                 });
                             });
