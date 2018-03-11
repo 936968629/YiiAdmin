@@ -30,27 +30,9 @@ use app\common\service\UrlService;
             <div class="builder-container builder-form-container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="form-group item_title ">
-                            <label class="item-label">商品名称<span class="check-tips">（<span class="small">商品名称</span>）</span></label>
-                            <div class="controls">
-                                <input type="text" class="form-control input text" name="name" value="">
-                            </div>
-                        </div>
-                        <div class="form-group item_title">
-                            <label class="item-label">价格<span class="check-tips"></span></label>
-                            <div class="controls">
-                                <input type="text" class="form-control input text" name="price" value="">
-                            </div>
-                        </div>
-                        <div class="form-group item_title">
-                            <label class="item-label">库存<span class="check-tips"></span></label>
-                            <div class="controls">
-                                <input type="text" class="form-control input text" name="stock" value="">
-                            </div>
-                        </div>
-                        <form action="<?= Yii::$app->params['apiUrl']."/api/v2/upload/3"; ?>" method="post" class="form builder-form" enctype="multipart/form-data" name="theme_form">
+                        <form action="<?= Yii::$app->params['apiUrl']."/api/v2/upload/6"; ?>" method="post" class="form builder-form" enctype="multipart/form-data" name="theme_form">
                             <div class="form-group item_img ">
-                                <label class="item-label">商品图片</label>
+                                <label class="item-label">图片</label>
                                 <div class="controls">
                                     <div id="_upload_7">
                                         <input id="select_btn_1" class="selectbtn" style="display:none;" type="file" name="file" accept="image/gif,image/jpeg,image/png">
@@ -75,7 +57,7 @@ use app\common\service\UrlService;
                                                 var formData = new FormData($('form')[0]);
                                                 formData.append('file',$(':file')[0].files[0]);
                                                 $.ajax({
-                                                    url:'<?= Yii::$app->params['apiUrl']."/api/v2/upload/3"; ?>',
+                                                    url:'<?= Yii::$app->params['apiUrl']."/api/v2/upload/6"; ?>',
                                                     method:'post',
                                                     data: formData,
                                                     //这两个设置项必填

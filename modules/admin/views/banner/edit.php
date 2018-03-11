@@ -30,7 +30,7 @@ use app\common\service\UrlService;
             <div class="builder-container builder-form-container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <form action="<?= Yii::$app->params['apiUrl']."/api/v2/upload/3"; ?>" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form">
+                        <form action="<?= Yii::$app->params['apiUrl']."/api/v2/upload/6"; ?>" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form">
                         <div class="form-group item_img ">
                             <label class="item-label">商品图片</label>
                             <div class="controls">
