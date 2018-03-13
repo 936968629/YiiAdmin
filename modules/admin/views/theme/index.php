@@ -42,6 +42,7 @@ use app\common\service\UrlService;
                     <td>标题</td>
                     <td>头部图片</td>
                     <td>图片</td>
+                    <td>状态</td>
                     <td>创建时间<br>修改时间</td>
 <!--                    <td>状态</td>-->
                     <td class="w15">操作</td>
@@ -66,10 +67,22 @@ use app\common\service\UrlService;
                             </a>
                         </td>
                         <td>
+                            <?php if ($item['status'] == 0): ?>
+                                <i class="fa fa-ban text-danger"></i>
+                            <?php elseif ($item['status'] == 1): ?>
+                                <i class="fa fa-check text-success"></i>
+                            <?php endif;?>
+                        </td>
+                        <td>
                            <?= $item['create_time']."\n".$item['update_time'] ?>
                         </td>
                         <td data-id="<?= $item['id'] ?>">
                             <a title="编辑" class="label label-primary" href="<?= UrlService::buildAdminUrl('/theme/edit',['id'=>$item['id']]) ?>">编辑</a>
+                            <?php if ($item['status'] == 0): ?>
+                                <a title="启用" class="label label-success ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item["id"] ?>,1)">启用</a>
+                            <?php elseif ($item['status'] == 1): ?>
+                                <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item["id"] ?>,0)">禁用</a>
+                            <?php endif;?>
                             <a class="label label-info" href="<?= UrlService::buildAdminUrl('/theme/themepro',['id'=>$item['id']]) ?>">指定主题商品</a>
                         </td>
                     </tr>
@@ -83,7 +96,7 @@ use app\common\service\UrlService;
     <script>
         function editStatus(id,status=1) {
             if(parseInt(id)){
-                $.get(common_ops.buildAdminUrl('/system/edit_status',{'id':id,'status':status}),function (data) {
+                $.get(common_ops.buildAdminUrl('/theme/edit_status',{'id':id,'status':status}),function (data) {
                     let status = data.status;
                     if(status.code != 1){
                         common_ops.alert(status.msg);
