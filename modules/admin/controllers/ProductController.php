@@ -135,10 +135,17 @@ class ProductController extends BaseController
         }
 
     }
-
+    //详细信息
     public function actionInfo(){
         if(\Yii::$app->request->isPost){
-
+            $id = $this->post('id','','intval');
+            $text = $this->post('ta','','op_t');
+            $info = ProductPropertyModel::find()
+                ->where(['id'=>$id])
+                ->one();
+            $info->detail = $text;
+            $info->save();
+            return $this->renderJson(1);
         }else{
             $id = $this->get('id','','op_t');
             $info = ProductPropertyModel::find()

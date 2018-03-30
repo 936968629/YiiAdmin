@@ -36,52 +36,12 @@ use app\common\service\UrlService;
                             <?php foreach ($info as $item): ?>
                                 <div class="controls">
                                     <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                                    <input type="text" name="name" value="<?= $item['name'] ?>">
-                                    <input type="text" name="detail" value="<?= $item['detail'] ?>">
-                                    <button data-id="<?= $item['id']?>" class="but_edit">修改</button>
-                                    <button data-id="<?= $item['id']?>" class="but_remove">删除</button>
+                                    <textarea rows="8" cols="110"><?= $item['detail'] ?></textarea>
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                        <script type="application/javascript">
-                            $(function () {
-                                $('.but_edit').click(function () {
-                                    let id = $(this).parent().find('input[name=id]').val();
-                                    let order = $(this).parent().find('input[name=order]').val();
-                                    $.post(common_ops.buildAdminUrl('/product/infoimg'),{id:id,order:order,type:'edit'},function (data) {
-                                        let status = data.status;
-                                        if(status.code != 1){
-                                            alert(status.msg);
-                                            return;
-                                        }else{
-                                            alert(status.msg);
-                                            location.reload();
-                                            return;
-                                        }
-                                    },'json');
-                                });
-                            });
-                        </script>
-                        <form action="<?= Yii::$app->params['apiUrl']."/api/"; ?>" method="post" class="form builder-form" enctype="multipart/form-data" name="theme_form">
-                            <div class="form-group item_img ">
-                                <label class="item-label">商品图片</label>
-                                <div class="controls">
-                                    <div id="_upload_7">
-                                        <input id="select_btn_1" class="selectbtn" style="display:none;" type="file" name="file" accept="image/gif,image/jpeg,image/png">
-                                        <a id="file_upload_1-button" href="javascript:void(0)" class="uploadify-button btn btn-primary">上传图片</a>
-                                        <div id="file_upload_1-queue" class="uploadify-queue"></div>
-                                    </div>
-                                    <div id="_preview_7">
-                                        <input type="hidden" name="id" value="0">
-                                        <input type="hidden" name="type" value="add">
-                                        <input type="hidden" name="product_id" value="<?= $product_id ?>">
-                                    </div>
-
-                                </div>
-                            </div>
-                        </form>
                         <div class="form-group">
-<!--                            <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="button" id="sub_but">确定</button>-->
+                            <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="button" id="sub_but">确定</button>
                             <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
                         </div>
                     </div>
@@ -90,9 +50,20 @@ use app\common\service\UrlService;
         </div>
         <?php $this->endBody(); ?>
         <script type="application/javascript">
-            $('.uploadify-button').click(function () {
-                $(this).prev().trigger('click');
-            });
+            var sub_but = document.querySelector("#sub_but");
+            var id = document.querySelector('input[name=id]').getAttribute('value');
+            sub_but.addEventListener('click',function (e) {
+                var textarea = document.querySelector('textarea').value;
+                $.post(common_ops.buildAdminUrl('/product/info'),{id:id,ta:textarea},function (data) {
+                    let status = data.status;
+                    if(status.code == 1){
+                        history.go(-1);
+                    }else{
+                        alert(status.msg);
+                    }
+                },'json');
+
+            })
         </script>
     </body>
     </html>
