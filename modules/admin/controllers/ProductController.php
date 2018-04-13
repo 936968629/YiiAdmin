@@ -174,7 +174,7 @@ class ProductController extends BaseController
     //修改状态
     public function actionEdit_status(){
         $id = $this->get('id','','intval');
-        $status = $this->get('status','1','intval');
+        $status = $this->get('status',1,'intval');
         if(empty($id)){
             return $this->renderJson(995);
         }else{
