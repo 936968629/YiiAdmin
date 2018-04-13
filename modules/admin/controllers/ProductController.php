@@ -113,7 +113,11 @@ class ProductController extends BaseController
                 $info = ProductImageModel::find()
                     ->where(['id'=>$id])
                     ->one();
-                $info->status = 0;
+                if($type == 'remove'){
+                    $info->status = 0;
+                }else{
+                    $info->status = 1;
+                }
                 $ret = $info->save(0);
             }
             if(!$ret){
@@ -123,7 +127,7 @@ class ProductController extends BaseController
         }else{
             $id = $this->get('id','','op_t');
             $info = ProductImageModel::find()
-                ->where(['product_id'=>$id,'status'=>1])
+                ->where(['product_id'=>$id ])
                 ->orderBy('order')
                 ->asArray()
                 ->all();
@@ -140,20 +144,29 @@ class ProductController extends BaseController
         if(\Yii::$app->request->isPost){
             $id = $this->post('id','','intval');
             $text = $this->post('ta','','op_t');
-            $info = ProductPropertyModel::find()
-                ->where(['id'=>$id])
-                ->one();
-            $info->detail = $text;
-            $info->save();
+            $pro_id = $this->post('pro_id','','intval');
+            if(empty($id) ){
+                $productPropertyModel = new ProductPropertyModel();
+                $productPropertyModel->detail = $text;
+                $productPropertyModel->product_id = $pro_id;
+                $productPropertyModel->save();
+            }else{
+                $info = ProductPropertyModel::find()
+                    ->where(['id'=>$id])
+                    ->one();
+                $info->detail = $text;
+                $info->save();
+            }
             return $this->renderJson(1);
         }else{
             $id = $this->get('id','','op_t');
             $info = ProductPropertyModel::find()
                 ->where(['id'=>$id])
                 ->asArray()
-                ->all();
+                ->one();
             return $this->render('info',[
-               'info' => $info
+               'info' => $info,
+                'id' => $id
             ]);
         }
     }

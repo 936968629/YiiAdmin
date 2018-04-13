@@ -39,9 +39,21 @@ use app\common\service\UrlService;
                                 <input type="hidden" name="product_id" value="<?= $product_id ?>">
                             <div class="controls">
                                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                                <img data-id="<?= $item['id'] ?>" class="infoimg" src="<?= Yii::$app->params['apiUrl'].$item['img']; ?>" alt="">
+                                <img data-id="<?= $item['id'] ?>" class="infoimg" src="<?= Yii::$app->params['apiUrl'].$item['img']; ?>" >
                                 <input type="text" name="order" value="<?= $item['order'] ?>">
-                                <button data-id="<?= $item['id']?>" class="but_edit">修改</button><button data-id="<?= $item['id']?>" class="but_remove">删除</button>
+                                <?php
+                                if($item['status'] == 0):
+                                ?>
+                                <button data-id="<?= $item['id']?>" class="btn_remove" data-use="start">启用</button>
+                                <?php
+                                else:
+                                ?>
+                                <button data-id="<?= $item['id']?>" class="btn_remove" data-use="remove">删除</button>
+                                <?php
+                                endif;
+                                ?>
+                                <button data-id="<?= $item['id']?>" class="btn_edit">修改</button>
+
                             </div>
                             </form>
                             <?php endforeach; ?>
@@ -80,21 +92,37 @@ use app\common\service\UrlService;
                                         }
                                     })
                                 });
-                                $('.but_edit').click(function () {
+                                $('.btn_edit').click(function () {
                                     let id = $(this).parent().find('input[name=id]').val();
                                     let order = $(this).parent().find('input[name=order]').val();
                                     $.post(common_ops.buildAdminUrl('/product/infoimg'),{id:id,order:order,type:'edit'},function (data) {
                                         let status = data.status;
                                         if(status.code != 1){
                                             alert(status.msg);
-                                            return;
+                                        }else{
+                                            alert(status.msg);
+                                            location.reload()
+                                        }
+                                        return false;
+                                    },'json');
+                                    return false;
+                                });
+                                $('.btn_remove').click(function () {
+                                    let id = $(this).parent().find('input[name=id]').val();
+                                    let order = $(this).parent().find('input[name=order]').val();
+                                    let use = $(this).attr('data-use');
+                                    $.post(common_ops.buildAdminUrl('/product/infoimg'),{id:id,order:order,type:use},function (data) {
+                                        let status = data.status;
+                                        if(status.code != 1){
+                                            alert(status.msg);
                                         }else{
                                             alert(status.msg);
                                             location.reload();
-                                            return;
                                         }
                                     },'json');
+                                    return false;
                                 });
+
                             });
                         </script>
                         <form action="<?= Yii::$app->params['apiUrl']."/api/"; ?>" method="post" class="form builder-form" enctype="multipart/form-data" name="theme_form">

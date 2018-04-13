@@ -33,12 +33,11 @@ use app\common\service\UrlService;
                         <div class="form-group item_title ">
                             <label class="item-label">详细</label>
                             <input id="select_btn" class="selectbtn" style="display:none;" type="file" name="file2" accept="image/gif,image/jpeg,image/png">
-                            <?php foreach ($info as $item): ?>
-                                <div class="controls">
-                                    <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                                    <textarea rows="8" cols="110"><?= $item['detail'] ?></textarea>
-                                </div>
-                            <?php endforeach; ?>
+                            <div class="controls">
+                                <input type="hidden" name="pro_id" value="<?= $id ?>">
+                                <input type="hidden" name="id" value="<?php if(!empty($info) ) echo $info['id']; ?>">
+                                <textarea rows="8" cols="110"><?php if(!empty($info) ) echo $info['detail']; ?></textarea>
+                            </div>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="button" id="sub_but">确定</button>
@@ -52,9 +51,10 @@ use app\common\service\UrlService;
         <script type="application/javascript">
             var sub_but = document.querySelector("#sub_but");
             var id = document.querySelector('input[name=id]').getAttribute('value');
+            var pro_id = document.querySelector('input[name=pro_id]').getAttribute('value');
             sub_but.addEventListener('click',function (e) {
                 var textarea = document.querySelector('textarea').value;
-                $.post(common_ops.buildAdminUrl('/product/info'),{id:id,ta:textarea},function (data) {
+                $.post(common_ops.buildAdminUrl('/product/info'),{id:id,ta:textarea,pro_id:pro_id},function (data) {
                     let status = data.status;
                     if(status.code == 1){
                         history.go(-1);
