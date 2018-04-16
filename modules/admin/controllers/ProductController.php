@@ -36,11 +36,26 @@ class ProductController extends BaseController
             $category = $this->post('category','','intval');
             $price = $this->post('price','0','floatval');
             $stock = $this->post('stock','0','intval');
+            $nh_pro = $this->post('nh_pro','','op_t');
             $info = ProductModel::find()->where(['id'=>$id])->one();
             $info->name = $name;
             $info->category_id = $category;
             $info->price = $price;
             $info->stock = $stock;
+            if(!empty($nh_pro) ){
+                if( in_array('new',$nh_pro) ){
+                    $info->is_new = 1;
+                }
+                else
+                    $info->is_new = 0;
+                if( in_array('hot',$nh_pro) )
+                    $info->is_hot = 1;
+                else
+                    $info->is_hot = 0;
+            }else{
+                $info->is_hot = 0;
+                $info->is_new = 0;
+            }
             $ret = $info->save();
             if(!$ret){
                 return $this->renderJson(0);

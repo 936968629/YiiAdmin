@@ -96,6 +96,10 @@ use app\common\service\UrlService;
                         </div>
                         </form>
                         <div class="form-group">
+                            <input type="checkbox" name="nh_pro" value="new" <?php if($info['is_new'] == '1'):echo "checked"; endif; ?> >最新商品
+                            <input type="checkbox" name="nh_pro" value="hot" <?php if($info['is_hot'] == '1'):echo "checked"; endif; ?> >最热商品
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="button" id="sub_but">确定</button>
                             <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
                         </div>
@@ -115,7 +119,11 @@ use app\common\service\UrlService;
             let category = $('select[name=category]').val();
             let price = $('input[name=price]').val();
             let stock = $('input[name=stock]').val();
-            $.post(common_ops.buildAdminUrl('/product/edit'),{id:id,name:name,price:price,stock:stock,category:category},(data)=>{
+            let nh_pro = [];
+            $('input[name=nh_pro]:checked').each(function () {
+                nh_pro.push($(this).val() );
+            });
+            $.post(common_ops.buildAdminUrl('/product/edit'),{id:id,name:name,price:price,stock:stock,category:category,nh_pro:nh_pro},(data)=>{
                 let status = data.status;
                 if(status.code == 1){
                     history.go(-1);
