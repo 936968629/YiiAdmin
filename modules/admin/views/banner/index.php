@@ -76,7 +76,7 @@ use app\common\service\UrlService;
     <script>
         function editStatus(id,status=1) {
             if(parseInt(id) ){
-                $.get(common_ops.buildAdminUrl('/product/edit_status',{'id':id,'status':status}),function (data) {
+                $.get(common_ops.buildAdminUrl('/banner/edit_status',{'id':id,'status':status}),function (data) {
                     let status = data.status;
                     if(status.code != 1){
                         common_ops.alert(status.msg);
