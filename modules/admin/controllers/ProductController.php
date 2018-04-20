@@ -94,6 +94,7 @@ class ProductController extends BaseController
             $product->stock = $stock;
             $product->category_id = $category;
             $product->main_img_url = $img;
+            $product->create_time = date('Y-m-d H:i:s');
             $ret = $product->save();
             if(!$ret){
                 return $this->renderJson(0);
