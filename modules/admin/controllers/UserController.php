@@ -9,28 +9,35 @@
 namespace app\modules\admin\controllers;
 
 
+use app\common\tools\ApiTools;
 use app\models\UserModel;
 use app\modules\admin\controllers\common\BaseController;
 
 class UserController extends BaseController
 {
-    
     public function actionIndex(){
         $datalist = UserModel::find()
             ->all();
 
-
         return $this->render('index',[
-            'list' => $datalist
+            'datalist' => $datalist
         ]);
     }
 
-
-
-
-
-
-
+    public function actionEdit_status(){
+        $id = $this->get('id','','intval');
+        $status = $this->get('status',1,'intval');
+        if(empty($id)){
+            return $this->renderJson(995);
+        }else{
+            $model = UserModel::find();
+            if( ApiTools::editStatus($model,$status,['id'=>$id]) ){
+                return $this->renderJson(1);
+            }else{
+                return $this->renderJson(994);
+            }
+        }
+    }
 
     //显示二维码
     public function actionCode(){

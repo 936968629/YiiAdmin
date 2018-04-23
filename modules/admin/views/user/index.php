@@ -27,9 +27,9 @@ use app\common\service\UrlService;
             <div class="row">
                 <!-- 工具栏按钮 -->
                 <div class="col-xs-12 col-sm-9 button-list">
-                    <a title="新增" class="btn btn-primary" href="<?= UrlService::buildAdminUrl('/product/add') ?>">新增</a>
-                    <a title="启用" target-form="ids" class="btn btn-success ajax-post confirm" data-model="User" href="/index.php?s=/admin/product/setstatus/status/resume/model/Product.html" autocomplete="off">启用</a>&nbsp;
-                    <a title="禁用" target-form="ids" class="btn btn-warning ajax-post confirm" data-model="User" href="/index.php?s=/admin/product/setstatus/status/forbid/model/Product.html">禁用</a>
+<!--                    <a title="新增" class="btn btn-primary" href="--><?//= UrlService::buildAdminUrl('/product/add') ?><!--">新增</a>&nbsp;-->
+                    <a title="启用" target-form="ids" class="btn btn-success ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/resume/model/User.html" autocomplete="off">启用</a>&nbsp;
+                    <a title="禁用" target-form="ids" class="btn btn-warning ajax-post confirm" data-model="User" href="/index.php?s=/admin/user/setstatus/status/forbid/model/User.html">禁用</a>
                 </div>
             </div>
         </div>
@@ -39,11 +39,8 @@ use app\common\service\UrlService;
                 <tr>
                     <td width="40px"><input class="check-all" type="checkbox"></td>
                     <td>id</td>
+                    <td>openid</td>
                     <td>名称</td>
-                    <td>图片</td>
-                    <td>类别</td>
-                    <td>价格</td>
-                    <td>库存</td>
                     <td>状态</td>
                     <td class="w15">操作</td>
                 </tr>
@@ -53,15 +50,8 @@ use app\common\service\UrlService;
                     <tr>
                         <td><input class="check-all" type="checkbox"></td>
                         <td><?= $item['id'] ?></td>
-                        <td>
-                            <?= $item['name'] ?>
-                        </td>
-                        <td><img src="<?= Yii::$app->params['apiUrl'].$item['main_img_url'] ?>"></td>
-                        <td><?= $item['c_name'] ?></td>
-                        <td>
-                            <?= $item['price'] ?>
-                        </td>
-                        <td><?= $item['stock'] ?></td>
+                        <td><?= $item['openid'] ?></td>
+                        <td><?= $item['nickname'] ?></td>
                         <td>
                             <?php if ($item['status'] == 0): ?>
                                 <i class="fa fa-ban text-danger"></i>
@@ -76,8 +66,6 @@ use app\common\service\UrlService;
                             <?php elseif ($item['status'] == 1): ?>
                                 <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item["id"] ?>,0)">禁用</a>
                             <?php endif;?>
-                            <a title="详细图片" class="label label-primary" href="<?= UrlService::buildAdminUrl('/product/infoimg',['id'=>$item['id']]) ?>">详细图片</a>
-                            <a title="详细内容" class="label label-primary" href="<?= UrlService::buildAdminUrl('/product/info',['id'=>$item['id']]) ?>">详细内容</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -90,7 +78,7 @@ use app\common\service\UrlService;
     <script>
         function editStatus(id,status=1) {
             if(parseInt(id) ){
-                $.get(common_ops.buildAdminUrl('/product/edit_status',{'id':id,'status':status}),function (data) {
+                $.get(common_ops.buildAdminUrl('/user/edit_status',{'id':id,'status':status}),function (data) {
                     let status = data.status;
                     if(status.code != 1){
                         common_ops.alert(status.msg);
