@@ -9,16 +9,21 @@
 namespace app\modules\admin\controllers;
 
 
+use app\models\UserModel;
 use app\modules\admin\controllers\common\BaseController;
 
 class UserController extends BaseController
 {
     
     public function actionIndex(){
+        $datalist = UserModel::find()
+            ->all();
 
+
+        return $this->render('index',[
+            'list' => $datalist
+        ]);
     }
-
-
 
 
 
