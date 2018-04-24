@@ -81,7 +81,7 @@ class ProductController extends BaseController
     public function actionAdd(){
         if(\Yii::$app->request->isPost){
             $name = $this->post('name','','op_t');
-            $price = $this->post('price','0','floatval');
+            $price = $this->post('price',0,'floatval');
             $stock = $this->post('stock',0,'intval');
             $category = $this->post('category','','intval');
             $img = $this->post('img','','op_t');
@@ -112,6 +112,7 @@ class ProductController extends BaseController
                 'categoryInfo' => $categoryInfo
             ]);
         }
+
     }
 
     public function actionInfoimg(){
