@@ -32,7 +32,7 @@ use app\common\service\UrlService;
                     <div class="col-xs-12">
                         <form action="<?= Yii::$app->params['apiUrl']."/api/v2/upload/6"; ?>" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form">
                         <div class="form-group item_img ">
-                            <label class="item-label">商品图片</label>
+                            <label class="item-label">幻灯片图片</label>
                             <div class="controls">
                                 <div id="_upload_7">
                                     <input id="select_btn_1" class="selectbtn" style="display:none;" type="file" name="file" accept="image/gif,image/jpeg,image/png">
@@ -66,6 +66,14 @@ use app\common\service\UrlService;
                             </div>
                         </div>
                         </form>
+                        <div class="form-group">
+                            <label class="item-label">类型</label>
+                            <select name="type">
+                                <option value="0">无导向</option>
+                                <option value="1">导向商品</option>
+                                <option value="2">导向主题</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="button" id="sub_but">确定</button>
                             <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
