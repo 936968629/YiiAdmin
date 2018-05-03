@@ -16,9 +16,12 @@ class OrderController extends BaseController
 
     public function actionIndex(){
 
+        $datalist = OrderModel::find()
+            ->all();
 
-
-        return $this->render('index');
+        return $this->render('index',[
+            'datalist' => $datalist
+        ]);
     }
 
 
