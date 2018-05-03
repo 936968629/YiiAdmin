@@ -28,7 +28,15 @@ use app\common\service\UrlService;
                 <!-- 工具栏按钮 -->
                 <div class="col-xs-12 col-sm-9 button-list">
                     <a title="新增" class="btn btn-primary" href="<?= UrlService::buildAdminUrl('/product/add') ?>">新增</a>&nbsp;
-
+                </div>
+                <!-- 搜索框 -->
+                <div class="col-xs-12 col-sm-2">
+                    <div class="input-group search-form">
+                        <input class="search-input form-control" type="text" name="keyword" placeholder="订单号" value="<?= $keyword ?>">
+                        <span class="input-group-btn">
+                            <a style="padding: 10px 12px;" class="btn btn-default" href="javascript:;" id="search" url="/admin/order/index.html"><i class="fa fa-search"></i></a>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,8 +48,9 @@ use app\common\service\UrlService;
                     <td>订单号</td>
                     <td>uid</td>
                     <td>价格</td>
-                    <td>名称</td>
+                    <td>商品名称</td>
                     <td>状态</td>
+                    <td>创建时间</td>
                     <td class="w15">操作</td>
                 </tr>
                 </thead>
@@ -50,26 +59,30 @@ use app\common\service\UrlService;
                     <tr>
                         <td><?= $item['id'] ?></td>
                         <td><?= $item['order_no'] ?></td>
-                        <td><?= $item['user_id'] ?></td>
+                        <td><a href=""><?= $item['user_id'] ?></a></td>
                         <td><?= $item['total_price'] ?></td>
+                        <td><?= $item['snap_name'] ?></td>
                         <td>
-                            <?php if($item['status'] == 1): ?>
-
+                            <?php if($item['status'] == 1): ?>未支付
+                            <?php elseif($item['status'] == 2): ?>已支付
+                            <?php elseif($item['status'] == 3): ?>已发货
+                            <?php elseif($item['status'] == 4): ?>已支付但库存不足
                             <?php endif; ?>
                         </td>
+                        <td><?= $item['create_time'] ?></td>
                         <td data-id="<?= $item['id'] ?>">
                             <!--                            <a title="编辑" class="label label-primary" href="--><?php //UrlService::buildAdminUrl('/product/edit',['id'=>$item['id']]) ?><!--">编辑</a>-->
-                            <?php if ($item['status'] == 0): ?>
-                                <a title="启用" class="label label-success ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item["id"] ?>,1)">启用</a>
-                            <?php elseif ($item['status'] == 1): ?>
-                                <a title="禁用" class="label label-warning ajax-get confirm" href="javascript:void(0)" onclick="editStatus(<?= $item["id"] ?>,0)">禁用</a>
-                            <?php endif;?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
+        <?php
+            echo \yii\widgets\LinkPager::widget([
+                'pagination' => $pages
+            ])
+        ?>
     </div>
 
     <?php $this->endBody(); ?>
@@ -91,7 +104,11 @@ use app\common\service\UrlService;
                 },'json');
             }
         }
-
+        $("#search").click(function () {
+            let url = $(this).attr('url');
+            let keyword = $('input[name=keyword]').val();
+            window.location.href = url+"";
+        });
     </script>
     </body>
     </html>

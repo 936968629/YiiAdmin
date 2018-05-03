@@ -10,17 +10,31 @@ namespace app\modules\admin\controllers;
 
 use app\models\OrderModel;
 use app\modules\admin\controllers\common\BaseController;
+use yii\data\Pagination;
 
 class OrderController extends BaseController
 {
 
     public function actionIndex(){
+        $keyword = $this->get('keyword','','op_t');
+        if(!empty($keyword) ){
+
+        }
+
+        $pagination = new Pagination([
+            'totalCount'=>OrderModel::find()->count()
+        ]);
 
         $datalist = OrderModel::find()
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->orderBy('create_time desc')
             ->all();
 
         return $this->render('index',[
-            'datalist' => $datalist
+            'datalist' => $datalist,
+            'pages' => $pagination,
+            'keyword' => $keyword
         ]);
     }
 
