@@ -107,7 +107,7 @@ use app\common\service\UrlService;
         $("#search").click(function () {
             let url = $(this).attr('url');
             let keyword = $('input[name=keyword]').val();
-            window.location.href = url+"";
+            window.location.href = url+"?keyword="+keyword;
         });
     </script>
     </body>

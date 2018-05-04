@@ -17,6 +17,7 @@ class OrderController extends BaseController
 
     public function actionIndex(){
         $keyword = $this->get('keyword','','op_t');
+        $where = array();
         if(!empty($keyword) ){
 
         }
@@ -38,5 +39,11 @@ class OrderController extends BaseController
         ]);
     }
 
+    public function actionInfo(){
 
+        $datalist = OrderModel::find()
+            ->orderBy('create_time desc')
+            ->all();
+        var_dump($datalist);
+    }
 }
