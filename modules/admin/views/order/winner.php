@@ -83,6 +83,7 @@ use app\common\service\UrlService;
                             <?php if($item['status'] != 3 ): ?>
                             <a href="<?= UrlService::buildAdminUrl('/order/send',['id'=>$item['id'] ])?>" class="send_cla" >发货</a>
                             <?php endif; ?>
+                            <a href="<?= UrlService::buildAdminUrl('/order/info',['id'=>$item['id'] ])?>" class="look_cla" >查看</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

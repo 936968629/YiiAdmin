@@ -51,7 +51,7 @@ use app\common\service\UrlService;
                     <td>商品名称</td>
                     <td>状态</td>
                     <td>创建时间</td>
-                    <td class="w15">操作</td>
+<!--                    <td class="w15">操作</td>-->
                 </tr>
                 </thead>
                 <tbody>
@@ -70,9 +70,9 @@ use app\common\service\UrlService;
                             <?php endif; ?>
                         </td>
                         <td><?= $item['create_time'] ?></td>
-                        <td data-id="<?= $item['id'] ?>">
+<!--                        <td data-id="--><?//= $item['id'] ?><!--">-->
                             <!--                            <a title="编辑" class="label label-primary" href="--><?php //UrlService::buildAdminUrl('/product/edit',['id'=>$item['id']]) ?><!--">编辑</a>-->
-                        </td>
+<!--                        </td>-->
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
