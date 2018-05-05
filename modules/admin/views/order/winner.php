@@ -41,7 +41,7 @@ use app\common\service\UrlService;
                     <div class="input-group search-form">
                         <input class="search-input form-control" type="text" name="keyword" placeholder="订单号" value="<?= $keyword ?>">
                         <span class="input-group-btn">
-                            <a style="padding: 10px 12px;" class="btn btn-default" href="javascript:;" id="search" url="/admin/order/index"><i class="fa fa-search"></i></a>
+                            <a style="padding: 10px 12px;" class="btn btn-default" href="javascript:;" id="search" url="/admin/order/winner"><i class="fa fa-search"></i></a>
                         </span>
                     </div>
                 </div>
@@ -56,6 +56,7 @@ use app\common\service\UrlService;
                     <td>uid</td>
                     <td>价格</td>
                     <td>商品名称</td>
+                    <td>快递信息</td>
                     <td>状态</td>
                     <td>创建时间</td>
                     <td class="w15">操作</td>
@@ -69,6 +70,7 @@ use app\common\service\UrlService;
                         <td><a href=""><?= $item['user_id'] ?></a></td>
                         <td><?= $item['total_price'] ?></td>
                         <td><?= $item['snap_name'] ?></td>
+                        <td><?= $item['kuaidi_name']." ".$item['kuaidi_order'] ?></td>
                         <td>
                             <?php if($item['status'] == 1): ?>未支付
                             <?php elseif($item['status'] == 2): ?>已支付
@@ -78,7 +80,9 @@ use app\common\service\UrlService;
                         </td>
                         <td><?= $item['create_time'] ?></td>
                         <td>
+                            <?php if($item['status'] != 3 ): ?>
                             <a href="<?= UrlService::buildAdminUrl('/order/send',['id'=>$item['id'] ])?>" class="send_cla" >发货</a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

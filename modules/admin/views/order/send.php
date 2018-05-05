@@ -64,7 +64,6 @@ use app\common\service\UrlService;
             let name = $('select[name=name]').val();
             $.post(common_ops.buildAdminUrl('/order/send'),{id:id,name:name,number:number},(data)=>{
                 let status = data.status;
-                let status = data.status;
                 if(status.code == 1){
                     history.go(-1);
                 }else{

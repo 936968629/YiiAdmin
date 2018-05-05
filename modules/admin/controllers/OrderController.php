@@ -94,6 +94,7 @@ class OrderController extends BaseController
                 ->one();
             $info->kuaidi_name = $name;
             $info->kuaidi_order = $number;
+            $info->status = 3;
             $ret = $info->save();
             if(!$ret){
                 return $this->renderJson(0);
