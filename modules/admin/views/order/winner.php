@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2018/5/5 0005
+ * Time: 13:47
+ */
 use app\common\service\UrlService;
 \app\assets\AdminAsset::register($this);
 ?>
@@ -27,7 +33,8 @@ use app\common\service\UrlService;
             <div class="row">
                 <!-- 工具栏按钮 -->
                 <div class="col-xs-12 col-sm-9 button-list">
-                    <a title="新增" class="btn btn-primary" href="<?= UrlService::buildAdminUrl('/product/add') ?>">新增</a>&nbsp;
+                    <a title="待发货" class="btn <?php if(isset($_GET['status']) && $_GET['status']==2) echo 'btn-info';else echo 'btn-primary'; ?>" href="<?= UrlService::buildAdminUrl('/order/winner',['status'=>2]) ?>">待发货</a>&nbsp;
+                    <a title="已发货" class="btn <?php if(isset($_GET['status']) && $_GET['status']==3) echo 'btn-info';else echo 'btn-primary'; ?>" href="<?= UrlService::buildAdminUrl('/order/winner',['status'=>3]) ?>">已发货</a>&nbsp;
                 </div>
                 <!-- 搜索框 -->
                 <div class="col-xs-12 col-sm-2">
@@ -70,8 +77,8 @@ use app\common\service\UrlService;
                             <?php endif; ?>
                         </td>
                         <td><?= $item['create_time'] ?></td>
-                        <td data-id="<?= $item['id'] ?>">
-                            <!--                            <a title="编辑" class="label label-primary" href="--><?php //UrlService::buildAdminUrl('/product/edit',['id'=>$item['id']]) ?><!--">编辑</a>-->
+                        <td>
+                            <a href="<?= UrlService::buildAdminUrl('/order/send',['id'=>$item['id'] ])?>" class="send_cla" >发货</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -79,31 +86,15 @@ use app\common\service\UrlService;
             </table>
         </div>
         <?php
-            echo \yii\widgets\LinkPager::widget([
-                'pagination' => $pages
-            ])
+        echo \yii\widgets\LinkPager::widget([
+            'pagination' => $pages
+        ])
         ?>
     </div>
 
     <?php $this->endBody(); ?>
     <script>
-        function editStatus(id,status=1) {
-            if(parseInt(id) ){
-                $.get(common_ops.buildAdminUrl('/user/edit_status',{'id':id,'status':status}),function (data) {
-                    let status = data.status;
-                    if(status.code != 1){
-                        common_ops.alert(status.msg);
-                    }else{
-                        let callback = {'ok':function () {
-                                window.location.reload();
-                            },'cancel':function () {
-                                window.location.reload();
-                            }};
-                        common_ops.confirm(status.msg,callback);
-                    }
-                },'json');
-            }
-        }
+
         $("#search").click(function () {
             let url = $(this).attr('url');
             let keyword = $('input[name=keyword]').val();
