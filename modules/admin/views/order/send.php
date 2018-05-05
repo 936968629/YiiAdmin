@@ -31,37 +31,22 @@ use app\common\service\UrlService;
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group item_title ">
-                            <label class="item-label">商品名称<span class="check-tips">（<span class="small">商品名称</span>）</span></label>
+                            <label class="item-label">快递名称<span class="check-tips">（<span class="small">快递名称</span>）</span></label>
                             <div class="controls">
                                 <input type="hidden" id="id" name="id" value="<?= $info['id']?>">
-                                <input type="text" class="form-control input text" name="name" value="<?= $info['name']?>">
-                            </div>
-                        </div>
-                        <div class="form-group item_title ">
-                            <label class="item-label">商品类别<span class="check-tips">（<span class="small">商品类别</span>）</span></label>
-                            <div class="controls">
-                                <select name="category" class="form-control">
-                                    <?php foreach ($categoryInfo as $item): ?>
-                                    <option value="<?= $item['id'] ?>" <?php echo $item['id']==$info['c_id']?"selected":"" ?> ><?= $item['name'] ?></option>
-                                    <?php endforeach; ?>
+                                <select class="form-control" name="name" >
+                                    <option value="中通快递">中通快递</option>
+                                    <option value="韵达快递">韵达快递</option>
+                                    <option value="申通快递">申通快递</option>
                                 </select>
+<!--                                <input type="text" class="form-control input text" name="name" value="--><?//= $info['kuaidi_name']?><!--">-->
                             </div>
                         </div>
                         <div class="form-group item_title">
-                            <label class="item-label">价格<span class="check-tips"></span></label>
+                            <label class="item-label">快递单号<span class="check-tips"></span></label>
                             <div class="controls">
-                                <input type="text" class="form-control input text" name="price" value="<?= $info['price']?>">
+                                <input type="text" class="form-control input text" name="number" value="<?= $info['kuaidi_order']?>">
                             </div>
-                        </div>
-                        <div class="form-group item_title">
-                            <label class="item-label">库存<span class="check-tips"></span></label>
-                            <div class="controls">
-                                <input type="text" class="form-control input text" name="stock" value="<?= $info['stock']?>">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="nh_pro" value="new" <?php if($info['is_new'] == '1'):echo "checked"; endif; ?> >最新商品
-                            <input type="checkbox" name="nh_pro" value="hot" <?php if($info['is_hot'] == '1'):echo "checked"; endif; ?> >最热商品
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="button" id="sub_but">确定</button>
@@ -71,23 +56,14 @@ use app\common\service\UrlService;
                 </div>
             </div>
     </div>
-    <iframe class="hide" name="upload_file"></iframe>
     <?php $this->endBody(); ?>
     <script type="application/javascript">
-        $('.uploadify-button').click(function () {
-            $(this).prev().trigger('click');
-        });
         $('#sub_but').click(function () {
             let id = $('#id').val();
-            let name = $('input[name=name]').val();
-            let category = $('select[name=category]').val();
-            let price = $('input[name=price]').val();
-            let stock = $('input[name=stock]').val();
-            let nh_pro = [];
-            $('input[name=nh_pro]:checked').each(function () {
-                nh_pro.push($(this).val() );
-            });
-            $.post(common_ops.buildAdminUrl('/product/edit'),{id:id,name:name,price:price,stock:stock,category:category,nh_pro:nh_pro},(data)=>{
+            let number = $('input[name=number]').val();
+            let name = $('select[name=name]').val();
+            $.post(common_ops.buildAdminUrl('/order/send'),{id:id,name:name,number:number},(data)=>{
+                let status = data.status;
                 let status = data.status;
                 if(status.code == 1){
                     history.go(-1);

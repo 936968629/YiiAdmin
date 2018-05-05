@@ -86,7 +86,19 @@ class OrderController extends BaseController
     //发货处理
     public function actionSend(){
         if(\Yii::$app->request->isPost){
-
+            $id = $this->post('id',0,'intval');
+            $name = $this->post('name','','op_t');
+            $number = $this->post('number','','op_t');
+            $info = OrderModel::find()
+                ->where(['id'=>$id])
+                ->one();
+            $info->kuaidi_name = $name;
+            $info->kuaidi_order = $number;
+            $ret = $info->save();
+            if(!$ret){
+                return $this->renderJson(0);
+            }
+            return $this->renderJson(1);
         }else{
             $id = $this->get('id',0,'intval');
             $info = OrderModel::find()
