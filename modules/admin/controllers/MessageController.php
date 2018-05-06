@@ -19,7 +19,7 @@ class MessageController extends BaseController
         $keyword = $this->get('keyword','','op_t');
         $where = array();
         if( !empty($keyword) ){
-
+            $where['user_id'] = $keyword;
         }
 
         $pagination = new Pagination([
@@ -34,12 +34,21 @@ class MessageController extends BaseController
             ->all();
 
         return $this->render('index',[
-           'datalist' => $datalist
+            'datalist' => $datalist,
+            'keyword' => $keyword,
+            'pages' => $pagination
         ]);
     }
 
     public function actionInfo(){
+        $id = $this->get('id',0,'intval');
+        $info = MessageModel::find()
+            ->where(['id'=>$id])
+            ->one();
 
+        return $this->render('info',[
+            'info' => $info
+        ]);
     }
 
 }
