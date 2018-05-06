@@ -72,9 +72,6 @@ use app\common\service\UrlService;
                         <td><?= $item['create_time'] ?></td>
                         <td><?= $item['update_time'] ?></td>
                         <td>
-                            <?php if($item['status'] != 3 ): ?>
-                                <a href="<?= UrlService::buildAdminUrl('/message/info',['id'=>$item['id'] ])?>" class="send_cla" >发货</a>
-                            <?php endif; ?>
                             <a href="<?= UrlService::buildAdminUrl('/message/info',['id'=>$item['id'] ])?>" class="look_cla" >查看</a>
                         </td>
                     </tr>
