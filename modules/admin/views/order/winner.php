@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2018/5/5 0005
+ * Time: 13:47
+ */
 use app\common\service\UrlService;
 \app\assets\AdminAsset::register($this);
 ?>
@@ -27,14 +33,15 @@ use app\common\service\UrlService;
             <div class="row">
                 <!-- 工具栏按钮 -->
                 <div class="col-xs-12 col-sm-9 button-list">
-                    <a title="新增" class="btn btn-primary" href="<?= UrlService::buildAdminUrl('/product/add') ?>">新增</a>&nbsp;
+                    <a title="待发货" class="btn <?php if(isset($_GET['status']) && $_GET['status']==2) echo 'btn-info';else echo 'btn-primary'; ?>" href="<?= UrlService::buildAdminUrl('/order/winner',['status'=>2]) ?>">待发货</a>&nbsp;
+                    <a title="已发货" class="btn <?php if(isset($_GET['status']) && $_GET['status']==3) echo 'btn-info';else echo 'btn-primary'; ?>" href="<?= UrlService::buildAdminUrl('/order/winner',['status'=>3]) ?>">已发货</a>&nbsp;
                 </div>
                 <!-- 搜索框 -->
                 <div class="col-xs-12 col-sm-2">
                     <div class="input-group search-form">
                         <input class="search-input form-control" type="text" name="keyword" placeholder="订单号" value="<?= $keyword ?>">
                         <span class="input-group-btn">
-                            <a style="padding: 10px 12px;" class="btn btn-default" href="javascript:;" id="search" url="/admin/order/index"><i class="fa fa-search"></i></a>
+                            <a style="padding: 10px 12px;" class="btn btn-default" href="javascript:;" id="search" url="/admin/order/winner"><i class="fa fa-search"></i></a>
                         </span>
                     </div>
                 </div>
@@ -49,9 +56,10 @@ use app\common\service\UrlService;
                     <td>uid</td>
                     <td>价格</td>
                     <td>商品名称</td>
+                    <td>快递信息</td>
                     <td>状态</td>
                     <td>创建时间</td>
-<!--                    <td class="w15">操作</td>-->
+                    <td class="w15">操作</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -62,6 +70,7 @@ use app\common\service\UrlService;
                         <td><a href=""><?= $item['user_id'] ?></a></td>
                         <td><?= $item['total_price'] ?></td>
                         <td><?= $item['snap_name'] ?></td>
+                        <td><?= $item['kuaidi_name']." ".$item['kuaidi_order'] ?></td>
                         <td>
                             <?php if($item['status'] == 1): ?>未支付
                             <?php elseif($item['status'] == 2): ?>已支付
@@ -70,40 +79,27 @@ use app\common\service\UrlService;
                             <?php endif; ?>
                         </td>
                         <td><?= $item['create_time'] ?></td>
-<!--                        <td data-id="--><?//= $item['id'] ?><!--">-->
-                            <!--                            <a title="编辑" class="label label-primary" href="--><?php //UrlService::buildAdminUrl('/product/edit',['id'=>$item['id']]) ?><!--">编辑</a>-->
-<!--                        </td>-->
+                        <td>
+                            <?php if($item['status'] != 3 ): ?>
+                            <a href="<?= UrlService::buildAdminUrl('/order/send',['id'=>$item['id'] ])?>" class="send_cla" >发货</a>
+                            <?php endif; ?>
+                            <a href="<?= UrlService::buildAdminUrl('/order/info',['id'=>$item['id'] ])?>" class="look_cla" >查看</a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
         <?php
-            echo \yii\widgets\LinkPager::widget([
-                'pagination' => $pages
-            ])
+        echo \yii\widgets\LinkPager::widget([
+            'pagination' => $pages
+        ])
         ?>
     </div>
 
     <?php $this->endBody(); ?>
     <script>
-        function editStatus(id,status=1) {
-            if(parseInt(id) ){
-                $.get(common_ops.buildAdminUrl('/user/edit_status',{'id':id,'status':status}),function (data) {
-                    let status = data.status;
-                    if(status.code != 1){
-                        common_ops.alert(status.msg);
-                    }else{
-                        let callback = {'ok':function () {
-                                window.location.reload();
-                            },'cancel':function () {
-                                window.location.reload();
-                            }};
-                        common_ops.confirm(status.msg,callback);
-                    }
-                },'json');
-            }
-        }
+
         $("#search").click(function () {
             let url = $(this).attr('url');
             let keyword = $('input[name=keyword]').val();
