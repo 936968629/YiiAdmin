@@ -142,14 +142,13 @@ use app\common\service\UrlService;
             var content = $(this).parent().parent().find('textarea').val();
             var uid = $(this).attr('data-uid');
             $.ajax({
-                url:'info?id='+id,
+                url:'feedback?id='+id,
                 type:'POST',
                 data:{uid:uid,content:content},
                 dataType:'JSON',
                 success:function (data) {
-                    console.log(data)
-                    $('#myModalLabel').html(data.title)
-                    $('.modal-body').html(data.content)
+                    console.log(data);
+                    window.location.reload()
                 }
             })
         })

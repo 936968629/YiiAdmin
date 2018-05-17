@@ -64,6 +64,7 @@ class MessageController extends BaseController
                 return json_encode( array('code'=>0) );
             }
             $info->status = 1;
+            $info->update_time = date('Y-m-d H:i:s');
             $info->save(0);
 
             $messageModel = new MessageModel();
@@ -74,7 +75,7 @@ class MessageController extends BaseController
             $messageModel->status = 0;
             $messageModel->resource_id = $id;
             $messageModel->save(0);
-            return json_encode( array('code'=>1) );
+            return json_encode( array('code'=>1) );exit();
         }else{
             $keyword = $this->get('keyword','','op_t');
             $where = array();
@@ -100,7 +101,7 @@ class MessageController extends BaseController
                 }else{
                     $info = MessageModel::find()
                         ->where(['resource_id'=>$item['id'],'title'=>'反馈回复' ])
-                        ->select();
+                        ->one();
                     $item['reply'] = $info['content'];
                 }
             }
