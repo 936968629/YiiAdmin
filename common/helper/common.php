@@ -108,3 +108,15 @@ function curl_get($url){
     curl_close($ch);
     return $output;
 }
+
+//插入消息列表
+function insertMsg($uid,$title,$content){
+    $messageModel = new \app\models\MessageModel();
+    $messageModel->user_id = $uid;
+    $messageModel->title = $title;
+    $messageModel->content = $content;
+    $messageModel->create_time = date('Y-m-d H:i:s');
+    $messageModel->status = 0;
+    $ret = $messageModel->save(0);
+    return $ret;
+}

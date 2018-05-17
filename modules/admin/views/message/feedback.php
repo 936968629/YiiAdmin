@@ -39,7 +39,7 @@ use app\common\service\UrlService;
                     <div class="input-group search-form">
                         <input class="search-input form-control" type="text" name="keyword" placeholder="UID" value="<?= $keyword ?>">
                         <span class="input-group-btn">
-                            <a style="padding: 10px 12px;" class="btn btn-default" href="javascript:;" id="search" url="/admin/message/index"><i class="fa fa-search"></i></a>
+                            <a style="padding: 10px 12px;" class="btn btn-default" href="javascript:;" id="search" url="/admin/message/feedback"><i class="fa fa-search"></i></a>
                         </span>
                     </div>
                 </div>
@@ -53,6 +53,7 @@ use app\common\service\UrlService;
                     <td>uid</td>
                     <td>标题</td>
                     <td>内容</td>
+                    <td>回复</td>
                     <td>状态</td>
                     <td>创建时间</td>
                     <td>更新时间</td>
@@ -66,15 +67,23 @@ use app\common\service\UrlService;
                         <td><a href=""><?= $item['user_id'] ?></a></td>
                         <td><?= $item['title'] ?></td>
                         <td><?= $item['content'] ?></td>
+                        <td><?= $item['reply'] ?></td>
                         <td>
-                            <?php if($item['status'] == 0): ?>未读
-                            <?php elseif($item['status'] == 2): ?>已读
+                            <?php if($item['status'] == 0): ?>未处理
+                            <?php elseif($item['status'] == 1): ?>已处理
                             <?php endif; ?>
                         </td>
                         <td><?= $item['create_time'] ?></td>
                         <td><?= $item['update_time'] ?></td>
                         <td>
-                            <a href="javascript:void(0)" data-id="<?= $item['id'] ?>" class="look_cla" >查看</a>
+                            <a href="javascript:void(0)" data-id="<?= $item['id'] ?>" class="look_cla">查看</a>
+                            <?php
+                                if($item['status'] == 0):
+                            ?>
+                            <a href="javascript:void(0)" data-id="<?= $item['id'] ?>" data-uid="<?= $item['user_id'] ?>" class="feed_cla">回复</a>
+                            <?php
+                                endif;
+                            ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -127,6 +136,23 @@ use app\common\service\UrlService;
             let keyword = $('input[name=keyword]').val();
             window.location.href = url+"?keyword="+keyword;
         });
+        
+        $('.feed_cla').click(function (e) {
+            var id = $(this).attr('data-id');
+            var content = $(this).parent().parent().find('textarea').val();
+            var uid = $(this).attr('data-uid');
+            $.ajax({
+                url:'info?id='+id,
+                type:'POST',
+                data:{uid:uid,content:content},
+                dataType:'JSON',
+                success:function (data) {
+                    console.log(data)
+                    $('#myModalLabel').html(data.title)
+                    $('.modal-body').html(data.content)
+                }
+            })
+        })
     </script>
     </body>
     </html>
