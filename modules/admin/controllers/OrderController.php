@@ -99,6 +99,12 @@ class OrderController extends BaseController
             if(!$ret){
                 return $this->renderJson(0);
             }
+            //消息通知
+            $content = "你购买的商品【".$info['snap_name']."】已发货，请注意查收";
+            $re = insertMsg($info['user_id'],'发货通知',$content);
+            if(!$re){
+                return $this->renderJson(0);
+            }
             return $this->renderJson(1);
         }else{
             $id = $this->get('id',0,'intval');
