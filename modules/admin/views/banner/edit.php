@@ -40,7 +40,7 @@ use app\common\service\UrlService;
                                     <div id="file_upload_1-queue" class="uploadify-queue"></div>
                                 </div>
                                 <div id="_preview_7">
-                                    <input type="hidden" name="id" value="<?= $info['id']?>">
+                                    <input id="id" type="hidden" name="id" value="<?= $info['id']?>">
                                     <span class="img-box">
                                          <img class="img" src="<?= Yii::$app->params['apiUrl'].$info['img'] ?>">
 <!--                                            <img class="img" src="http://oss.aliyuncs.com/wawajiji/Uploads/2017-11-02/59fad44179b3d.png" >-->
@@ -75,6 +75,10 @@ use app\common\service\UrlService;
                             </select>
                         </div>
                         <div class="form-group">
+                            <label class="item-label">导向id</label>
+                            <input type="text" name="keyword" class="">
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="button" id="sub_but">确定</button>
                             <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
                         </div>
@@ -90,11 +94,9 @@ use app\common\service\UrlService;
         });
         $('#sub_but').click(function () {
             let id = $('#id').val();
-            let name = $('input[name=name]').val();
-            let category = $('select[name=category]').val();
-            let price = $('input[name=price]').val();
-            let stock = $('input[name=stock]').val();
-            $.post(common_ops.buildAdminUrl('/product/edit'),{id:id,name:name,price:price,stock:stock,category:category},(data)=>{
+            let type = $('select[name=type]').val();
+            let keyword = $('input[name=keyword]').val();
+            $.post(common_ops.buildAdminUrl('/banner/edit'),{id:id,type:type,keyword:keyword},(data)=>{
                 let status = data.status;
                 if(status.code == 1){
                     history.go(-1);

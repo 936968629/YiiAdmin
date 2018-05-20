@@ -10,15 +10,18 @@ namespace app\modules\admin\controllers\common;
 
 
 use app\common\components\BasePublicController;
+use app\models\AdminGroupModel;
 use app\models\AdminMenu;
 use app\models\AdminMenuModel;
+use app\models\AdminModel;
 
 class BaseController extends BasePublicController
 {
     public $no_use_login = [
         'default/index',
         'default/login',
-        'default/login-act'
+        'default/login-act',
+        'user/logout'
     ];
 
     public $use_layout = [
@@ -43,11 +46,24 @@ class BaseController extends BasePublicController
                 return false;
             }
             $view = \Yii::$app->view;
+            $admin_id = $_SESSION['admin'];
+            $adminInfo = AdminModel::find()->where(['id'=>$admin_id])->one();
+            if($adminInfo['user_type'] != 1){
+                //非管理员
+                $url = $controller."/".$method;
+                $adminGroup = AdminGroupModel::find()->where(['id'=>$adminInfo['user_type'] ] )->one();
+                $menuGroup = AdminMenuModel::find()->where(['url'=>$url])->one();
+                $arr = explode(',',$adminGroup['menu_auth']);
+                if( !in_array($menuGroup['id'],$arr ) ){
+                    echo "权限不够";
+                    return false;
+                }
+            }
+
             $view->params['breadCrumbs'] = $this->getBreadcrumbs($permissionRoute);
             $view->params['admin_name'] = \Yii::$app->session->get('admin');
             return true;
         }
-
         $this->layout = false;
         return true;
 
