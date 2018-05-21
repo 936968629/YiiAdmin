@@ -43,7 +43,7 @@ use app\common\service\UrlService;
                                     <input type="text" class="form-control input text" name="description" value="<?= $info['description']?>">
                                 </div>
                             </div>
-                            <form action="http://wenjunlin.xyz/api/v2/upload/1" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form">
+                            <form action="<?= Yii::$app->params['apiUrl']."/api/v2/upload/1"; ?>" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form">
                             <div class="form-group item_img ">
                                 <label class="item-label">专题头部图片</label>
                                 <div class="controls">
@@ -79,7 +79,7 @@ use app\common\service\UrlService;
                                 </div>
                             </div>
                             </form>
-                            <form action="http://wenjunlin.xyz/api/v2/upload/2" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form2">
+                            <form action="<?= Yii::$app->params['apiUrl']."/api/v2/upload/2";?>" method="post" class="form builder-form" enctype="multipart/form-data" target="upload_file" name="theme_form2">
                             <div class="form-group item_descs ">
                                 <label class="item-label">专题封面图</label>
                                 <div class="controls">
@@ -91,7 +91,7 @@ use app\common\service\UrlService;
                                     </div>
                                     <div id="_preview_8">
                                         <span class="img-box">
-                                            <img class="img" src="<?= Yii::$app->params['apiUrl'].$info['head_img'] ?>">
+                                            <img class="img" src="<?= Yii::$app->params['apiUrl'].$info['img'] ?>">
 <!--                                            <i class="fa fa-times-circle remove-picture"></i>-->
                                         </span>
                                     </div>
@@ -125,7 +125,7 @@ use app\common\service\UrlService;
     <iframe class="hide" name="upload_file"></iframe>
     <?php $this->endBody(); ?>
     <script type="application/javascript">
-        $('.uploadify-button').click(function () {dfs
+        $('.uploadify-button').click(function () {
             $(this).prev().trigger('click');
         });
         $('#sub_but').click(function () {

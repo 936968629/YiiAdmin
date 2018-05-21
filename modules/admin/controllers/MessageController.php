@@ -21,13 +21,14 @@ class MessageController extends BaseController
         if( !empty($keyword) ){
             $where['user_id'] = $keyword;
         }
-
+        $andwhere = array('not in','title',array('问题反馈') );
         $pagination = new Pagination([
-            'totalCount' => MessageModel::find()->where($where)->count(),
+            'totalCount' => MessageModel::find()->where($where)->andWhere($andwhere)->count(),
         ]);
 
         $datalist = MessageModel::find()
             ->where($where)
+            ->andWhere($andwhere)
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->orderBy('create_time desc')
