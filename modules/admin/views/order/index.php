@@ -67,6 +67,7 @@ use app\common\service\UrlService;
                             <?php elseif($item['status'] == 2): ?>已支付
                             <?php elseif($item['status'] == 3): ?>已发货
                             <?php elseif($item['status'] == 4): ?>已支付但库存不足
+                            <?php elseif($item['status'] == 5): ?>已收货
                             <?php endif; ?>
                         </td>
                         <td><?= $item['create_time'] ?></td>

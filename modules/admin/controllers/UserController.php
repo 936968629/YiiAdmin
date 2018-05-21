@@ -43,6 +43,10 @@ class UserController extends BaseController
         unset($_SESSION['admin'] );
     }
 
+    public function actionLogout(){
+        
+    }
+
     //显示二维码
     public function actionCode(){
         include_once \Yii::$app->basePath."\common\\tools\phpqrcode.php";
