@@ -38,6 +38,10 @@ class UserController extends BaseController
             }
         }
     }
+    //注销
+    public function actionLogout(){
+        unset($_SESSION['admin'] );
+    }
 
     public function actionLogout(){
 

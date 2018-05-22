@@ -9,7 +9,6 @@ class BannerController extends BaseController {
 
     public function actionIndex(){
         $datalist = BannerItemModel::find()
-            ->where(['type'=>1])
             ->asArray()
             ->all();
         return $this->render('index',[
@@ -27,7 +26,20 @@ class BannerController extends BaseController {
 
     public function actionEdit(){
         if(\Yii::$app->request->isPost){
-
+            $id = $this->post('id','','intval');
+            $type = $this->post('type','','intval');
+            $keyword = $this->post('keyword','','intval');
+            $info = BannerItemModel::find()
+                ->where(['id'=>$id])
+                ->one();
+            if($type == 0){
+                $info->type = $type;
+            }else{
+                $info->type = $type;
+                $info->key_word = $keyword;
+            }
+            $ret = $info->save(0);
+            return $this->renderJson($ret);
         }else{
             $id = $this->get('id',1,'intval');
             $info = BannerItemModel::find()
