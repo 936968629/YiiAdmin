@@ -57,6 +57,7 @@ use app\common\service\UrlService;
                     <td>uid</td>
                     <td>价格</td>
                     <td>商品名称</td>
+                    <td>收货信息</td>
                     <td>快递信息</td>
                     <td>状态</td>
                     <td>创建时间</td>
@@ -71,6 +72,7 @@ use app\common\service\UrlService;
                         <td><a href=""><?= $item['user_id'] ?></a></td>
                         <td><?= $item['total_price'] ?></td>
                         <td><?= $item['snap_name'] ?></td>
+                        <td>姓名:<?= $item['snap_address']['name'] ?>,电话:<?= $item['snap_address']['mobile'] ?>，地址:<?= $item['snap_address']['province'].$item['snap_address']['city'].$item['snap_address']['country'].$item['snap_address']['detail'] ?></td>
                         <td><?= $item['kuaidi_name']." ".$item['kuaidi_order'] ?></td>
                         <td>
                             <?php if($item['status'] == 1): ?>未支付

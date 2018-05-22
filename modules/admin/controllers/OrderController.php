@@ -75,8 +75,13 @@ class OrderController extends BaseController
             ->offset($page->offset)
             ->limit($page->limit)
             ->orderBy('create_time desc')
+            ->asArray()
             ->all();
 
+        foreach ($datalist as &$item){
+            $item['snap_address'] = json_decode($item['snap_address'],true);
+        }
+//        var_dump($datalist);exit();
         return $this->render('winner',[
             'datalist' => $datalist,
             'pages' => $page,
