@@ -40,7 +40,8 @@ class UserController extends BaseController
     }
 
     public function actionLogout(){
-        
+
+
     }
 
     //显示二维码
