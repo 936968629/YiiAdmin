@@ -75,8 +75,7 @@ class IndexController extends BaseController {
                 $newlist1 = $recharge_date;
                 $newlist2 = $recharge_count;
             }
-        var_dump($newlist1);
-        var_dump($newlist2);
+
         return $this->render('welcome',[
             'list1' => $newlist1,
             'list2' => $newlist2,

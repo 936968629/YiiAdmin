@@ -22,6 +22,7 @@ class ProductController extends BaseController
         $datalist = ProductModel::find()
             ->select('bs_product.*,c.name c_name')
             ->join('inner join','bs_category c','bs_product.category_id = c.id')
+            ->orderBy('id desc')
             ->asArray()
             ->all();
         return $this->render('index',[
