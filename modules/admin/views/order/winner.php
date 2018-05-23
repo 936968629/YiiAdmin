@@ -35,7 +35,7 @@ use app\common\service\UrlService;
                 <div class="col-xs-12 col-sm-9 button-list">
                     <a title="待发货" class="btn <?php if(isset($_GET['status']) && $_GET['status']==2) echo 'btn-info';else echo 'btn-primary'; ?>" href="<?= UrlService::buildAdminUrl('/order/winner',['status'=>2]) ?>">待发货</a>&nbsp;
                     <a title="已发货" class="btn <?php if(isset($_GET['status']) && $_GET['status']==3) echo 'btn-info';else echo 'btn-primary'; ?>" href="<?= UrlService::buildAdminUrl('/order/winner',['status'=>3]) ?>">已发货</a>&nbsp;
-                    <a title="已收货" class="btn <?php if(isset($_GET['status']) && $_GET['status']==5) echo 'btn-info';else echo 'btn-primary'; ?>" href="<?= UrlService::buildAdminUrl('/order/winner',['status'=>5]) ?>">已发货</a>&nbsp;
+                    <a title="已收货" class="btn <?php if(isset($_GET['status']) && $_GET['status']==5) echo 'btn-info';else echo 'btn-primary'; ?>" href="<?= UrlService::buildAdminUrl('/order/winner',['status'=>5]) ?>">已收货</a>&nbsp;
                 </div>
                 <!-- 搜索框 -->
                 <div class="col-xs-12 col-sm-2">
@@ -79,6 +79,7 @@ use app\common\service\UrlService;
                             <?php elseif($item['status'] == 2): ?>已支付
                             <?php elseif($item['status'] == 3): ?>已发货
                             <?php elseif($item['status'] == 4): ?>已支付但库存不足
+                            <?php elseif($item['status'] == 5): ?>已收货
                             <?php endif; ?>
                         </td>
                         <td><?= $item['create_time'] ?></td>
