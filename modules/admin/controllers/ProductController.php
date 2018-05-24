@@ -19,14 +19,35 @@ use app\modules\admin\controllers\common\BaseController;
 class ProductController extends BaseController
 {
     public function actionIndex(){
-        $datalist = ProductModel::find()
+        $keyword = $this->get('keyword','','op_t');
+        $where = array();
+        $query = ProductModel::find()
             ->select('bs_product.*,c.name c_name')
-            ->join('inner join','bs_category c','bs_product.category_id = c.id')
-            ->orderBy('id desc')
+            ->join('inner join','bs_category c','bs_product.category_id = c.id');
+
+        if( !empty($keyword) ){
+            if( is_numeric($keyword) ){
+                $where['bs_product.id'] = intval($keyword);
+                $query->where('bs_product.id = '.intval($keyword) );
+            }else{
+                $where = array('like','bs_product.name',$keyword);
+                $query->where($where);
+            }
+        }
+
+        $datalist = $query->orderBy('id desc')
             ->asArray()
             ->all();
+//        $datalist = ProductModel::find()
+//            ->select('bs_product.*,c.name c_name')
+//            ->join('inner join','bs_category c','bs_product.category_id = c.id')
+//            ->where($where)
+//            ->orderBy('id desc')
+//            ->asArray()
+//            ->all();
         return $this->render('index',[
-            'datalist' => $datalist
+            'datalist' => $datalist,
+            'keyword' => $keyword
         ]);
     }
 

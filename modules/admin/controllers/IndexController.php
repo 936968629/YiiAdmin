@@ -1,7 +1,6 @@
 <?php
 namespace app\modules\admin\controllers;
 
-use app\models\OrderModel;
 use app\modules\admin\controllers\common\BaseController;
 
 class IndexController extends BaseController {

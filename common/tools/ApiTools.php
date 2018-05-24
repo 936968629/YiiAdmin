@@ -20,7 +20,7 @@ class ApiTools
      * @return bool
      * @author wjl
      */
-    public static function editStatus($model,int $status = 1,$where=[],int $writeSql = 0){
+    public static function editStatus($model,$status = 1,$where=[],$writeSql = 0){
         $info = $model->where($where)->one();
         if(empty($info)){
             return false;

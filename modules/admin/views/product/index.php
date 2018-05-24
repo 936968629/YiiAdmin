@@ -31,6 +31,15 @@ use app\common\service\UrlService;
                     <a title="启用" target-form="ids" class="btn btn-success ajax-post confirm" data-model="User" href="/index.php?s=/admin/product/setstatus/status/resume/model/Product.html" autocomplete="off">启用</a>&nbsp;
                     <a title="禁用" target-form="ids" class="btn btn-warning ajax-post confirm" data-model="User" href="/index.php?s=/admin/product/setstatus/status/forbid/model/Product.html">禁用</a>
                 </div>
+                <!-- 搜索框 -->
+                <div class="col-xs-12 col-sm-2">
+                    <div class="input-group search-form">
+                        <input class="search-input form-control" type="text" name="keyword" placeholder="商品id/名称" value="<?= $keyword ?>">
+                        <span class="input-group-btn">
+                            <a style="padding: 10px 12px;" class="btn btn-default" href="javascript:;" id="search" url="/admin/product/index"><i class="fa fa-search"></i></a>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="table-margin">
@@ -105,6 +114,11 @@ use app\common\service\UrlService;
                 },'json');
             }
         }
+        $('#search').click(function (e) {
+            var url = $(this).attr('url');
+            var keyword = $('input[name=keyword]').val();
+            window.location.href = url+'?keyword='+keyword;
+        });
 
     </script>
     </body>
