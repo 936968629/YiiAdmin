@@ -89,11 +89,7 @@ use app\common\service\UrlService;
             </div>
         </div>
     </div>
-    <?=
-    \yii\widgets\LinkPager::widget([
-        'pagination' => $page,
-    ]);
-    ?>
+
     <?php $this->endBody(); ?>
     <script>
         $('.auth input[type="checkbox"]').on('change',function(){

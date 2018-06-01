@@ -47,8 +47,11 @@ class AdminController extends BaseController
             $id = $this->post('id','','intval');
             $title = $this->post('title','','op_t');
             $menu_auth = $this->post('menu_auth','','op_t');
-
-            //return $this->success('操作成功');
+            $auths = implode(',',$menu_auth);
+            $info = AdminGroupModel::find()->where(['id'=>$id])->one();
+            $info->menu_auth = $auths;
+            $info->save(0);
+            return $this->success('操作成功');
         }else{
             $id = $this->get('id','','intval');
             //获取菜单
@@ -70,12 +73,9 @@ class AdminController extends BaseController
             $info['menu_auth'] = explode(",",$ids);
 
 
-            $page = new Pagination(['totalCount' => 200]);
-
             return $this->render('groupEdit',[
                 'info' => $info,
                 '__ALL_MENU_LIST__' => $all_menu_list,
-                'page' => $page
             ]);
         }
 
