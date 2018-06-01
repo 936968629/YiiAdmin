@@ -41,6 +41,7 @@ class UserController extends BaseController
     //注销
     public function actionLogout(){
         unset($_SESSION['admin'] );
+        $this->redirect('/admin/default/login');
     }
 
     //显示二维码
