@@ -9,6 +9,7 @@
 namespace app\modules\admin\controllers;
 
 use app\models\OrderModel;
+use app\models\ProductModel;
 use app\modules\admin\controllers\common\BaseController;
 use yii\data\Pagination;
 
@@ -85,6 +86,12 @@ class OrderController extends BaseController
             ->all();
 
         foreach ($datalist as &$item){
+            $item['snap_items'] = json_decode($item['snap_items'],true);
+            $item['productinfo'] = '';
+            foreach ($item['snap_items'] as $val){
+                $proInfo = ProductModel::find()->where(['id'=>$val['id'] ])->one();
+                $item['productinfo'] .= "商品id:".$val['id']." 名称:".$proInfo['name'].'×'.$val['counts']." ";
+            }
             $item['snap_address'] = json_decode($item['snap_address'],true);
         }
 //        var_dump($datalist);exit();
