@@ -35,7 +35,17 @@ class OrderController extends BaseController
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->orderBy('create_time desc')
+            ->asArray()
             ->all();
+
+        foreach ($datalist as &$item){
+            $item['snap_items'] = json_decode($item['snap_items'],true);
+            $item['productinfo'] = '';
+            foreach ($item['snap_items'] as $val){
+                $proInfo = ProductModel::find()->where(['id'=>$val['id'] ])->one();
+                $item['productinfo'] .= "商品id:".$val['id']." 名称:".$proInfo['name'].'×'.$val['counts']." ";
+            }
+        }
 
         return $this->render('index',[
             'datalist' => $datalist,

@@ -61,7 +61,7 @@ use app\common\service\UrlService;
                         <td><?= $item['order_no'] ?></td>
                         <td><a href=""><?= $item['user_id'] ?></a></td>
                         <td><?= $item['total_price'] ?></td>
-                        <td><?= $item['snap_name'] ?></td>
+                        <td><?= $item['productinfo'] ?></td>
                         <td>
                             <?php if($item['status'] == 1): ?>未支付
                             <?php elseif($item['status'] == 2): ?>已支付
