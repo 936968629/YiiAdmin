@@ -44,11 +44,17 @@ class OrderController extends BaseController
     }
 
     public function actionInfo(){
-
-        $datalist = OrderModel::find()
-            ->orderBy('create_time desc')
-            ->all();
-        var_dump($datalist);
+        $id = $this->get('id','','intval');
+        $info = OrderModel::find()
+            ->where(['id'=>$id])
+//            ->orderBy('create_time desc')
+            ->one();
+        $addressArr = json_decode($info['snap_address'],true);
+        $addressInfo = "姓名:".$addressArr['name']." 电话".$addressArr['mobile'];
+        return $this->render('info',[
+            'info' => $info,
+            'addressInfo' => $addressInfo
+        ]);
     }
     //发货
     public function actionWinner(){
