@@ -120,13 +120,15 @@ class OrderController extends BaseController
             $info = OrderModel::find()
                 ->where(['id'=>$id])
                 ->one();
+//            var_dump($info);
             $info->kuaidi_name = $name;
             $info->kuaidi_order = $number;
             $info->status = 3;
-            $ret = $info->save();
+            $ret = $info->save(0);
             if(!$ret){
                 return $this->renderJson(0);
             }
+
             //消息通知
             $content = "你购买的商品【".$info['snap_name']."】已发货，请注意查收";
             $re = insertMsg($info['user_id'],'发货通知',$content);
