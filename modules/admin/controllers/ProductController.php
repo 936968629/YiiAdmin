@@ -200,9 +200,10 @@ class ProductController extends BaseController
         }else{
             $id = $this->get('id','','op_t');
             $info = ProductPropertyModel::find()
-                ->where(['id'=>$id])
+                ->where(['product_id'=>$id])
                 ->asArray()
                 ->one();
+
             return $this->render('info',[
                'info' => $info,
                 'id' => $id
